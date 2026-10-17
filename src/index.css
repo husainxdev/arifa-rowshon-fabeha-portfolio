@@ -90,7 +90,7 @@
        amber* hairline — never a cold-white line, which reads grey on black — and
        no base sheen. Cards that want the "editorial panel" look add .glass-glow
        (or their own layers) for a warm top-edge light-catch + a soft amber corner
-       glow. See .glass-glow / TiltCard / About / CompetitiveProgramming. */
+       glow. See .glass-glow on the portfolio panels. */
     --glass-bg: color-mix(in oklab, #000000 95%, transparent);
     --glass-border: color-mix(in oklab, var(--color-neon-cyan) 11%, transparent);
     --glass-sheen: transparent;
@@ -318,28 +318,6 @@
     color: var(--color-muted);
   }
 
-  /*
-   * Terminal / code chrome that stays dark in BOTH themes. Pins tokens to
-   * dark values locally so descendants render dark regardless of page theme.
-   */
-  .code-surface {
-    --color-ink: #e8eaf0;
-    --color-muted: #8b8f9c;
-    --color-surface: #000000;
-    --color-hair: rgba(255, 255, 255, 0.10);
-    --color-fill: rgba(255, 255, 255, 0.05);
-    --color-fill-2: rgba(255, 255, 255, 0.09);
-    --color-hair-strong: rgba(255, 255, 255, 0.18);
-    --color-fill-strong: rgba(255, 255, 255, 0.10);
-    --color-neonCyan: #f2b43d;
-    --color-neonPurple: #cf9038;
-    --color-neon-cyan: #f2b43d;
-    --color-neon-violet: #cf9038;
-    --color-neon-magenta: #f6d18c;
-    --glass-strong-bg: rgba(0, 0, 0, 0.86);
-    --glass-strong-border: rgba(255, 255, 255, 0.10);
-    color: var(--color-ink);
-  }
 }
 
 /* ------------------------------------------------------------------ */
@@ -452,11 +430,6 @@
 .project-art-grid { position:absolute; inset:0; opacity:.2; background-image:linear-gradient(to right,#fff 1px,transparent 1px),linear-gradient(to bottom,#fff 1px,transparent 1px); background-size:32px 32px; transform:perspective(300px) rotateX(14deg) scale(1.2); }
 .project-art-icon { display:grid; place-items:center; width:112px; height:112px; transform:rotate(-7deg); border:1px solid rgba(255,255,255,.35); border-radius:25px; background:rgba(255,255,255,.1); color:#f8ddab; backdrop-filter:blur(8px); box-shadow:0 16px 35px rgba(0,0,0,.25); }
 .project-art-cloud .project-art-icon { transform:rotate(7deg); }
-.project-details summary { list-style:none; }
-.project-details summary::-webkit-details-marker { display:none; }
-.project-details[open] summary svg { transform:rotate(90deg); }
-.project-dialog { position:fixed; margin:auto; }
-.project-dialog::backdrop { background:rgba(0,0,0,.78); backdrop-filter:blur(6px); }
 .activity-cover { position:relative; height:190px; display:grid; place-items:center; overflow:hidden; color:#f3c66f; }
 .activity-cover-guide { background:radial-gradient(circle at 50% 40%,#584627,#221a0e 50%,#0c0b08); }
 .activity-cover-project { background:radial-gradient(circle at 50% 40%,#4f4964,#211e2c 50%,#0c0b11); }

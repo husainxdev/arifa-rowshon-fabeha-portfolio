@@ -20,13 +20,11 @@ import {
   Send,
   Target,
   Users,
-  X,
 } from "lucide-react";
 import Reveal from "./ui/Reveal";
 import SectionHeading from "./ui/SectionHeading";
 import Guide from "./Guide";
 import PlatformIcon from "./PlatformIcon";
-import CodeTerminal from "./CodeTerminal";
 import {
   personalInfo,
   education,
@@ -80,13 +78,6 @@ export function Home() {
               </a>
             </div>
           </Reveal>
-          <Reveal delay={0.23}>
-            <dl className="mt-9 grid max-w-md grid-cols-3 gap-px overflow-hidden rounded-xl border border-hair bg-hair">
-              <div className="bg-void px-3 py-4 sm:px-4"><dt className="font-display text-2xl font-semibold text-gradient sm:text-3xl">CSE</dt><dd className="mt-1 font-mono text-[10px] text-muted">Student</dd></div>
-              <div className="bg-void px-3 py-4 sm:px-4"><dt className="font-display text-2xl font-semibold text-gradient sm:text-3xl">2025</dt><dd className="mt-1 font-mono text-[10px] text-muted">Started</dd></div>
-              <div className="bg-void px-3 py-4 sm:px-4"><dt className="font-display text-2xl font-semibold text-gradient sm:text-3xl">{codingProgress.problemsSolved}+</dt><dd className="mt-1 font-mono text-[10px] text-muted">Problems solved</dd></div>
-            </dl>
-          </Reveal>
         </div>
         <Reveal delay={0.16}>
           <div className="grid min-h-[280px] grid-cols-[.9fr_1.1fr] gap-3 sm:min-h-[340px] lg:mt-2">
@@ -107,7 +98,6 @@ export function Home() {
           </div>
         </Reveal>
       </div>
-      <Reveal delay={0.25}><CodeTerminal /></Reveal>
     </section>
   );
 }
@@ -276,7 +266,7 @@ function Field({ label, value }) {
     </div>
   );
 }
-function ProjectCard({ project, index, onOpen }) {
+function ProjectCard({ project, index }) {
   const built = project.status === "Built project";
   const Icon = built ? HeartPulse : Cloud;
   return (
@@ -309,63 +299,19 @@ function ProjectCard({ project, index, onOpen }) {
             </p>
           )}
           <p className="mt-4 leading-7 text-muted">{project.summary}</p>
-          <button type="button" onClick={() => onOpen(project)} className="mt-6 inline-flex items-center gap-2 border-t border-hair pt-4 text-sm font-semibold text-neonCyan transition hover:gap-3" aria-label={`View details for ${project.title}`}>View details <ArrowUpRight size={17} aria-hidden="true" /></button>
+          {project.description && <p className="mt-4 text-sm leading-6 text-muted">{project.description}</p>}
+          {project.research && <p className="mt-4 text-sm leading-6 text-muted">{project.research}</p>}
+          {project.technologies?.length > 0 && <p className="mt-4 font-mono text-xs text-neonCyan">{project.technologies.join(" · ")}</p>}
+          {(project.github || project.demo) && <div className="mt-6 flex flex-wrap gap-3 border-t border-hair pt-4">
+            {project.github && <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-neonCyan hover:underline">Repository <ExternalLink size={15} /></a>}
+            {project.demo && <a href={project.demo} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-neonCyan hover:underline">Live demo <ExternalLink size={15} /></a>}
+          </div>}
         </div>
       </article>
     </Reveal>
   );
 }
-function ProjectDialog({ project, onClose }) {
-  const dialogRef = useRef(null);
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-    dialog.showModal();
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      if (dialog.open) dialog.close();
-      document.body.style.overflow = previousOverflow;
-    };
-  }, []);
-  const built = project.status === "Built project";
-  return <dialog ref={dialogRef} onClose={onClose} onClick={(event) => { if (event.target === dialogRef.current) onClose(); }} className="project-dialog glass-strong w-[min(92vw,720px)] max-h-[88vh] overflow-y-auto rounded-3xl p-0 text-ink">
-    <div className={`project-art ${built ? "project-art-health" : "project-art-cloud"}`}>
-      <div className="project-art-grid" />
-      <div className="project-art-icon">{built ? <HeartPulse size={50} /> : <Cloud size={50} />}</div>
-      <button type="button" onClick={onClose} aria-label="Close project details" className="absolute right-4 top-4 z-10 grid h-10 w-10 place-items-center rounded-xl border border-white/30 bg-black/40 text-white"><X size={19} /></button>
-    </div>
-    <div className="p-6 sm:p-8">
-      <span className="font-mono text-xs text-neonCyan">{project.status} · {project.type}</span>
-      <h3 className="mt-3 text-3xl text-ink">{project.title}</h3>
-      {project.tagline && <p className="mt-3 border-l-2 border-neonCyan pl-3 text-sm font-semibold text-neonCyan">“{project.tagline}”</p>}
-      <p className="mt-5 leading-7 text-muted">{project.summary}</p>
-      <dl className="mt-6 grid gap-2 sm:grid-cols-2">
-        {built ? <>
-          <Field label="Description" value={project.description} />
-          <Field label="Technologies" value={project.technologies} />
-          <Field label="Features" value={project.features} />
-          <Field label="Screenshots" value={project.screenshots} />
-        </> : <>
-          <Field label="Research" value={project.research} />
-          <Field label="Diagrams" value={project.diagrams} />
-          <Field label="Team information" value={project.team} />
-          <Field label="References" value={project.references} />
-          <Field label="Project documents" value={project.documents} />
-        </>}
-      </dl>
-      <p className="mt-5 text-sm leading-6 text-muted">{built ? "Project screenshots, technologies, confirmed features, repository, and live demo will be added when available." : "Research materials, diagrams, team information, references, and documents will be added as the academic project develops."}</p>
-      <div className="mt-6 flex flex-wrap gap-3">
-        {project.github && <a href={project.github} target="_blank" rel="noopener noreferrer" className={secondary}>Repository <ExternalLink size={15} /></a>}
-        {project.demo && <a href={project.demo} target="_blank" rel="noopener noreferrer" className={primary}>Live demo <ExternalLink size={15} /></a>}
-      </div>
-    </div>
-  </dialog>;
-}
 export function Projects() {
-  const [filter, setFilter] = useState("All");
-  const [selected, setSelected] = useState(null);
-  const visible = filter === "All" ? projects : projects.filter((project) => project.status === filter);
   return (
     <section id="projects" className={shell}>
       <SectionHeading
@@ -374,15 +320,11 @@ export function Projects() {
         title="Things I'm building"
         kicker="A healthcare project and an ongoing academic exploration."
       />
-      <div className="mt-8 flex flex-wrap gap-2" role="group" aria-label="Filter projects">
-        {["All", "Built project", "In Progress"].map((option) => <button key={option} type="button" onClick={() => setFilter(option)} aria-pressed={filter === option} className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${filter === option ? "border-neonCyan bg-neonCyan text-void" : "border-hair bg-fill text-muted hover:text-ink"}`}>{option}</button>)}
-      </div>
-      <div className="mt-7 grid gap-6 sm:grid-cols-2">
-        {visible.map((p) => (
-          <ProjectCard key={p.title} project={p} index={projects.indexOf(p)} onOpen={setSelected} />
+      <div className="mt-8 grid gap-6 sm:grid-cols-2">
+        {projects.map((p, i) => (
+          <ProjectCard key={p.title} project={p} index={i} />
         ))}
       </div>
-      {selected && <ProjectDialog project={selected} onClose={() => setSelected(null)} />}
     </section>
   );
 }
@@ -571,6 +513,12 @@ export function Activities() {
       <div className="mt-10 grid gap-5 md:grid-cols-2">
         {activities.map((a, i) => {
           const cover = a.photos?.[0];
+          const details = [
+            ["Date", a.date],
+            ["Organizer", a.organizer],
+            ["Role", a.role],
+            ["Certificate", a.certificate],
+          ].filter(([, value]) => value);
           return <Reveal key={a.title} delay={i * 0.08} className="h-full">
             <article className="glass-strong glass-glow h-full overflow-hidden rounded-2xl">
               <div className={`activity-cover ${i === 0 ? "activity-cover-guide" : "activity-cover-project"}`}>
@@ -583,19 +531,9 @@ export function Activities() {
               <div className="p-6">
                 <h3 className="text-2xl text-ink">{a.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-muted">{a.summary}</p>
-              <details className="mt-6 border-t border-hair pt-4">
-                <summary className="cursor-pointer font-mono text-xs text-neonCyan">
-                  Experience details ↓
-                </summary>
-                <dl className="mt-4 grid gap-2 sm:grid-cols-2">
-                  <Field label="Event / activity" value={a.title} />
-                  <Field label="Date" value={a.date} />
-                  <Field label="Organizer" value={a.organizer} />
-                  <Field label="Role" value={a.role} />
-                  <Field label="Certificate" value={a.certificate} />
-                  <Field label="Photos" value={a.photos} />
-                </dl>
-              </details>
+                {details.length > 0 && <dl className="mt-5 grid gap-2 border-t border-hair pt-4 sm:grid-cols-2">
+                  {details.map(([label, value]) => <Field key={label} label={label} value={value} />)}
+                </dl>}
               </div>
             </article>
           </Reveal>;

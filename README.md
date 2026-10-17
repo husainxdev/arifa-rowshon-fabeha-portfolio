@@ -1,6 +1,6 @@
 # Arifa Rowshon Fabeha — Portfolio
 
-This project adapts the uploaded portfolio's editorial black-and-amber design and page flow for Arifa's confirmed details. It is a React/Vite site and runs without the original owner's backend or content. It includes the opening animation, Fabiha guide, interactive C++ puzzle, filtered project cards, coding progress, and contact email draft.
+This React/Vite portfolio uses an editorial black-and-amber design for Arifa's confirmed details. It includes the opening animation, Fabiha guide, project cards, coding progress, and contact email draft.
 
 ## Run in Replit
 
@@ -10,4 +10,4 @@ Import this folder or the supplied ZIP into a Node.js Repl. Run `npm install`, t
 
 Edit `src/data/portfolioData.js` to add confirmed project technologies, screenshots, GitHub/live links, activity dates and certificates, and contact details. Empty fields show as pending or are omitted. The problem counter and progress calculation read the central `codingProgress` values. The contact form opens a prefilled draft in the visitor's email app; it does not send automatically or require a backend. To send messages directly from the site, configure an email service and replace the form submit handler.
 
-The original folder's Blog and Admin areas are excluded because their existing data belongs to the previous owner. The C++ visitor puzzles live in `src/data/codePuzzles.js`.
+Project and activity fields without confirmed content are kept in the data file for future updates and stay hidden on the website.
