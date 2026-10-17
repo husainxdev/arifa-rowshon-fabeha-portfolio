@@ -77,6 +77,9 @@ export default function Navbar() {
           <a className="nav-icon" href={personalInfo.github} target="_blank" rel="noopener noreferrer" aria-label="Arifa's GitHub profile (opens in a new tab)">
             <PlatformIcon name="GitHub" className="h-[19px] w-[19px]" />
           </a>
+          <a className="nav-icon" href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Arifa's LinkedIn profile (opens in a new tab)">
+            <PlatformIcon name="LinkedIn" className="h-[19px] w-[19px]" />
+          </a>
           <button
             type="button"
             className="theme-button"

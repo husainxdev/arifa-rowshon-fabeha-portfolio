@@ -549,9 +549,11 @@ export function Activities() {
 export function Contact() {
   const [copyStatus, setCopyStatus] = useState("");
   const links = [
-    { label: "GitHub", url: personalInfo.github },
     ...(personalInfo.linkedin
-      ? [{ label: "LinkedIn", url: personalInfo.linkedin }]
+      ? [{ label: "LinkedIn", url: personalInfo.linkedin, icon: "LinkedIn" }]
+      : []),
+    ...(personalInfo.instagram
+      ? [{ label: "Instagram", url: personalInfo.instagram, icon: "Instagram" }]
       : []),
     ...personalInfo.otherLinks,
   ];
@@ -604,9 +606,9 @@ export function Contact() {
             </div>
             <div className="mt-auto flex flex-wrap items-center justify-between gap-4 px-1 pt-5">
               <div className="flex flex-wrap gap-2">
-                {links.map((link) => (
-                  <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-hair bg-fill px-3 py-2 font-mono text-xs text-ink transition hover:border-neonCyan/40 hover:text-neonCyan">{link.label}<ExternalLink size={13} aria-hidden="true" /></a>
-                ))}
+                {links.map((link) => {
+                  return <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer" aria-label={`${link.label} profile (opens in a new tab)`} className="inline-flex items-center gap-2 rounded-xl border border-hair bg-fill px-3 py-2 font-mono text-xs text-ink transition hover:border-neonCyan/40 hover:text-neonCyan">{link.icon && <PlatformIcon name={link.icon} className="h-[15px] w-[15px]" />}{link.label}<ExternalLink size={13} aria-hidden="true" /></a>;
+                })}
               </div>
               <span className="inline-flex items-center gap-2 font-mono text-xs text-muted"><MapPin size={14} className="text-neonCyan" aria-hidden="true" />{personalInfo.location}</span>
             </div>
@@ -649,6 +651,8 @@ export function Footer({ onReplayIntro }) {
           <p className="mt-6 max-w-md text-sm leading-7 text-muted">Exploring programming, problem-solving, and projects with curiosity and care.</p>
           <div className="mt-6 flex items-center gap-3">
             <a href={personalInfo.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in a new tab)" className="footer-social"><PlatformIcon name="GitHub" className="h-[18px] w-[18px]" /></a>
+            <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in a new tab)" className="footer-social"><PlatformIcon name="LinkedIn" className="h-[18px] w-[18px]" /></a>
+            <a href={personalInfo.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram profile (opens in a new tab)" className="footer-social"><PlatformIcon name="Instagram" className="h-[18px] w-[18px]" /></a>
             <a href={`mailto:${personalInfo.email}`} aria-label="Email Arifa" className="footer-social"><Mail size={18} aria-hidden="true" /></a>
           </div>
         </div>
