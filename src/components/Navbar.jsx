@@ -8,7 +8,7 @@ const links = [
   ["home", "Home"],
   ["about", "About"],
   ["skills", "Skills"],
-  ["coding", "CP"],
+  ["coding", "Coding Profiles"],
   ["projects", "Projects"],
   ["education", "Education"],
   ["activities", "Activities"],
@@ -68,8 +68,6 @@ export default function Navbar() {
       key={id}
       href={`#${id}`}
       onClick={() => setOpen(false)}
-      aria-label={id === "coding" ? "Coding Profiles" : undefined}
-      title={id === "coding" ? "Coding Profiles" : undefined}
       aria-current={active === id ? "location" : undefined}
       className={`nav-link ${active === id ? "active" : ""}`}
     >

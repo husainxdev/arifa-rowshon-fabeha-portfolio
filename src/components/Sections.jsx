@@ -37,7 +37,7 @@ import {
 } from "../data/portfolioData";
 
 const shell =
-  "portfolio-section relative mx-auto max-w-6xl scroll-mt-28 px-4 py-16 sm:px-6 md:py-20";
+  "portfolio-section relative mx-auto max-w-6xl scroll-mt-28 px-4 py-16 sm:px-6 md:py-24";
 const primary =
   "inline-flex items-center justify-center gap-2 rounded-xl bg-neonCyan px-5 py-3 text-sm font-semibold text-void transition hover:-translate-y-0.5 hover:brightness-110";
 const secondary =
@@ -69,7 +69,7 @@ export function Home() {
             </p>
           </Reveal>
           <Reveal delay={0.18}>
-            <div className="mt-7 grid max-w-md gap-3 min-[440px]:grid-cols-2">
+            <div className="mt-8 grid max-w-md gap-3 min-[440px]:grid-cols-2">
               <a className={primary} href="#about">
                 Explore My Journey <ArrowRight size={17} />
               </a>
@@ -218,12 +218,12 @@ export function Skills() {
                 <p className="font-mono text-xs text-muted">{skills.length} confirmed skills</p>
               </div>
             </div>
-            <div className="mt-7 grid gap-3 sm:grid-cols-2">
+            <div className="mt-7 grid grid-cols-2 gap-2.5 sm:gap-3">
               {skills.map((skill, i) => {
                 const Icon = technicalIcons[i] || Code2;
-                return <div key={skill.name} className="flex min-h-16 items-center gap-3 rounded-xl border border-hair bg-fill px-4 py-3 transition-colors hover:border-neonCyan/40 hover:bg-neonCyan/[.06]">
+                return <div key={skill.name} className="skill-tile flex min-h-16 items-center gap-3 rounded-xl border border-hair bg-fill px-3 py-3 sm:px-4">
                   <Icon size={19} className="shrink-0 text-neonCyan" aria-hidden="true" />
-                  <span className="font-semibold text-ink">{skill.name}</span>
+                  <span className="text-sm font-semibold leading-snug text-ink sm:text-base">{skill.name}</span>
                 </div>;
               })}
             </div>
@@ -238,12 +238,12 @@ export function Skills() {
                 <p className="font-mono text-xs text-muted">{softSkills.length} strengths</p>
               </div>
             </div>
-            <div className="mt-7 grid gap-3 sm:grid-cols-2">
+            <div className="mt-7 grid grid-cols-2 gap-2.5 sm:gap-3">
               {softSkills.map((skill, i) => {
                 const Icon = softIcons[i];
-                return <div key={skill} className="flex min-h-16 items-center gap-3 rounded-xl border border-hair bg-fill px-4 py-3 transition-colors hover:border-neonCyan/40 hover:bg-neonCyan/[.06]">
+                return <div key={skill} className="skill-tile flex min-h-16 items-center gap-3 rounded-xl border border-hair bg-fill px-3 py-3 sm:px-4">
                   <Icon size={19} className="shrink-0 text-neonCyan" aria-hidden="true" />
-                  <span className="font-semibold text-ink">{skill}</span>
+                  <span className="text-sm font-semibold leading-snug text-ink sm:text-base">{skill}</span>
                 </div>;
               })}
             </div>
@@ -369,6 +369,8 @@ export function Coding() {
   const above = problemsSolved - referenceTarget;
   const surpassed = above > 0;
   const percentage = (problemsSolved / target) * 100;
+  const chartMaximum = Math.max(problemsSolved, target);
+  const targetPosition = (target / chartMaximum) * 100;
   const { ref, count } = useCounter(problemsSolved);
   const animatedPercentage = (count / target) * 100;
   const colors = {
@@ -415,40 +417,37 @@ export function Coding() {
               <p className="mt-1 font-mono text-xs text-muted">of the target</p>
             </div>
           </div>
-          <div className="mt-8 rounded-xl border border-hair bg-fill p-5">
-            <div className="flex justify-between gap-3 font-mono text-xs text-muted">
-              <span>0</span>
-              <span>Target: {referenceTarget} problems</span>
+          <div className="mt-8 rounded-xl border border-hair bg-fill p-5 sm:p-6">
+            <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
+              <p className="font-mono text-xs uppercase tracking-widest text-ink">Problem-solving progress</p>
+              <span className="font-mono text-xs text-neonCyan">{above > 0 ? `+${above} past target` : `Target: ${referenceTarget} problems`}</span>
             </div>
             <div
               role="progressbar"
               aria-label="Problem-solving milestone progress"
               aria-valuemin={0}
-              aria-valuemax={Math.max(problemsSolved, target)}
+              aria-valuemax={chartMaximum}
               aria-valuenow={count}
               aria-valuetext={`${animatedPercentage.toFixed(1)}% of the ${referenceTarget}-problem target`}
-              className="relative mr-12 mt-3 h-3 rounded-full bg-hair"
+              className="progress-track relative mt-7 h-3 rounded-full bg-hair"
             >
               <div
-                className="h-full rounded-full bg-gradient-to-r from-neonPurple to-neonCyan"
-                style={{ width: `${Math.min(animatedPercentage, 100)}%` }}
+                className="absolute inset-y-0 left-0 rounded-l-full bg-neonPurple"
+                style={{ width: `${(Math.min(count, target) / chartMaximum) * 100}%` }}
               />
-              {surpassed && count > target && (
-                <span className="absolute -right-12 top-1/2 -translate-y-1/2 rounded-full border border-neonCyan/50 bg-void px-2 py-1 font-mono text-[10px] text-neonCyan">
-                  +{count - target}
-                </span>
-              )}
+              {surpassed && <div className="absolute inset-y-0 bg-neonCyan" style={{ left: `${targetPosition}%`, width: `${(Math.max(count - target, 0) / chartMaximum) * 100}%` }} />}
+              {surpassed && <span className="absolute -top-1 h-5 w-px bg-ink/80" style={{ left: `${targetPosition}%` }} aria-hidden="true" />}
+            </div>
+            <div className="relative mt-3 flex justify-between font-mono text-[11px] text-muted">
+              <span>0</span>
+              {surpassed && <span className="absolute -translate-x-1/2 text-ink" style={{ left: `${targetPosition}%` }}>Target: {referenceTarget}</span>}
+              <span>{chartMaximum} solved</span>
             </div>
             <p className="mt-5 flex flex-wrap items-center gap-2 text-sm text-neonCyan">
               <Check size={16} />
               {surpassed
                 ? `You've surpassed the ${referenceTarget}-problem milestone!`
                 : `${problemsSolved} of ${referenceTarget} problems solved.`}
-              {surpassed && (
-                <span className="ml-auto font-mono text-xs text-muted">
-                  {above} above target
-                </span>
-              )}
             </p>
           </div>
         </div>
@@ -464,7 +463,7 @@ export function Coding() {
           Explore my coding profiles and repositories.
         </p>
       </div>
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="mt-6 grid gap-3 min-[500px]:grid-cols-2 xl:grid-cols-4 xl:gap-4">
         {codingProfiles.map((profile, i) => (
           <Reveal key={profile.name} delay={(i % 4) * 0.05}>
             <a
@@ -472,7 +471,7 @@ export function Coding() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Visit ${profile.name} profile (opens in a new tab)`}
-              className="profile-card glass glass-glow flex min-h-[150px] flex-col justify-between rounded-2xl p-5 transition hover:-translate-y-1 hover:border-neonCyan/40"
+              className="profile-card glass glass-glow flex min-h-[138px] flex-col justify-between rounded-2xl p-4 transition hover:-translate-y-1 hover:border-neonCyan/40 sm:p-5"
             >
               <div className="flex items-center gap-3">
                 <span
