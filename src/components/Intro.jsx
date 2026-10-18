@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useMotionPreference } from "../context/MotionContext";
 import Guide from "./Guide";
 import { personalInfo } from "../data/portfolioData";
 
@@ -11,7 +12,8 @@ const lines = [
 ];
 
 export default function Intro({ onFinish }) {
-  const reduced = useReducedMotion();
+  const { enabled } = useMotionPreference();
+  const reduced = !enabled;
   const [stage, setStage] = useState("name");
   const [line, setLine] = useState(0);
 
@@ -40,14 +42,20 @@ export default function Intro({ onFinish }) {
   }, [onFinish]);
 
   return (
-    <div
+    <motion.div
       className="intro-overlay"
+      exit={{ opacity: 0, clipPath: reduced ? undefined : "inset(0 0 100% 0)" }}
+      transition={{ duration: reduced ? 0 : 0.7, ease: [0.76, 0, 0.24, 1] }}
       role="dialog"
       aria-modal="true"
       aria-label="Portfolio introduction"
     >
       <div className="intro-grid" aria-hidden="true" />
       <div className="intro-glow" aria-hidden="true" />
+      <div className="intro-starfield" aria-hidden="true">
+        {Array.from({ length: 14 }, (_, i) => <i key={i} style={{ left: `${(i * 37 + 9) % 100}%`, top: `${(i * 23 + 11) % 100}%`, animationDelay: `${i * -0.7}s`, animationDuration: `${4 + i % 4}s` }} />)}
+        <span className="intro-orbit" />
+      </div>
       <AnimatePresence mode="wait">
         {stage === "name" ? (
           <motion.div
@@ -109,6 +117,6 @@ export default function Intro({ onFinish }) {
         {stage === "name" ? "Skip Intro" : "Enter Portfolio"}{" "}
         <ArrowRight size={17} />
       </button>
-    </div>
+    </motion.div>
   );
 }

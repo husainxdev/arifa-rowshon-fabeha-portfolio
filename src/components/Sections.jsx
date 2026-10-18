@@ -1,15 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-import { useReducedMotion } from "framer-motion";
+import { useMotionPreference } from "../context/MotionContext";
 import {
   ArrowRight,
   ArrowUp,
   ArrowUpRight,
   Check,
-  Cloud,
   Code2,
   Copy,
   ExternalLink,
-  HeartPulse,
   Handshake,
   Lightbulb,
   Mail,
@@ -25,6 +23,8 @@ import Reveal from "./ui/Reveal";
 import SectionHeading from "./ui/SectionHeading";
 import Guide from "./Guide";
 import PlatformIcon from "./PlatformIcon";
+import { AnimatedHeading, InteractiveCard, MotionScene } from "./ui/MotionPrimitives";
+import ProjectVisual from "./ui/ProjectVisual";
 import {
   personalInfo,
   education,
@@ -39,13 +39,13 @@ import {
 const shell =
   "portfolio-section relative mx-auto max-w-6xl scroll-mt-28 px-4 py-16 sm:px-6 md:py-24";
 const primary =
-  "inline-flex items-center justify-center gap-2 rounded-xl bg-neonCyan px-5 py-3 text-sm font-semibold text-void transition hover:-translate-y-0.5 hover:brightness-110";
+  "action-button inline-flex items-center justify-center gap-2 rounded-xl bg-neonCyan px-5 py-3 text-sm font-semibold text-void transition hover:-translate-y-0.5 hover:brightness-110";
 const secondary =
-  "inline-flex items-center justify-center gap-2 rounded-xl border border-hair-strong bg-fill px-5 py-3 text-sm font-semibold text-ink transition hover:-translate-y-0.5 hover:border-neonCyan/50";
+  "action-button inline-flex items-center justify-center gap-2 rounded-xl border border-hair-strong bg-fill px-5 py-3 text-sm font-semibold text-ink transition hover:-translate-y-0.5 hover:border-neonCyan/50";
 
 export function Home() {
   return (
-    <section
+    <MotionScene as="section"
       id="home"
       className="relative mx-auto max-w-6xl scroll-mt-28 px-4 pb-14 pt-32 sm:px-6 md:pb-20 md:pt-36"
     >
@@ -54,11 +54,8 @@ export function Home() {
         <div className="relative z-10">
           <Reveal delay={0.04}>
             <p className="font-mono text-sm text-neonCyan">Hi, I'm</p>
-            <h1 className="mt-2 max-w-[700px] text-[clamp(3rem,6vw,5.4rem)] leading-[1.04] tracking-[-.045em] text-ink">
-              Arifa Rowshon{" "}
-              <span className="text-gradient-animate">Fabeha.</span>
-            </h1>
           </Reveal>
+          <AnimatedHeading as="h1" text="Arifa Rowshon Fabeha." accentLast className="mt-2 max-w-[700px] text-[clamp(3rem,6vw,5.4rem)] leading-[1.04] tracking-[-.045em] text-ink" />
           <Reveal delay={0.11}>
             <p className="mt-5 font-mono text-sm text-ink/85"><span className="text-neonCyan">focus:&nbsp;</span>C++ · Data Structures · Algorithms<span className="ml-1 inline-block h-4 w-px animate-blink bg-neonCyan align-middle" aria-hidden="true" /></p>
             <p className="mt-5 font-mono text-xs uppercase tracking-wide text-neonCyan">Computer Science and Engineering Student</p>
@@ -80,13 +77,16 @@ export function Home() {
           </Reveal>
         </div>
         <Reveal delay={0.16}>
-          <div className="grid min-h-[280px] grid-cols-[.9fr_1.1fr] gap-3 sm:min-h-[340px] lg:mt-2">
-            <div className="glass-strong glass-glow relative flex items-end justify-center overflow-hidden rounded-2xl">
+          <MotionScene className="grid min-h-[280px] grid-cols-[.9fr_1.1fr] gap-3 sm:min-h-[340px] lg:mt-2">
+            <div className="hero-character-stage glass-strong glass-glow relative flex items-end justify-center overflow-hidden rounded-2xl">
               <div className="hero-rings" aria-hidden="true" />
-              <Guide className="relative z-10 mb-3 w-[95%] max-w-[230px]" />
+              <span className="hero-orbit orbit-one" aria-hidden="true"><i /></span>
+              <span className="hero-orbit orbit-two" aria-hidden="true"><i /></span>
+              <span className="hero-code-chip" aria-hidden="true"><Code2 size={15} /> C++</span>
+              <Guide className="relative z-10 mb-3 w-[95%] max-w-[230px]" pointing />
               <span className="absolute bottom-3 left-3 right-3 z-20 rounded-lg border border-hair bg-void/85 px-2 py-1.5 text-center font-mono text-[10px] text-neonCyan">Fabiha · your guide</span>
             </div>
-            <div className="glass flex min-w-0 flex-col justify-between rounded-2xl p-3 sm:p-4">
+            <InteractiveCard tilt={2} className="glass flex min-w-0 flex-col justify-between rounded-2xl p-3 sm:p-4">
               <p className="flex items-center gap-2 font-mono text-[11px] text-muted"><span className="h-2 w-2 rounded-full bg-neonCyan" /> currently</p>
               <dl className="space-y-4">
                 <div><dt className="font-mono text-[10px] uppercase text-muted">Studying</dt><dd className="mt-1 text-xs font-medium text-ink sm:text-sm">B.Sc. in CSE</dd></div>
@@ -94,11 +94,11 @@ export function Home() {
                 <div><dt className="font-mono text-[10px] uppercase text-muted">Exploring</dt><dd className="mt-1 text-xs font-medium text-ink sm:text-sm">Programming & healthcare ideas</dd></div>
               </dl>
               <span className="flex items-center gap-1 font-mono text-[10px] text-neonCyan"><MapPin size={12} aria-hidden="true" /> Sylhet, Bangladesh</span>
-            </div>
-          </div>
+            </InteractiveCard>
+          </MotionScene>
         </Reveal>
       </div>
-    </section>
+    </MotionScene>
   );
 }
 
@@ -210,7 +210,7 @@ export function Skills() {
       />
       <div className="mt-10 grid gap-5 lg:grid-cols-2">
         <Reveal className="h-full">
-          <div className="glass-strong glass-glow h-full rounded-3xl p-6 sm:p-8">
+          <InteractiveCard tilt={1.5} className="glass-strong glass-glow h-full rounded-3xl p-6 sm:p-8">
             <div className="flex items-center gap-4">
               <span className="grid h-12 w-12 place-items-center rounded-xl border border-neonCyan/30 bg-neonCyan/10 text-neonCyan"><Code2 size={23} /></span>
               <div>
@@ -227,10 +227,10 @@ export function Skills() {
                 </div>;
               })}
             </div>
-          </div>
+          </InteractiveCard>
         </Reveal>
         <Reveal delay={0.08} className="h-full">
-          <div className="glass-strong glass-glow h-full rounded-3xl p-6 sm:p-8">
+          <InteractiveCard tilt={1.5} className="glass-strong glass-glow h-full rounded-3xl p-6 sm:p-8">
             <div className="flex items-center gap-4">
               <span className="grid h-12 w-12 place-items-center rounded-xl border border-neonCyan/30 bg-neonCyan/10 text-neonCyan"><Users size={23} /></span>
               <div>
@@ -247,7 +247,7 @@ export function Skills() {
                 </div>;
               })}
             </div>
-          </div>
+          </InteractiveCard>
         </Reveal>
       </div>
     </section>
@@ -268,21 +268,10 @@ function Field({ label, value }) {
 }
 function ProjectCard({ project, index }) {
   const built = project.status === "Built project";
-  const Icon = built ? HeartPulse : Cloud;
   return (
     <Reveal className="h-full" delay={index * 0.08}>
-      <article className="glass-strong glass-glow h-full overflow-hidden rounded-3xl">
-        <div
-          className={`project-art ${built ? "project-art-health" : "project-art-cloud"}`}
-        >
-          <div className="project-art-grid" />
-          <div className="project-art-icon">
-            <Icon size={54} strokeWidth={1.4} />
-          </div>
-          <span className="absolute bottom-5 left-6 font-mono text-xs uppercase tracking-widest text-ink/70">
-            Project / 0{index + 1}
-          </span>
-        </div>
+      <InteractiveCard as="article" className="glass-strong glass-glow h-full overflow-hidden rounded-3xl">
+        <ProjectVisual built={built} index={index} />
         <div className="p-6 sm:p-8">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <span
@@ -307,7 +296,7 @@ function ProjectCard({ project, index }) {
             {project.demo && <a href={project.demo} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-neonCyan hover:underline">Live demo <ExternalLink size={15} /></a>}
           </div>}
         </div>
-      </article>
+      </InteractiveCard>
     </Reveal>
   );
 }
@@ -332,7 +321,8 @@ export function Projects() {
 function useCounter(target) {
   const ref = useRef(null);
   const [count, setCount] = useState(0);
-  const reduced = useReducedMotion();
+  const { enabled } = useMotionPreference();
+  const reduced = !enabled;
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -466,7 +456,7 @@ export function Coding() {
       <div className="mt-6 grid gap-3 min-[500px]:grid-cols-2 xl:grid-cols-4 xl:gap-4">
         {codingProfiles.map((profile, i) => (
           <Reveal key={profile.name} delay={(i % 4) * 0.05}>
-            <a
+            <InteractiveCard as="a" tilt={4}
               href={profile.url}
               target="_blank"
               rel="noopener noreferrer"
@@ -489,7 +479,7 @@ export function Coding() {
                   Visit Profile <ExternalLink size={13} />
                 </span>
               </div>
-            </a>
+            </InteractiveCard>
           </Reveal>
         ))}
       </div>

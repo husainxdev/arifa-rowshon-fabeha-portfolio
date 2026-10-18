@@ -1,4 +1,5 @@
 import Reveal from './Reveal'
+import { AnimatedHeading } from './MotionPrimitives'
 
 /**
  * Consistent section header. A single amber "index · label" pill sets the
@@ -34,11 +35,7 @@ export default function SectionHeading({
           <span className="font-mono text-xs font-medium tracking-wide text-ink/80">{label}</span>
         </span>
       </Reveal>
-      <Reveal delay={0.05}>
-        <h2 className="mt-4 text-3xl font-semibold tracking-[-0.02em] text-ink sm:text-4xl md:text-[3rem] md:leading-[1.05]">
-          {title}
-        </h2>
-      </Reveal>
+      <AnimatedHeading text={title} className="mt-4 text-3xl font-semibold tracking-[-0.02em] text-ink sm:text-4xl md:text-[3rem] md:leading-[1.05]" />
       {kicker && (
         <Reveal delay={0.1}>
           <p className="mt-4 leading-relaxed text-muted">{kicker}</p>

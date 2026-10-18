@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { Menu, Moon, Sun, X } from "lucide-react";
+import { Menu, Moon, Sun, X, Pause, Play } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
+import { useMotionPreference } from "../context/MotionContext";
 import { personalInfo } from "../data/portfolioData";
 import PlatformIcon from "./PlatformIcon";
 
@@ -21,6 +22,7 @@ export default function Navbar() {
   const menuButton = useRef(null);
   const headerRef = useRef(null);
   const { theme, toggleTheme } = useTheme();
+  const { enabled, systemReduced, toggle: toggleMotion } = useMotionPreference();
   useEffect(() => {
     let frame = 0;
     const updateActive = () => {
@@ -96,6 +98,17 @@ export default function Navbar() {
           <a className="nav-icon" href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Arifa's LinkedIn profile (opens in a new tab)">
             <PlatformIcon name="LinkedIn" className="h-[19px] w-[19px]" />
           </a>
+          <button
+            type="button"
+            className="theme-button motion-toggle"
+            onClick={toggleMotion}
+            disabled={systemReduced}
+            aria-pressed={!enabled}
+            aria-label={systemReduced ? "Animations off: your device prefers reduced motion" : enabled ? "Pause animations" : "Resume animations"}
+            title={systemReduced ? "Reduced motion enabled on your device" : enabled ? "Pause animations" : "Resume animations"}
+          >
+            {enabled ? <Pause size={16} /> : <Play size={16} />}
+          </button>
           <button
             type="button"
             className="theme-button"

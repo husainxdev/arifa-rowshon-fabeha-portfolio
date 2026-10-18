@@ -361,11 +361,11 @@
 .light {
   --color-void: #f4f2ea;      /* warm paper */
   --color-surface: #ffffff;
-  --color-neon-cyan: #b87814; /* darker amber for contrast on light */
-  --color-neon-violet: #986417;
-  --color-neon-magenta: #c9962e;
-  --color-neonCyan: #b87814;
-  --color-neonPurple: #986417;
+  --color-neon-cyan: #9a5c0a;
+  --color-neon-violet: #855411;
+  --color-neon-magenta: #80500c;
+  --color-neonCyan: #9a5c0a;
+  --color-neonPurple: #855411;
   --color-ink: #1c1a15;       /* near-black warm ink */
   --color-muted: #6b675c;
 
@@ -478,3 +478,63 @@
 @media(max-width:600px) { .site-nav-wrap { left:10px; right:10px; top:10px; } .nav-brand { font-size:12px; } .intro-name { white-space:normal; font-size:clamp(31px,8.4vw,48px); } .intro-guide-block { flex-direction:column; gap:0; margin-top:-42px; } .intro-guide-enter { width:205px; } .intro-bubble { width:100%; padding:20px 23px; border-radius:18px; } .intro-bubble:before { left:35px; top:-16px; bottom:auto; border-top:0; border-bottom:17px solid #14110d; border-right:17px solid transparent; } .intro-bubble p { font-size:20px; margin:10px 0 16px; } .hero-guide-card { min-height:420px; } .hero-guide { width:240px; } .hero-rings { width:280px; height:280px; } }
 @media(max-width:499px) { .portfolio-section::after { left:16px; right:16px; } .skill-tile { min-height:60px; } .skill-tile svg { width:17px; } }
 @media(prefers-reduced-motion:reduce) { .intro-name span { opacity:1; transform:none; } .intro-underline { transform:none; } }
+
+/* A shared motion language: rising type, orbital accents, and light that follows the pointer. */
+:root { --motion-light:rgba(242,180,61,.13); }
+.light { --motion-light:rgba(184,120,20,.08); }
+.word-mask { display:inline-block; overflow:hidden; vertical-align:top; padding:0 .025em .18em; margin:0 .16em -.18em -.025em; }
+.word-mask:last-child { margin-right:0; }
+.word-mask > span { display:inline-block; transform-origin:0 100%; }
+.motion-card { position:relative; isolation:isolate; overflow:hidden; }
+.card-light { position:absolute; inset:0; z-index:3; border-radius:inherit; pointer-events:none; }
+.reading-progress { position:fixed; z-index:90; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,#cf9038,#f6d18c); box-shadow:0 0 12px rgba(242,180,61,.4); transform-origin:left; pointer-events:none; }
+.motion-toggle[aria-pressed="true"] { color:var(--color-neon-cyan); background:color-mix(in oklab,var(--color-neon-cyan) 8%,transparent); }
+.motion-toggle:disabled { cursor:default; opacity:.65; }
+.action-button { position:relative; overflow:hidden; isolation:isolate; min-height:46px; }
+.action-button::before { content:""; position:absolute; inset:-20% -30%; background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.28) 50%,transparent 65%); transform:translateX(-110%); pointer-events:none; }
+.action-button:hover::before,.action-button:focus-visible::before { transform:translateX(110%); transition:transform .85s cubic-bezier(.22,1,.36,1); }
+.action-button svg { transition:transform .3s cubic-bezier(.22,1,.36,1); }
+.action-button:hover svg { transform:translateX(3px); }
+.skill-tile svg { transition:transform .4s cubic-bezier(.22,1,.36,1); }
+.skill-tile:hover svg { transform:rotate(-9deg) scale(1.16); }
+.profile-card .card-light + div svg { transition:transform .45s cubic-bezier(.22,1,.36,1); }
+.profile-card:hover .card-light + div svg { transform:translateY(-2px) rotate(-5deg); }
+.hero-character-stage { background:radial-gradient(ellipse at 50% 32%,color-mix(in oklab,var(--color-neon-cyan) 13%,transparent),transparent 68%),var(--glass-strong-bg); }
+.hero-orbit { position:absolute; top:44%; left:50%; width:210px; height:210px; margin:-105px; border:1px solid color-mix(in oklab,var(--color-neon-cyan) 22%,transparent); border-radius:50%; animation:orbital-turn 19s linear infinite; pointer-events:none; }
+.hero-orbit i { position:absolute; top:22px; left:22px; width:7px; height:7px; border-radius:50%; background:var(--color-neon-cyan); box-shadow:0 0 16px color-mix(in oklab,var(--color-neon-cyan) 60%,transparent); }
+.hero-orbit.orbit-two { width:290px; height:290px; margin:-145px; border-style:dashed; opacity:.55; animation-duration:31s; animation-direction:reverse; }
+.hero-code-chip { position:absolute; top:22px; left:16px; z-index:12; display:flex; align-items:center; gap:6px; padding:7px 9px; border:1px solid var(--color-hair-strong); border-radius:9px; background:color-mix(in oklab,var(--color-void) 85%,transparent); color:var(--color-neon-cyan); font:500 11px var(--font-mono); transform:rotate(-7deg); animation:chip-float 5s ease-in-out infinite; }
+.project-art { height:200px; }
+.project-art-icon { z-index:1; animation:project-float 5.5s ease-in-out infinite; }
+.project-art-cloud .project-art-icon { animation-delay:-2.5s; }
+.project-halo { position:absolute; width:190px; height:190px; border-radius:50%; background:radial-gradient(circle,rgba(250,220,160,.12),transparent 65%); animation:halo-breathe 5s ease-in-out infinite; }
+.health-pulse { position:absolute; inset:0; height:100%; width:100%; stroke:#a1e7c9; stroke-width:1.6; }
+.pulse-base { opacity:.15; }
+.pulse-signal { stroke-dasharray:.2 .8; animation:heartbeat-trace 5s linear infinite; opacity:.8; }
+.cloud-orbit { position:absolute; width:240px; height:130px; border:1px solid rgba(221,196,255,.26); border-radius:50%; animation:cloud-orbit 14s linear infinite; }
+.cloud-orbit i { position:absolute; left:8%; top:18%; height:7px; width:7px; border-radius:50%; background:#dac4f5; box-shadow:0 0 14px #d4b4f688; }
+.cloud-orbit i:last-child { top:auto; left:auto; bottom:18%; right:8%; height:4px; width:4px; }
+.cloud-orbit-two { width:180px; height:180px; animation-direction:reverse; animation-duration:22s; opacity:.55; }
+.project-visual-spark { position:absolute; height:4px; width:4px; border-radius:50%; background:#f8ddab; box-shadow:0 0 14px #f8ddab80; animation:spark-drift 6s ease-in-out infinite; }
+.spark-one { top:30%; left:20%; }
+.spark-two { right:18%; bottom:26%; animation-delay:-3s; }
+.intro-starfield { position:absolute; inset:0; pointer-events:none; }
+.intro-starfield > i { position:absolute; width:3px; height:3px; border-radius:50%; background:#f6d18c; box-shadow:0 0 15px #f2b43d80; animation:star-rise 6s ease-in-out infinite; }
+.intro-orbit { position:absolute; left:50%; top:50%; width:min(78vw,740px); aspect-ratio:1; border:1px solid #f2b43d16; border-radius:50%; transform:translate(-50%,-50%); box-shadow:0 0 0 75px #f2b43d04,0 0 0 150px #f2b43d03; }
+@keyframes orbital-turn { to { transform:rotate(360deg); } }
+@keyframes chip-float { 0%,100% { transform:translateY(0) rotate(-7deg); } 50% { transform:translateY(-7px) rotate(-3deg); } }
+@keyframes project-float { 0%,100% { transform:translateY(3px) rotate(-6deg); } 50% { transform:translateY(-7px) rotate(2deg); } }
+@keyframes halo-breathe { 0%,100% { transform:scale(.9); opacity:.65; } 50% { transform:scale(1.15); opacity:1; } }
+@keyframes heartbeat-trace { from { stroke-dashoffset:1; } to { stroke-dashoffset:0; } }
+@keyframes cloud-orbit { from { transform:rotate(-20deg); } to { transform:rotate(340deg); } }
+@keyframes spark-drift { 0%,100% { transform:translateY(5px); opacity:.4; } 50% { transform:translateY(-8px); opacity:1; } }
+@keyframes star-rise { 0%,100% { transform:translateY(8px); opacity:.2; } 50% { transform:translateY(-16px); opacity:.8; } }
+.motion-scene[data-running="false"] *,.motion-card[data-running="false"] * { animation-play-state:paused !important; }
+html[data-page-visible="false"] *,html[data-page-visible="false"] *::before { animation-play-state:paused !important; }
+html[data-motion="off"] { scroll-behavior:auto !important; }
+html[data-motion="off"] *,html[data-motion="off"] *::before,html[data-motion="off"] *::after { animation:none !important; transition-duration:0ms !important; scroll-behavior:auto !important; }
+html[data-motion="off"] .intro-name span { opacity:1; transform:none; }
+html[data-motion="off"] .intro-underline { transform:none; }
+html[data-motion="off"] .action-button::before { display:none; }
+@media(max-width:600px) { .nav-actions .nav-icon { display:none; } .project-art { height:175px; } }
+@media(prefers-reduced-motion:reduce) { .action-button::before { display:none; } }

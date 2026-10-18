@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { useMotionPreference } from '../../context/MotionContext'
 
 /**
  * The site's living backdrop: a competitive-programmer's graph, alive.
@@ -18,15 +19,15 @@ import { useEffect, useRef } from 'react'
  */
 export default function NetworkCanvas({ className = '' }) {
   const canvasRef = useRef(null)
+  const { enabled } = useMotionPreference()
 
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
+    if (!ctx) return
 
-    const reduce =
-      typeof window !== 'undefined' &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const reduce = !enabled
 
     // --- theme colour, read live from the CSS token -------------------
     let rgb = [242, 180, 61] // amber fallback
@@ -39,7 +40,7 @@ export default function NetworkCanvas({ className = '' }) {
     }
     readColor()
     // Re-read when the .light/.dark class flips on <html>.
-    const themeObserver = new MutationObserver(readColor)
+    const themeObserver = new MutationObserver(() => { readColor(); if (reduce) draw() })
     themeObserver.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ['class'],
@@ -59,6 +60,7 @@ export default function NetworkCanvas({ className = '' }) {
       canvas.style.height = `${height}px`
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       seed()
+      if (reduce) draw()
     }
 
     // --- graph state --------------------------------------------------
@@ -200,10 +202,14 @@ export default function NetworkCanvas({ className = '' }) {
 
     // --- loop ---------------------------------------------------------
     let raf = 0
-    const tick = () => {
+    let lastFrame = 0
+    const tick = (now) => {
       raf = 0
       if (document.hidden) return
-      draw()
+      if (now - lastFrame >= 1000 / 30) {
+        draw()
+        lastFrame = now
+      }
       raf = requestAnimationFrame(tick)
     }
     const onVisibilityChange = () => {
@@ -231,7 +237,7 @@ export default function NetworkCanvas({ className = '' }) {
       document.removeEventListener('visibilitychange', onVisibilityChange)
       themeObserver.disconnect()
     }
-  }, [])
+  }, [enabled])
 
   return <canvas ref={canvasRef} aria-hidden="true" className={className} />
 }

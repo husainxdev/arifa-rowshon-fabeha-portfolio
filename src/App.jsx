@@ -1,5 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import { ThemeProvider } from "./context/ThemeContext";
+import { MotionProvider } from "./context/MotionContext";
+import { ReadingProgress } from "./components/ui/MotionPrimitives";
 import AmbientBackground from "./components/ui/AmbientBackground";
 import Intro from "./components/Intro";
 import Navbar from "./components/Navbar";
@@ -52,11 +55,14 @@ export default function App() {
   }, [entered]);
   return (
     <ThemeProvider>
-      {entered ? (
+      <MotionProvider>
+      <AnimatePresence>{!entered && <Intro key="intro" onFinish={finishIntro} />}</AnimatePresence>
+      {entered && (
         <>
           <a className="skip-to-content" href="#main-content">Skip to content</a>
           <AmbientBackground />
           <Navbar />
+          <ReadingProgress />
           <main id="main-content" tabIndex={-1}>
             <Home />
             <About />
@@ -69,9 +75,8 @@ export default function App() {
           </main>
           <Footer onReplayIntro={replayIntro} />
         </>
-      ) : (
-        <Intro onFinish={finishIntro} />
       )}
+      </MotionProvider>
     </ThemeProvider>
   );
 }
