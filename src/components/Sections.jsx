@@ -320,7 +320,7 @@ export function Projects() {
         title="Things I'm building"
         kicker="A healthcare project and an ongoing academic exploration."
       />
-      <div className="mt-8 grid gap-6 sm:grid-cols-2">
+      <div className="mt-8 grid gap-6 md:grid-cols-2">
         {projects.map((p, i) => (
           <ProjectCard key={p.title} project={p} index={i} />
         ))}
@@ -458,15 +458,13 @@ export function Coding() {
           <p className="font-mono text-xs uppercase tracking-widest text-neonCyan">
             Find me online
           </p>
-          <h3 className="mt-3 text-2xl text-ink sm:text-3xl">
-            Seven platforms. One curious mind.
-          </h3>
+          <h3 className="mt-3 text-2xl text-ink sm:text-3xl">My coding profiles</h3>
         </div>
         <p className="text-sm text-muted">
           Explore my coding profiles and repositories.
         </p>
       </div>
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
+      <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {codingProfiles.map((profile, i) => (
           <Reveal key={profile.name} delay={(i % 4) * 0.05}>
             <a
@@ -474,7 +472,7 @@ export function Coding() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Visit ${profile.name} profile (opens in a new tab)`}
-              className="profile-card glass glass-glow block min-h-[172px] rounded-2xl p-5 transition hover:-translate-y-1 hover:border-neonCyan/40"
+              className="profile-card glass glass-glow flex min-h-[150px] flex-col justify-between rounded-2xl p-5 transition hover:-translate-y-1 hover:border-neonCyan/40"
             >
               <div className="flex items-center gap-3">
                 <span
@@ -485,9 +483,8 @@ export function Coding() {
                   <PlatformIcon name={profile.name} className="h-7 w-7" />
                 </span>
                 <strong className="font-display text-lg text-ink">{profile.name}</strong>
-                <span className="ml-auto inline-flex items-center gap-1 font-mono text-[10px] text-muted"><span className="h-1.5 w-1.5 rounded-full bg-neonCyan" /> profile</span>
               </div>
-              <div className="mt-7 flex items-end justify-between gap-2 border-t border-hair pt-4">
+              <div className="mt-5 flex items-end justify-between gap-2 border-t border-hair pt-4">
                 <span className="truncate font-mono text-xs text-muted">{new URL(profile.url).host}</span>
                 <span className="inline-flex shrink-0 items-center gap-1 font-mono text-xs text-neonCyan">
                   Visit Profile <ExternalLink size={13} />
@@ -539,9 +536,6 @@ export function Activities() {
           </Reveal>;
         })}
       </div>
-      <p className="mt-5 rounded-xl border border-dashed border-hair px-5 py-4 text-sm text-muted">
-        Competition, workshop, and seminar details can be added when available.
-      </p>
     </section>
   );
 }

@@ -19,21 +19,31 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("home");
   const menuButton = useRef(null);
+  const headerRef = useRef(null);
   const { theme, toggleTheme } = useTheme();
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries
-          .filter((e) => e.isIntersecting)
-          .forEach((e) => setActive(e.target.id));
-      },
-      { rootMargin: "-25% 0px -60% 0px" },
-    );
-    sections.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-    return () => observer.disconnect();
+    let frame = 0;
+    const updateActive = () => {
+      const readingLine = window.scrollY + Math.min(window.innerHeight * 0.32, 220);
+      let current = "home";
+      sections.forEach((id) => {
+        const section = document.getElementById(id);
+        if (section && section.getBoundingClientRect().top + window.scrollY <= readingLine) current = id;
+      });
+      setActive(current);
+      frame = 0;
+    };
+    const scheduleUpdate = () => {
+      if (!frame) frame = requestAnimationFrame(updateActive);
+    };
+    updateActive();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    return () => {
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      cancelAnimationFrame(frame);
+    };
   }, []);
   useEffect(() => {
     if (!open) return;
@@ -43,8 +53,15 @@ export default function Navbar() {
         menuButton.current?.focus();
       }
     };
+    const onOutsideClick = (e) => {
+      if (!headerRef.current?.contains(e.target)) setOpen(false);
+    };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onOutsideClick);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.removeEventListener("pointerdown", onOutsideClick);
+    };
   }, [open]);
   const navLinks = links.map(([id, label]) => (
     <a
@@ -52,6 +69,7 @@ export default function Navbar() {
       href={`#${id}`}
       onClick={() => setOpen(false)}
       aria-label={id === "coding" ? "Coding Profiles" : undefined}
+      title={id === "coding" ? "Coding Profiles" : undefined}
       aria-current={active === id ? "location" : undefined}
       className={`nav-link ${active === id ? "active" : ""}`}
     >
@@ -59,7 +77,7 @@ export default function Navbar() {
     </a>
   ));
   return (
-    <header className="site-nav-wrap">
+    <header ref={headerRef} className="site-nav-wrap">
       <nav className="site-nav glass-strong" aria-label="Main navigation">
         <a
           className="nav-brand"
