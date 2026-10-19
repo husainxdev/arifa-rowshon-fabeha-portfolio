@@ -53,6 +53,8 @@ export const softSkills = [
 
 export const projects = [
   {
+    id: "shastho-sahayak",
+    featured: true,
     title: "Shastho Sahayak",
     status: "Built project",
     type: "Healthcare innovation",
@@ -65,8 +67,12 @@ export const projects = [
     screenshots: [],
     github: "",
     demo: "",
+    problem: "Access to healthcare support should not depend on the phone a person owns.",
+    focusAreas: ["Healthcare support", "Access to care"],
+    contribution: { role: "", work: [], decisions: [], lessons: [] },
   },
   {
+    id: "cloudsphere",
     title: "CloudSphere",
     status: "In Progress",
     type: "Engineering Economics · academic project",
@@ -77,6 +83,9 @@ export const projects = [
     team: "",
     references: [],
     documents: [],
+    problem: "Understanding the economic conditions shaping data centres and cloud services in Bangladesh.",
+    focusAreas: ["Demand and supply", "Operating costs", "Economic and policy factors"],
+    contribution: { role: "", work: [], decisions: [], lessons: [] },
   },
 ];
 

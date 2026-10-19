@@ -24,7 +24,9 @@ import SectionHeading from "./ui/SectionHeading";
 import Guide from "./Guide";
 import PlatformIcon from "./PlatformIcon";
 import { AnimatedHeading, InteractiveCard, MotionScene } from "./ui/MotionPrimitives";
-import ProjectVisual from "./ui/ProjectVisual";
+import ProjectShowcase from "./ProjectShowcase";
+import LearningCorner from "./LearningCorner";
+import { CurrentFocus } from "./CurrentFocus";
 import {
   personalInfo,
   education,
@@ -154,6 +156,7 @@ export function About() {
           </div>
         </Reveal>
       </div>
+      <CurrentFocus />
     </section>
   );
 }
@@ -266,56 +269,8 @@ function Field({ label, value }) {
     </div>
   );
 }
-function ProjectCard({ project, index }) {
-  const built = project.status === "Built project";
-  return (
-    <Reveal className="h-full" delay={index * 0.08}>
-      <InteractiveCard as="article" className="glass-strong glass-glow h-full overflow-hidden rounded-3xl">
-        <ProjectVisual built={built} index={index} />
-        <div className="p-6 sm:p-8">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <span
-              className={`rounded-full border px-3 py-1 font-mono text-xs ${built ? "border-neonCyan/40 bg-neonCyan/10 text-neonCyan" : "border-neonPurple/50 bg-neonPurple/10 text-neonPurple"}`}
-            >
-              {project.status}
-            </span>
-            <span className="font-mono text-xs text-muted">{project.type}</span>
-          </div>
-          <h3 className="mt-5 text-3xl text-ink">{project.title}</h3>
-          {project.tagline && (
-            <p className="mt-3 border-l-2 border-neonCyan pl-3 text-sm font-semibold text-neonCyan">
-              “{project.tagline}”
-            </p>
-          )}
-          <p className="mt-4 leading-7 text-muted">{project.summary}</p>
-          {project.description && <p className="mt-4 text-sm leading-6 text-muted">{project.description}</p>}
-          {project.research && <p className="mt-4 text-sm leading-6 text-muted">{project.research}</p>}
-          {project.technologies?.length > 0 && <p className="mt-4 font-mono text-xs text-neonCyan">{project.technologies.join(" · ")}</p>}
-          {(project.github || project.demo) && <div className="mt-6 flex flex-wrap gap-3 border-t border-hair pt-4">
-            {project.github && <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-neonCyan hover:underline">Repository <ExternalLink size={15} /></a>}
-            {project.demo && <a href={project.demo} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-neonCyan hover:underline">Live demo <ExternalLink size={15} /></a>}
-          </div>}
-        </div>
-      </InteractiveCard>
-    </Reveal>
-  );
-}
 export function Projects() {
-  return (
-    <section id="projects" className={shell}>
-      <SectionHeading
-        index="04"
-        eyebrow="projects"
-        title="Things I'm building"
-        kicker="A healthcare project and an ongoing academic exploration."
-      />
-      <div className="mt-8 grid gap-6 md:grid-cols-2">
-        {projects.map((p, i) => (
-          <ProjectCard key={p.title} project={p} index={i} />
-        ))}
-      </div>
-    </section>
-  );
+  return <ProjectShowcase />;
 }
 
 function useCounter(target) {
@@ -381,6 +336,7 @@ export function Coding() {
         title="Where I practice"
         kicker="Consistent practice in programming and algorithmic problem-solving."
       />
+      <a href="#learning" className="text-link mt-5 min-h-11">Explore concept notes & walkthroughs <ArrowRight size={16} /></a>
       <Reveal>
         <div
           ref={ref}
@@ -483,6 +439,7 @@ export function Coding() {
           </Reveal>
         ))}
       </div>
+      <LearningCorner />
     </section>
   );
 }

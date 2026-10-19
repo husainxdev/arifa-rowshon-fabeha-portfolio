@@ -6,6 +6,7 @@ import { ReadingProgress } from "./components/ui/MotionPrimitives";
 import AmbientBackground from "./components/ui/AmbientBackground";
 import Intro from "./components/Intro";
 import Navbar from "./components/Navbar";
+import { CollaboratorFeedback } from "./components/CurrentFocus";
 import {
   Home,
   About,
@@ -71,6 +72,7 @@ export default function App() {
             <Projects />
             <Education />
             <Activities />
+            <CollaboratorFeedback />
             <Contact />
           </main>
           <Footer onReplayIntro={replayIntro} />
