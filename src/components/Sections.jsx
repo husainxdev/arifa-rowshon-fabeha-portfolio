@@ -581,27 +581,60 @@ export function Contact() {
 
 export function Footer({ onReplayIntro }) {
   const year = new Date().getFullYear();
+  const footerLinks = [
+    { label: "About", href: "#about" },
+    { label: "Projects", href: "#projects" },
+    { label: "Coding profiles", href: "#coding" },
+    { label: "Contact", href: "#contact" },
+  ];
+  const socialLinks = [
+    { label: "GitHub", url: personalInfo.github },
+    { label: "LinkedIn", url: personalInfo.linkedin },
+    { label: "Instagram", url: personalInfo.instagram },
+  ].filter(({ url }) => Boolean(url));
   return (
-    <footer className="relative mt-10 border-t border-hair">
+    <footer className="site-footer relative mt-10 overflow-hidden border-t border-hair">
       <span aria-hidden="true" className="rule-gradient absolute inset-x-0 top-0" />
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-        <div className="flex flex-col items-center text-center">
-          <a href="#home" className="font-display text-2xl text-ink">Arifa Rowshon <span className="text-neonCyan">Fabeha.</span></a>
-          <p className="mt-2 font-mono text-xs text-muted">Computer Science and Engineering Student · Sylhet, Bangladesh</p>
-          <p className="mt-6 max-w-md text-sm leading-7 text-muted">Exploring programming, problem-solving, and projects with curiosity and care.</p>
-          <div className="mt-6 flex items-center gap-3">
-            <a href={personalInfo.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in a new tab)" className="footer-social"><PlatformIcon name="GitHub" className="h-[18px] w-[18px]" /></a>
-            <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in a new tab)" className="footer-social"><PlatformIcon name="LinkedIn" className="h-[18px] w-[18px]" /></a>
-            <a href={personalInfo.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram profile (opens in a new tab)" className="footer-social"><PlatformIcon name="Instagram" className="h-[18px] w-[18px]" /></a>
-            <a href={`mailto:${personalInfo.email}`} aria-label="Email Arifa" className="footer-social"><Mail size={18} aria-hidden="true" /></a>
+      <div className="mx-auto max-w-6xl px-4 pb-6 pt-14 sm:px-6 sm:pt-16">
+        <div className="footer-invite">
+          <div>
+            <p className="footer-eyebrow"><span className="footer-signal" /> OPEN TO CONVERSATION</p>
+            <h2 className="footer-invite-title font-display text-ink">Have an idea? <em>Let’s talk.</em></h2>
+            <p className="mt-3 max-w-lg text-sm leading-7 text-muted">I’d love to hear about thoughtful projects, learning opportunities, or a good programming conversation.</p>
+          </div>
+          <a href={`mailto:${personalInfo.email}`} className="footer-email-button">Start a conversation <ArrowUpRight size={19} aria-hidden="true" /></a>
+        </div>
+
+        <div className="footer-directory">
+          <div className="footer-identity">
+            <a href="#home" className="footer-mark" aria-label="Arifa Rowshon Fabeha, back to home">AF<span aria-hidden="true">.</span></a>
+            <p className="mt-5 max-w-xs text-sm leading-7 text-muted">Arifa Rowshon Fabeha<br />Computer Science and Engineering Student</p>
+            <p className="mt-3 inline-flex items-center gap-2 font-mono text-xs text-muted"><MapPin size={14} aria-hidden="true" className="text-neonCyan" /> Sylhet, Bangladesh</p>
+          </div>
+          <nav aria-label="Footer navigation" className="footer-link-group">
+            <h3>Explore</h3>
+            {footerLinks.map(({ label, href }) => <a key={href} href={href}>{label}<ArrowUpRight size={15} aria-hidden="true" /></a>)}
+          </nav>
+          <div className="footer-link-group">
+            <h3>Connect</h3>
+            <a href={`mailto:${personalInfo.email}`}>Email me<ArrowUpRight size={15} aria-hidden="true" /></a>
+            {socialLinks.map(({ label, url }) => <a key={label} href={url} target="_blank" rel="noopener noreferrer" aria-label={`${label} profile (opens in a new tab)`}>{label}<ArrowUpRight size={15} aria-hidden="true" /></a>)}
+          </div>
+          <div className="footer-note">
+            <span className="font-mono text-xs uppercase tracking-[.19em] text-neonCyan">A small reminder</span>
+            <p className="mt-3 font-display text-xl leading-snug text-ink">Keep learning.<br />Keep building.</p>
+            <span className="mt-4 block h-px w-12 bg-neonCyan/60" aria-hidden="true" />
           </div>
         </div>
-        <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-hair pt-6 font-mono text-xs text-muted">
+
+        <div className="footer-base font-mono text-xs text-muted">
           <span>© {year} {personalInfo.name}</span>
-          <button type="button" onClick={onReplayIntro} className="transition hover:text-neonCyan">Replay intro</button>
+          <div className="flex flex-wrap items-center gap-x-7 gap-y-3">
+            <button type="button" onClick={onReplayIntro}>Replay introduction</button>
+            <a href="#home" className="inline-flex items-center gap-2">Back to top <ArrowUp size={14} aria-hidden="true" /></a>
+          </div>
         </div>
       </div>
-      <a href="#home" aria-label="Back to top" className="absolute -top-5 right-4 grid h-11 w-11 place-items-center rounded-full border border-neonCyan/40 bg-neonCyan text-void shadow-lg transition hover:-translate-y-0.5 sm:right-6"><ArrowUp size={20} aria-hidden="true" /></a>
     </footer>
   );
 }
