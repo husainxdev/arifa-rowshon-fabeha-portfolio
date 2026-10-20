@@ -484,6 +484,11 @@ export function Activities() {
 
 export function Contact() {
   const [copyStatus, setCopyStatus] = useState("");
+  const contactProfiles = [
+    { name: "GitHub", url: personalInfo.github, display: "github.com/Fabeha1025" },
+    { name: "LinkedIn", url: personalInfo.linkedin, display: "linkedin.com/in/arifa-rowshon-fabeha-87a9153a4" },
+    { name: "Instagram", url: personalInfo.instagram, display: "instagram.com/peachypie_10" },
+  ].filter(({ url }) => Boolean(url));
   const copyEmail = async () => {
     try {
       await navigator.clipboard.writeText(personalInfo.email);
@@ -523,14 +528,16 @@ export function Contact() {
               <button type="button" onClick={copyEmail} aria-label="Copy email address" className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-hair bg-fill text-muted transition hover:border-neonCyan/40 hover:text-neonCyan"><Copy size={18} aria-hidden="true" /></button>
             </div>
             <span className="min-h-5 px-2 font-mono text-xs text-neonCyan" role="status" aria-live="polite">{copyStatus}</span>
-            <div className="glass-strong glass-glow flex min-w-0 items-center gap-4 rounded-2xl p-5 sm:p-6">
-              <span className="grid h-14 w-14 shrink-0 place-items-center rounded-xl border border-neonCyan/25 bg-neonCyan/10 text-neonCyan"><PlatformIcon name="GitHub" className="h-7 w-7" /></span>
-              <div className="min-w-0 flex-1">
-                <p className="font-mono text-xs text-muted">GitHub</p>
-                <a className="mt-1 block truncate font-medium text-ink hover:text-neonCyan" href={personalInfo.github} target="_blank" rel="noopener noreferrer">github.com/Fabeha1025</a>
-              </div>
-              <ExternalLink size={18} className="shrink-0 text-muted" aria-hidden="true" />
-            </div>
+            {contactProfiles.map(({ name, url, display }) => (
+              <a key={name} href={url} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${name} profile (opens in a new tab)`} className="glass-strong glass-glow flex min-w-0 items-center gap-4 rounded-2xl p-5 transition hover:border-neonCyan/40 sm:p-6">
+                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-xl border border-neonCyan/25 bg-neonCyan/10 text-neonCyan"><PlatformIcon name={name} className="h-7 w-7" /></span>
+                <span className="min-w-0 flex-1">
+                  <span className="block font-mono text-xs text-muted">{name}</span>
+                  <span className="mt-1 block truncate font-medium text-ink" title={display}>{display}</span>
+                </span>
+                <ExternalLink size={18} className="shrink-0 text-muted" aria-hidden="true" />
+              </a>
+            ))}
           </div>
         </Reveal>
         <Reveal delay={0.08} className="h-full">
