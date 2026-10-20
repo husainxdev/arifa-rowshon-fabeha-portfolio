@@ -6,6 +6,10 @@ This React/Vite portfolio uses an editorial black-and-amber design for Arifa's c
 
 Import this folder or the supplied ZIP into a Node.js Repl. Run `npm install`, then press Run or execute `npm run dev`. The app uses port 3000. Run `npm run build` to produce `dist/`.
 
+## Publish on GitHub Pages
+
+This repository's Pages site serves the `main` branch root. After changing the website, run `npm run build` and commit the generated root `index.html`, `assets/`, `favicon.svg`, and `logos/` along with the source changes. The source HTML is `index.dev.html`; Vite serves it at `/` during development. The build uses relative URLs so the site also works at `https://husainxdev.github.io/arifa-rowshon-fabeha-portfolio/`.
+
 ## Update details
 
 Edit `src/data/portfolioData.js` to add confirmed project technologies, screenshots, GitHub/live links, activity dates and certificates, and contact details. Empty fields show as pending or are omitted. The problem counter and progress calculation read the central `codingProgress` values. The contact form opens a prefilled draft in the visitor's email app; it does not send automatically or require a backend. To send messages directly from the site, configure an email service and replace the form submit handler.

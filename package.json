@@ -6,7 +6,7 @@
   "description": "Portfolio of Arifa Rowshon Fabeha, a CSE student at Metropolitan University, Sylhet.",
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 3000",
-    "build": "vite build",
+    "build": "vite build && node scripts/finalize-build.mjs",
     "preview": "vite preview --host 0.0.0.0 --port 3000"
   },
   "dependencies": {

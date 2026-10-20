@@ -1,7 +1,7 @@
 // Local logos from the uploaded portfolio where available; other marks are inline.
 export default function PlatformIcon({ name, className = "" }) {
-  if (name === "CodeChef") return <img src="/logos/codechef.svg" alt="" aria-hidden="true" className={`${className} rounded bg-white p-0.5 object-contain`} />;
-  if (name === "Codeforces") return <img src="/logos/codeforces.png" alt="" aria-hidden="true" className={`${className} rounded bg-white p-0.5 object-contain`} />;
+  if (name === "CodeChef") return <img src={`${import.meta.env.BASE_URL}logos/codechef.svg`} alt="" aria-hidden="true" className={`${className} rounded bg-white p-0.5 object-contain`} />;
+  if (name === "Codeforces") return <img src={`${import.meta.env.BASE_URL}logos/codeforces.png`} alt="" aria-hidden="true" className={`${className} rounded bg-white p-0.5 object-contain`} />;
 
   const common = {
     className,
