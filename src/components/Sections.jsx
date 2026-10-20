@@ -1,9 +1,7 @@
-import { useEffect, useRef, useState } from "react";
-import { useMotionPreference } from "../context/MotionContext";
+import { useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
-  Check,
   Code2,
   Copy,
   ExternalLink,
@@ -25,6 +23,7 @@ import PlatformIcon from "./PlatformIcon";
 import { AnimatedHeading, InteractiveCard, MotionScene } from "./ui/MotionPrimitives";
 import ProjectShowcase from "./ProjectShowcase";
 import LearningCorner from "./LearningCorner";
+import { quizQuestions } from "../data/quizQuestions";
 import { CurrentFocus } from "./CurrentFocus";
 import {
   personalInfo,
@@ -33,7 +32,6 @@ import {
   softSkills,
   projects,
   codingProfiles,
-  codingProgress,
   activities,
 } from "../data/portfolioData";
 
@@ -106,7 +104,7 @@ export function Home() {
 export function About() {
   const facts = [
     { value: education[0].year.replace("Started in ", ""), label: "CSE journey began", href: "#education", icon: Clock3 },
-    { value: `${codingProgress.problemsSolved}+`, label: "Problems solved", href: "#coding", icon: Target },
+    { value: quizQuestions.length, label: "Quiz questions", href: "#quiz", icon: Lightbulb },
     { value: projects.length, label: "Featured projects", href: "#projects", icon: Sparkles },
     { value: codingProfiles.length, label: "Coding profiles", href: "#coding", icon: Code2 },
     { value: skills.length, label: "Technical skills", href: "#skills", icon: Code2 },
@@ -164,7 +162,7 @@ export function Education() {
   return (
     <section id="education" className={shell}>
       <SectionHeading
-        index="05"
+        index="06"
         eyebrow="education"
         title="My learning path"
         kicker="A timeline of the milestones I can share."
@@ -272,51 +270,7 @@ export function Projects() {
   return <ProjectShowcase />;
 }
 
-function useCounter(target) {
-  const ref = useRef(null);
-  const [count, setCount] = useState(0);
-  const { enabled } = useMotionPreference();
-  const reduced = !enabled;
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    let frame = 0;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (!entries[0]?.isIntersecting) return;
-        observer.disconnect();
-        if (reduced) {
-          setCount(target);
-          return;
-        }
-        const start = performance.now();
-        const tick = (now) => {
-          const t = Math.min((now - start) / 1700, 1);
-          setCount(Math.round(target * (1 - Math.pow(1 - t, 3))));
-          if (t < 1) frame = requestAnimationFrame(tick);
-        };
-        frame = requestAnimationFrame(tick);
-      },
-      { threshold: 0.25 },
-    );
-    observer.observe(el);
-    return () => {
-      observer.disconnect();
-      cancelAnimationFrame(frame);
-    };
-  }, [target, reduced]);
-  return { ref, count };
-}
 export function Coding() {
-  const { problemsSolved, referenceTarget } = codingProgress;
-  const target = Math.max(referenceTarget, 1);
-  const above = problemsSolved - referenceTarget;
-  const surpassed = above > 0;
-  const percentage = (problemsSolved / target) * 100;
-  const chartMaximum = Math.max(problemsSolved, target);
-  const targetPosition = (target / chartMaximum) * 100;
-  const { ref, count } = useCounter(problemsSolved);
-  const animatedPercentage = (count / target) * 100;
   const colors = {
     blue: "#8bb9ff",
     brown: "#d9a779",
@@ -327,85 +281,12 @@ export function Coding() {
   return (
     <section id="coding" className={shell}>
       <SectionHeading
-        index="03"
+        index="04"
         eyebrow="coding profiles"
-        title="Where I practice"
-        kicker="Consistent practice in programming and algorithmic problem-solving."
+        title="Coding profiles"
+        kicker="Four platforms where I practice programming and problem-solving."
       />
-      <a href="#learning" className="text-link mt-5 min-h-11">Explore concept notes & walkthroughs <ArrowRight size={16} /></a>
-      <Reveal>
-        <div
-          ref={ref}
-          className="glass-strong glass-glow mt-8 rounded-3xl p-6 sm:p-9"
-        >
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <div>
-              <p className="font-mono text-xs uppercase tracking-widest text-neonCyan">
-                The practice adds up
-              </p>
-              <div
-                className="mt-3 font-display text-[clamp(5rem,12vw,9rem)] font-bold leading-none tracking-[-.1em] text-gradient tabular-nums"
-                aria-label={`${problemsSolved} plus problems solved`}
-              >
-                {count}
-                <span className="align-top text-[.5em]">+</span>
-              </div>
-              <h3 className="mt-3 text-2xl text-ink">Problems Solved</h3>
-            </div>
-            <div className="rounded-2xl border border-neonCyan/25 bg-neonCyan/10 px-5 py-4 text-center">
-              <span className="font-display text-4xl text-neonCyan">
-                {percentage.toFixed(1)}%
-              </span>
-              <p className="mt-1 font-mono text-xs text-muted">of the target</p>
-            </div>
-          </div>
-          <div className="mt-8 rounded-xl border border-hair bg-fill p-5 sm:p-6">
-            <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
-              <p className="font-mono text-xs uppercase tracking-widest text-ink">Problem-solving progress</p>
-              <span className="font-mono text-xs text-neonCyan">{above > 0 ? `+${above} past target` : `Target: ${referenceTarget} problems`}</span>
-            </div>
-            <div
-              role="progressbar"
-              aria-label="Problem-solving milestone progress"
-              aria-valuemin={0}
-              aria-valuemax={chartMaximum}
-              aria-valuenow={count}
-              aria-valuetext={`${animatedPercentage.toFixed(1)}% of the ${referenceTarget}-problem target`}
-              className="progress-track relative mt-7 h-3 rounded-full bg-hair"
-            >
-              <div
-                className="absolute inset-y-0 left-0 rounded-l-full bg-neonPurple"
-                style={{ width: `${(Math.min(count, target) / chartMaximum) * 100}%` }}
-              />
-              {surpassed && <div className="absolute inset-y-0 bg-neonCyan" style={{ left: `${targetPosition}%`, width: `${(Math.max(count - target, 0) / chartMaximum) * 100}%` }} />}
-              {surpassed && <span className="absolute -top-1 h-5 w-px bg-ink/80" style={{ left: `${targetPosition}%` }} aria-hidden="true" />}
-            </div>
-            <div className="relative mt-3 flex justify-between font-mono text-[11px] text-muted">
-              <span>0</span>
-              {surpassed && <span className="absolute -translate-x-1/2 text-ink" style={{ left: `${targetPosition}%` }}>Target: {referenceTarget}</span>}
-              <span>{chartMaximum} solved</span>
-            </div>
-            <p className="mt-5 flex flex-wrap items-center gap-2 text-sm text-neonCyan">
-              <Check size={16} />
-              {surpassed
-                ? `You've surpassed the ${referenceTarget}-problem milestone!`
-                : `${problemsSolved} of ${referenceTarget} problems solved.`}
-            </p>
-          </div>
-        </div>
-      </Reveal>
-      <div className="mt-14 flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <p className="font-mono text-xs uppercase tracking-widest text-neonCyan">
-            Find me online
-          </p>
-          <h3 className="mt-3 text-2xl text-ink sm:text-3xl">My coding profiles</h3>
-        </div>
-        <p className="text-sm text-muted">
-          Explore the platforms where I practice.
-        </p>
-      </div>
-      <div className="mt-6 grid gap-3 min-[500px]:grid-cols-2 xl:grid-cols-4 xl:gap-4">
+      <div className="mt-10 grid gap-3 min-[500px]:grid-cols-2 xl:grid-cols-4 xl:gap-4">
         {codingProfiles.map((profile, i) => (
           <Reveal key={profile.name} delay={(i % 4) * 0.05}>
             <InteractiveCard as="a" tilt={4}
@@ -444,7 +325,7 @@ export function Activities() {
   return (
     <section id="activities" className={shell}>
       <SectionHeading
-        index="06"
+        index="07"
         eyebrow="activities"
         title="Experience & moments"
         kicker="Volunteering and collaboration beyond coursework."
@@ -511,7 +392,7 @@ export function Contact() {
   return (
     <section id="contact" className={shell}>
       <SectionHeading
-        index="07"
+        index="08"
         eyebrow="contact"
         title="Let's build something useful."
         kicker="Have an idea, a question, or a project to discuss? I'd love to hear from you."

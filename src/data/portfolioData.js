@@ -12,11 +12,6 @@ export const personalInfo = {
   otherLinks: [],
 };
 
-export const codingProgress = {
-  problemsSolved: 321,
-  referenceTarget: 250,
-};
-
 export const education = [
   {
     title: "Bachelor of Science in Computer Science and Engineering",

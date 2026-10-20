@@ -9,12 +9,13 @@ const links = [
   ["home", "Home"],
   ["about", "About"],
   ["skills", "Skills"],
+  ["quiz", "Quiz"],
   ["coding", "Coding Profiles"],
   ["projects", "Projects"],
   ["education", "Education"],
   ["activities", "Activities"],
 ];
-const sections = ["home", "about", "skills", "coding", "projects", "education", "activities", "contact"];
+const sections = ["home", "about", "skills", "quiz", "coding", "projects", "education", "activities", "contact"];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);

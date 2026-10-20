@@ -1,6 +1,6 @@
 # Arifa Rowshon Fabeha — Portfolio
 
-This React/Vite portfolio uses an editorial black-and-amber design for Arifa's confirmed details. It opens directly on the hero section and includes the Fabiha guide, project cards, coding progress, and contact email draft.
+This React/Vite portfolio uses an editorial black-and-amber design for Arifa's confirmed details. It opens directly on the hero section and includes the Fabiha guide, project cards, an interactive coding quiz, and contact email draft.
 
 ## Run in Replit
 
@@ -12,7 +12,7 @@ This repository's Pages site serves the `main` branch root. After changing the w
 
 ## Update details
 
-Edit `src/data/portfolioData.js` to add confirmed project technologies, screenshots, GitHub/live links, activity dates and certificates, and contact details. Empty fields show as pending or are omitted. The problem counter and progress calculation read the central `codingProgress` values. The contact form opens a prefilled draft in the visitor's email app; it does not send automatically or require a backend. To send messages directly from the site, configure an email service and replace the form submit handler.
+Edit `src/data/portfolioData.js` to add confirmed project technologies, screenshots, GitHub/live links, activity dates and certificates, and contact details. Empty fields show as pending or are omitted. Quiz questions and explanations live in `src/data/quizQuestions.js`. The contact form opens a prefilled draft in the visitor's email app; it does not send automatically or require a backend. To send messages directly from the site, configure an email service and replace the form submit handler.
 
 Project and activity fields without confirmed content are kept in the data file for future updates and stay hidden on the website.
 
