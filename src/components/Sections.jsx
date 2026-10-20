@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { useMotionPreference } from "../context/MotionContext";
 import {
   ArrowRight,
-  ArrowUp,
   ArrowUpRight,
   Check,
   Code2,
@@ -579,7 +578,7 @@ export function Contact() {
   );
 }
 
-export function Footer({ onReplayIntro }) {
+export function Footer() {
   const year = new Date().getFullYear();
   const socialLinks = [
     { label: "GitHub", url: personalInfo.github },
@@ -601,10 +600,6 @@ export function Footer({ onReplayIntro }) {
         </div>
         <div className="simple-footer-base font-mono text-xs text-muted">
           <span>© {year} {personalInfo.name}</span>
-          <div className="flex items-center gap-6">
-            <button type="button" onClick={onReplayIntro}>Replay intro</button>
-            <a href="#home" className="inline-flex items-center gap-1">Top <ArrowUp size={14} aria-hidden="true" /></a>
-          </div>
         </div>
       </div>
     </footer>

@@ -37,15 +37,6 @@ export default function App() {
     window.scrollTo(0, 0);
     requestAnimationFrame(() => document.getElementById("main-content")?.focus({ preventScroll: true }));
   }, []);
-  const replayIntro = useCallback(() => {
-    try {
-      sessionStorage.removeItem("arifa-intro-seen");
-    } catch {
-      /* storage is optional */
-    }
-    if (window.location.hash) history.replaceState(null, "", window.location.pathname + window.location.search);
-    setEntered(false);
-  }, []);
   useEffect(() => {
     if (!entered || !window.location.hash) return;
     let id;
@@ -75,7 +66,7 @@ export default function App() {
             <CollaboratorFeedback />
             <Contact />
           </main>
-          <Footer onReplayIntro={replayIntro} />
+          <Footer />
         </>
       )}
       </MotionProvider>
