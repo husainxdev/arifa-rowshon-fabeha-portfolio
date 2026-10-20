@@ -1,6 +1,6 @@
 # Arifa Rowshon Fabeha — Portfolio
 
-This React/Vite portfolio uses an editorial black-and-amber design for Arifa's confirmed details. It includes the opening animation, Fabiha guide, project cards, coding progress, and contact email draft.
+This React/Vite portfolio uses an editorial black-and-amber design for Arifa's confirmed details. It opens directly on the hero section and includes the Fabiha guide, project cards, coding progress, and contact email draft.
 
 ## Run in Replit
 

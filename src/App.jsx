@@ -1,10 +1,8 @@
-import { useCallback, useEffect, useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import { useEffect } from "react";
 import { ThemeProvider } from "./context/ThemeContext";
 import { MotionProvider } from "./context/MotionContext";
 import { ReadingProgress } from "./components/ui/MotionPrimitives";
 import AmbientBackground from "./components/ui/AmbientBackground";
-import Intro from "./components/Intro";
 import Navbar from "./components/Navbar";
 import { CollaboratorFeedback } from "./components/CurrentFocus";
 import {
@@ -20,37 +18,17 @@ import {
 } from "./components/Sections";
 
 export default function App() {
-  const [entered, setEntered] = useState(() => {
-    try {
-      return sessionStorage.getItem("arifa-intro-seen") === "1";
-    } catch {
-      return false;
-    }
-  });
-  const finishIntro = useCallback(() => {
-    try {
-      sessionStorage.setItem("arifa-intro-seen", "1");
-    } catch {
-      /* storage is optional */
-    }
-    setEntered(true);
-    window.scrollTo(0, 0);
-    requestAnimationFrame(() => document.getElementById("main-content")?.focus({ preventScroll: true }));
-  }, []);
   useEffect(() => {
-    if (!entered || !window.location.hash) return;
+    if (!window.location.hash) return;
     let id;
     try { id = decodeURIComponent(window.location.hash.slice(1)); }
     catch { return; }
     const frame = requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({ behavior: "auto", block: "start" }));
     return () => cancelAnimationFrame(frame);
-  }, [entered]);
+  }, []);
   return (
     <ThemeProvider>
       <MotionProvider>
-      <AnimatePresence>{!entered && <Intro key="intro" onFinish={finishIntro} />}</AnimatePresence>
-      {entered && (
-        <>
           <a className="skip-to-content" href="#main-content">Skip to content</a>
           <AmbientBackground />
           <Navbar />
@@ -67,8 +45,6 @@ export default function App() {
             <Contact />
           </main>
           <Footer />
-        </>
-      )}
       </MotionProvider>
     </ThemeProvider>
   );
