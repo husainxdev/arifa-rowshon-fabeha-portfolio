@@ -91,16 +91,10 @@ export const projects = [
 
 export const codingProfiles = [
   {
-    name: "GitHub",
-    mark: "GH",
-    url: "https://github.com/Fabeha1025",
-    tone: "ink",
-  },
-  {
-    name: "VJudge",
-    mark: "VJ",
-    url: "https://vjudge.net/user/fabeha",
-    tone: "blue",
+    name: "Codeforces",
+    mark: "CF",
+    url: "https://codeforces.com/profile/arifarowshon04",
+    tone: "purple",
   },
   {
     name: "CodeChef",
@@ -109,28 +103,16 @@ export const codingProfiles = [
     tone: "brown",
   },
   {
+    name: "VJudge",
+    mark: "VJ",
+    url: "https://vjudge.net/user/fabeha",
+    tone: "blue",
+  },
+  {
     name: "HackerRank",
     mark: "HR",
     url: "https://www.hackerrank.com/profile/arifarowshon04",
     tone: "green",
-  },
-  {
-    name: "HackerEarth",
-    mark: "HE",
-    url: "https://www.hackerearth.com/@arifarowshon04/",
-    tone: "cyan",
-  },
-  {
-    name: "Codeforces",
-    mark: "CF",
-    url: "https://codeforces.com/profile/arifarowshon04",
-    tone: "purple",
-  },
-  {
-    name: "BeeCrowd",
-    mark: "BC",
-    url: "https://judge.beecrowd.com/en/profile/1219130",
-    tone: "pink",
   },
 ];
 

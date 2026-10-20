@@ -318,13 +318,10 @@ export function Coding() {
   const { ref, count } = useCounter(problemsSolved);
   const animatedPercentage = (count / target) * 100;
   const colors = {
-    ink: "#eae7df",
     blue: "#8bb9ff",
     brown: "#d9a779",
     green: "#91d8ac",
-    cyan: "#95dce6",
     purple: "#c6aceb",
-    pink: "#e9accb",
   };
 
   return (
@@ -405,7 +402,7 @@ export function Coding() {
           <h3 className="mt-3 text-2xl text-ink sm:text-3xl">My coding profiles</h3>
         </div>
         <p className="text-sm text-muted">
-          Explore my coding profiles and repositories.
+          Explore the platforms where I practice.
         </p>
       </div>
       <div className="mt-6 grid gap-3 min-[500px]:grid-cols-2 xl:grid-cols-4 xl:gap-4">

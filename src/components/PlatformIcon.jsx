@@ -21,10 +21,6 @@ export default function PlatformIcon({ name, className = "" }) {
       return <svg {...common}><path d="M8 11h8l8 22 8-22h8L27 39h-6L8 11Z" fill="currentColor"/><path d="M18 8h12" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/></svg>;
     case "HackerRank":
       return <svg {...common}><path d="m24 3 18 10.5v21L24 45 6 34.5v-21L24 3Z" stroke="currentColor" strokeWidth="3"/><path d="M16 15v18m16-18v18M16 24h16" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round"/></svg>;
-    case "HackerEarth":
-      return <svg {...common}><path d="M9 8h30v8H17v6h18v7H17v4h22v7H9V8Z" fill="currentColor"/><path d="m21 22 8 7" stroke="currentColor" strokeWidth="3"/></svg>;
-    case "BeeCrowd":
-      return <svg {...common}><path d="M12 8v32m0-16c4-6 10-9 16-8 8 1 12 6 12 13s-5 13-13 13c-6 0-12-3-15-8" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/><circle cx="30" cy="27" r="3" fill="currentColor"/></svg>;
     default:
       return null;
   }
