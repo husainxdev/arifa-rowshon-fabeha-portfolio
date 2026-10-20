@@ -484,15 +484,6 @@ export function Activities() {
 
 export function Contact() {
   const [copyStatus, setCopyStatus] = useState("");
-  const links = [
-    ...(personalInfo.linkedin
-      ? [{ label: "LinkedIn", url: personalInfo.linkedin, icon: "LinkedIn" }]
-      : []),
-    ...(personalInfo.instagram
-      ? [{ label: "Instagram", url: personalInfo.instagram, icon: "Instagram" }]
-      : []),
-    ...personalInfo.otherLinks,
-  ];
   const copyEmail = async () => {
     try {
       await navigator.clipboard.writeText(personalInfo.email);
@@ -540,14 +531,6 @@ export function Contact() {
               </div>
               <ExternalLink size={18} className="shrink-0 text-muted" aria-hidden="true" />
             </div>
-            <div className="mt-auto flex flex-wrap items-center justify-between gap-4 px-1 pt-5">
-              <div className="flex flex-wrap gap-2">
-                {links.map((link) => {
-                  return <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer" aria-label={`${link.label} profile (opens in a new tab)`} className="inline-flex items-center gap-2 rounded-xl border border-hair bg-fill px-3 py-2 font-mono text-xs text-ink transition hover:border-neonCyan/40 hover:text-neonCyan">{link.icon && <PlatformIcon name={link.icon} className="h-[15px] w-[15px]" />}{link.label}<ExternalLink size={13} aria-hidden="true" /></a>;
-                })}
-              </div>
-              <span className="inline-flex items-center gap-2 font-mono text-xs text-muted"><MapPin size={14} className="text-neonCyan" aria-hidden="true" />{personalInfo.location}</span>
-            </div>
           </div>
         </Reveal>
         <Reveal delay={0.08} className="h-full">
@@ -576,7 +559,6 @@ export function Contact() {
 }
 
 export function Footer() {
-  const year = new Date().getFullYear();
   const socialLinks = [
     { label: "GitHub", url: personalInfo.github },
     { label: "LinkedIn", url: personalInfo.linkedin },
@@ -595,8 +577,8 @@ export function Footer() {
             {socialLinks.map(({ label, url }) => <a key={label} href={url} target="_blank" rel="noopener noreferrer" aria-label={`${label} profile (opens in a new tab)`}><PlatformIcon name={label} className="h-[19px] w-[19px]" /></a>)}
           </div>
         </div>
-        <div className="simple-footer-base font-mono text-xs text-muted">
-          <span>© {year} {personalInfo.name}</span>
+        <div className="simple-footer-base text-center font-mono text-xs text-muted">
+          <span>© 2026 Hussain Ahmed Humaidi</span>
         </div>
       </div>
     </footer>
