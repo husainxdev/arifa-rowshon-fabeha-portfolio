@@ -68,7 +68,7 @@ export default function ProjectShowcase() {
   const featured = projects.find(project => project.featured) || projects[0];
   if (!featured) return null;
   const image = galleries(featured)[0];
-  return <section id="projects" className="portfolio-section relative mx-auto max-w-6xl scroll-mt-28 px-4 py-16 sm:px-6 md:py-24">
+  return <section id="projects" className="portfolio-section page-shell relative scroll-mt-28 py-16 md:py-24">
     <SectionHeading index="05" eyebrow="projects" title="Ideas, made tangible." kicker="A closer look at the purpose behind each project." />
     <Reveal className="mt-10">
       <InteractiveCard as="article" tilt={1.5} className="featured-project glass-strong glass-glow rounded-3xl">

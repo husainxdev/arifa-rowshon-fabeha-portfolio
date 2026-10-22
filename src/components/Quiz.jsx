@@ -27,7 +27,7 @@ export default function Quiz() {
   };
 
   return (
-    <section id="quiz" aria-label="Interactive coding quiz" className="portfolio-section relative mx-auto max-w-6xl scroll-mt-28 px-4 py-16 sm:px-6 md:py-24">
+    <section id="quiz" aria-label="Interactive coding quiz" className="portfolio-section page-shell relative scroll-mt-28 py-16 md:py-24">
       <SectionHeading index="03" eyebrow="quiz" title="Test your thinking." kicker="Five quick questions on C++, data structures, and algorithms. Try them at your own pace." />
       <Reveal>
         <div className="glass-strong glass-glow mt-10 overflow-hidden rounded-3xl border border-hair p-6 sm:p-9">

@@ -1,7 +1,7 @@
 // Arifa's confirmed details live here. Add links and project media only when available.
 export const personalInfo = {
   name: "Arifa Rowshon Fabeha",
-  guideName: "Fabiha",
+  guideName: "Fabeha",
   role: "Computer Science and Engineering Student",
   university: "Metropolitan University, Sylhet, Bangladesh",
   location: "Sylhet, Bangladesh",

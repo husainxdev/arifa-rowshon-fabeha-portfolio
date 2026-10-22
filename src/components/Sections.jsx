@@ -36,7 +36,7 @@ import {
 } from "../data/portfolioData";
 
 const shell =
-  "portfolio-section relative mx-auto max-w-6xl scroll-mt-28 px-4 py-16 sm:px-6 md:py-24";
+  "portfolio-section page-shell relative scroll-mt-28 py-16 md:py-24";
 const primary =
   "action-button inline-flex items-center justify-center gap-2 rounded-xl bg-neonCyan px-5 py-3 text-sm font-semibold text-void transition hover:-translate-y-0.5 hover:brightness-110";
 const secondary =
@@ -46,7 +46,7 @@ export function Home() {
   return (
     <MotionScene as="section"
       id="home"
-      className="relative mx-auto max-w-6xl scroll-mt-28 px-4 pb-14 pt-32 sm:px-6 md:pb-20 md:pt-36"
+      className="page-shell relative scroll-mt-28 pb-14 pt-32 md:pb-20 md:pt-36"
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-grid-lines opacity-[.05] mask-radial-fade" />
       <div className="grid items-start gap-9 lg:grid-cols-[1.12fr_.88fr] lg:gap-14">
@@ -83,7 +83,7 @@ export function Home() {
               <span className="hero-orbit orbit-two" aria-hidden="true"><i /></span>
               <span className="hero-code-chip" aria-hidden="true"><Code2 size={15} /> C++</span>
               <Guide className="relative z-10 mb-3 w-[95%] max-w-[230px]" pointing />
-              <span className="absolute bottom-3 left-3 right-3 z-20 rounded-lg border border-hair bg-void/85 px-2 py-1.5 text-center font-mono text-[10px] text-neonCyan">Fabiha · your guide</span>
+              <span className="absolute bottom-3 left-3 right-3 z-20 rounded-lg border border-hair bg-void/85 px-2 py-1.5 text-center font-mono text-[10px] text-neonCyan">Fabeha · your guide</span>
             </div>
             <InteractiveCard tilt={2} className="glass flex min-w-0 flex-col justify-between rounded-2xl p-3 sm:p-4">
               <p className="flex items-center gap-2 font-mono text-[11px] text-muted"><span className="h-2 w-2 rounded-full bg-neonCyan" /> currently</p>
@@ -454,7 +454,7 @@ export function Footer() {
   ].filter(({ url }) => Boolean(url));
   return (
     <footer className="simple-footer mt-10 border-t border-hair">
-      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+      <div className="page-shell py-8">
         <div className="simple-footer-main">
           <div>
             <a href="#home" className="font-display text-xl text-ink hover:text-neonCyan">Arifa Rowshon Fabeha</a>

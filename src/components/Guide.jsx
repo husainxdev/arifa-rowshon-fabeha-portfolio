@@ -5,7 +5,7 @@ export default function Guide({ className = "", pointing = false }) {
   return (
     <div
       className={`guide-figure ${className}`}
-      aria-label="Illustration of Fabiha, a smiling girl wearing a hijab"
+      aria-label="Illustration of Fabeha, a smiling girl wearing a hijab"
       role="img"
     >
       <svg

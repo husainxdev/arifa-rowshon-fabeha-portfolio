@@ -6,7 +6,7 @@ import Guide from "./Guide";
 import { personalInfo } from "../data/portfolioData";
 
 const lines = [
-  "Hi, my name is Fabiha! Welcome to my portfolio!",
+  "Hi, my name is Fabeha! Welcome to my portfolio!",
   "Meet Arifa Rowshon Fabeha, a CSE student.",
   "Explore her projects and coding journey!",
 ];
@@ -99,7 +99,7 @@ export default function Intro({ onFinish }) {
             </div>
             <div className="intro-bubble">
               <span className="font-mono text-xs uppercase tracking-widest text-neonCyan">
-                Your guide · Fabiha
+                Your guide · Fabeha
               </span>
               <p key={line} className="font-display" aria-live="polite">
                 {lines[line]}

@@ -24,7 +24,7 @@ export function CurrentFocus() {
 export function CollaboratorFeedback() {
   const published = testimonials.filter(item => item.permissionToPublish === true && item.quote?.trim() && item.name?.trim() && item.role?.trim());
   if (!published.length) return null;
-  return <section aria-labelledby="feedback-title" className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+  return <section aria-labelledby="feedback-title" className="page-shell py-10">
     <h2 id="feedback-title" className="text-3xl text-ink">Words from collaborators</h2>
     <div className="mt-6 grid gap-5 md:grid-cols-2">{published.map(item => <Reveal key={item.id || item.name}><figure className="glass-strong rounded-2xl p-7">
       <Quote size={26} className="text-neonCyan" aria-hidden="true" />
