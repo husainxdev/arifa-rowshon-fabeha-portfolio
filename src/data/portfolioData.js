@@ -24,8 +24,9 @@ export const personalInfo = {
 // Self-reported total supplied by Arifa. Platform-specific counts are not live synced.
 export const portfolioMetrics = {
   problemsSolved: 321,
+  completedCredits: 42,
+  cgpa: 3.83,
   certifications: null, // Add a verified number to publish this metric.
-  cgpa: null, // Add a confirmed CGPA or rating to publish this metric.
 };
 
 export const education = [

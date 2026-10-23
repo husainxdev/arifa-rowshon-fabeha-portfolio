@@ -24,6 +24,7 @@ import HeroTerminal from "./HeroTerminal";
 import TypingRole from "./TypingRole";
 import {
   personalInfo,
+  portfolioMetrics,
   education,
   skills,
   skillGroups,
@@ -148,6 +149,7 @@ export function Education() {
                 {item.institution && (
                   <p className="mt-2 text-sm text-muted">{item.institution}</p>
                 )}
+                {i === 0 && <p className="mt-3 font-mono text-xs text-neonCyan">{portfolioMetrics.completedCredits} credits completed · CGPA {portfolioMetrics.cgpa.toFixed(2)}</p>}
               </div>
             </div>
           </Reveal>
