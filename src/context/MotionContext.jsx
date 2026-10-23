@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { MotionConfig } from "framer-motion";
 
 const MotionContext = createContext({ enabled: true, systemReduced: false, toggle: () => {} });
 
@@ -29,9 +28,7 @@ export function MotionProvider({ children }) {
     return () => document.removeEventListener("visibilitychange", update);
   }, []);
 
-  return <MotionContext.Provider value={{ enabled, systemReduced, toggle: () => setPaused(value => !value) }}>
-    <MotionConfig reducedMotion={enabled ? "user" : "always"}>{children}</MotionConfig>
-  </MotionContext.Provider>;
+  return <MotionContext.Provider value={{ enabled, systemReduced, toggle: () => setPaused(value => !value) }}>{children}</MotionContext.Provider>;
 }
 
 export const useMotionPreference = () => useContext(MotionContext);

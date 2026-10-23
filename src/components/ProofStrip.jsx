@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight } from "lucide-react";
-import { codingProfiles, personalInfo, portfolioMetrics, projects, skills } from "../data/portfolioData";
-import PlatformIcon from "./PlatformIcon";
+import { portfolioMetrics, projects, skills } from "../data/portfolioData";
 
 function Count({ value, suffix = "" }) {
   const ref = useRef(null);
@@ -36,11 +34,6 @@ export default function ProofStrip() {
     { value: skills.length, label: "Core skills" },
     { value: 2025, label: "CSE journey began", static: true },
   ];
-  const profiles = [
-    { name: "GitHub", url: personalInfo.github },
-    ...codingProfiles.filter(item => ["Codeforces", "HackerRank"].includes(item.name)),
-    ...(personalInfo.leetcode ? [{ name: "LeetCode", url: personalInfo.leetcode }] : []),
-  ];
   return (
     <section className="proof-strip page-shell" aria-label="Portfolio at a glance">
       <div className="proof-stats">
@@ -48,15 +41,6 @@ export default function ProofStrip() {
           {stat.static ? <strong className="proof-value">{stat.value}</strong> : <Count value={stat.value} suffix={stat.suffix} />}
           <span>{stat.label}</span>
         </div>)}
-      </div>
-      <div className="proof-links">
-        <p>Find my work and practice</p>
-        <div>
-          {profiles.map(profile => <a key={profile.name} href={profile.url} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${profile.name} (opens in a new tab)`}>
-            <PlatformIcon name={profile.name} className="h-4 w-4" />{profile.name}<ArrowUpRight size={14} aria-hidden="true" />
-          </a>)}
-        </div>
-        <small>321+ is Arifa's provided total; platform counts are not live synced.</small>
       </div>
     </section>
   );
