@@ -730,8 +730,6 @@ html[data-motion="off"] .hero-name-last::after { transform:scaleX(1); }
 .hero-cta-copy small { color:var(--color-void); opacity:.8; }
 .hero-cta:not(:disabled):hover { box-shadow:0 10px 28px color-mix(in oklab,var(--color-neon-cyan) 24%,transparent); }
 .light .hero-cta-primary,.light .hero-cta-secondary { background:var(--color-neon-cyan); color:var(--color-void); box-shadow:none; }
-.hero-contact-link { display:inline-flex; align-items:center; gap:5px; margin-top:14px; color:var(--color-muted); font:500 12px var(--font-mono); transition:color .2s; }
-.hero-contact-link:hover { color:var(--color-neon-cyan); }
 .hero-stats { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border:1px solid var(--color-hair-strong); border-radius:16px; overflow:hidden; background:color-mix(in oklab,var(--color-void) 91%,transparent); }
 .hero-stat { min-width:0; padding:23px clamp(14px,2.4vw,30px); }
 .hero-stat + .hero-stat { border-left:1px solid var(--color-hair); }
@@ -760,8 +758,8 @@ html[data-motion="off"] .hero-name-last::after { transform:scaleX(1); }
 @media(max-width:900px) {
   .career-hero-layout { grid-template-columns:1fr; gap:0; margin-top:38px; }
   .hero-main-column,.hero-stats-wrap,.career-hero-aside { grid-column:1; grid-row:auto; }
-  .hero-stats-wrap { margin-top:35px; }
-  .career-hero-aside { max-width:550px; justify-self:stretch; margin-top:35px; }
+  .hero-stats-wrap { margin-top:26px; }
+  .career-hero-aside { max-width:550px; justify-self:stretch; margin-top:26px; }
   .career-hero-layout .editorial-hero-title { font-size:clamp(3.7rem,8vw,5.8rem); }
 }
 @media(max-width:620px) {
@@ -779,12 +777,12 @@ html[data-motion="off"] .hero-name-last::after { transform:scaleX(1); }
   .career-hero-actions { margin-top:23px; }
   .hero-cta { min-height:51px; padding:10px 12px; font-size:12px; }
   .hero-cta-copy small { font-size:9px; }
-  .hero-stats-wrap { margin-top:28px; }
+  .hero-stats-wrap { margin-top:20px; }
   .hero-stat { padding:16px 10px; }
   .hero-stat strong { font-size:clamp(1.55rem,7vw,2.1rem); }
   .hero-stat > span { font-size:9px; }
-  .career-hero-aside { margin-top:28px; }
-  .hero-quiz-teaser { margin-top:28px; }
+  .career-hero-aside { margin-top:22px; }
+  .hero-quiz-teaser { margin-top:22px; }
   .site-nav { min-height:60px; }
   .nav-brand > span:last-child { display:inline; }
   .nav-brand { font-size:12px; }

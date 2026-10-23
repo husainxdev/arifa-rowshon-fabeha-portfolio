@@ -77,7 +77,6 @@ export function Home() {
                 <span className="hero-cta-icon" aria-hidden="true"><FileDown size={18} /></span>
               </button>}
             </div>
-            <a className="hero-contact-link" href="#contact">Contact <ArrowUpRight size={15} aria-hidden="true" /></a>
           </Reveal>
         </div>
         <Reveal className="hero-stats-wrap" delay={0.26}><HeroStats /></Reveal>
