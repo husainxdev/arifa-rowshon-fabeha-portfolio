@@ -22,6 +22,7 @@ import PlatformIcon from "./PlatformIcon";
 import { InteractiveCard, MotionScene } from "./ui/MotionPrimitives";
 import ProjectShowcase from "./ProjectShowcase";
 import CurrentStatus from "./CurrentStatus";
+import HeroStats from "./HeroStats";
 import TypingRole from "./TypingRole";
 import {
   personalInfo,
@@ -55,7 +56,7 @@ export function Home() {
         </div>
       </Reveal>
       <div className="career-hero-layout">
-        <div>
+        <div className="hero-main-column">
           <Reveal delay={0.1}>
             <p className="editorial-hero-greeting">Hello, I’m</p>
             <h1 className="editorial-hero-title">
@@ -64,25 +65,32 @@ export function Home() {
             </h1>
           </Reveal>
           <Reveal delay={0.17}>
+            <p className="hero-focus"><span>focus:</span> C++ &amp; Data Structures</p>
             <TypingRole roles={personalInfo.roles} />
             <p className="career-hero-pitch">{personalInfo.pitchParts.map((part, index) => <span key={part} className={index ? "pitch-part has-separator" : "pitch-part"}>{part}</span>)}</p>
             <div className="career-hero-actions">
+              <a className="hero-cta hero-cta-primary" href="#projects"><span>View projects</span><ArrowUpRight size={19} aria-hidden="true" /></a>
               {personalInfo.cvUrl ? <a className="hero-cta hero-cta-secondary" href={personalInfo.cvUrl} download>
                 <span>Download CV</span><span className="hero-cta-icon"><FileDown size={18} aria-hidden="true" /></span>
               </a> : <button className="hero-cta hero-cta-secondary hero-cta-pending" type="button" disabled aria-label="Download CV" title="CV coming soon">
                 <span className="hero-cta-copy"><span>Download CV</span><small aria-hidden="true">Coming soon</small></span>
                 <span className="hero-cta-icon" aria-hidden="true"><FileDown size={18} /></span>
               </button>}
-              <a className="hero-cta hero-cta-contact" href="#contact">
-                <span>Contact</span><span className="hero-cta-icon"><Mail size={18} aria-hidden="true" /></span>
-              </a>
+            </div>
+            <a className="hero-contact-link" href="#contact">Contact <ArrowUpRight size={15} aria-hidden="true" /></a>
+          </Reveal>
+        </div>
+        <Reveal className="hero-stats-wrap" delay={0.26}><HeroStats /></Reveal>
+        <div className="career-hero-aside">
+          <Reveal delay={0.23}>
+            <div className="hero-identity-row">
+              <div className="hero-portrait-placeholder" role="img" aria-label="AF monogram placeholder for Arifa's future portrait"><span>AF</span><small>ARIFA</small></div>
+              <CurrentStatus />
             </div>
           </Reveal>
         </div>
-        <div className="career-hero-aside">
-          <Reveal delay={0.23}><CurrentStatus /></Reveal>
-        </div>
       </div>
+      <Reveal delay={0.3}><a className="hero-quiz-teaser" href="#quiz" aria-label="Try the interactive coding quiz"><span className="hero-quiz-title"><i aria-hidden="true" /><i aria-hidden="true" /><i aria-hidden="true" /><code>guess.cpp</code><span>01 / 05</span></span><span className="hero-quiz-code"><code>std::vector&lt;int&gt; values = &#123;1, 2, 3, 4&#125;;</code><span>Can you solve the next question?</span></span><span className="hero-quiz-action">Try the coding quiz <ArrowUpRight size={17} aria-hidden="true" /></span></a></Reveal>
     </MotionScene>
   );
 }
