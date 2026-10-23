@@ -67,8 +67,8 @@ export function Home() {
             <TypingRole roles={personalInfo.roles} />
             <p className="career-hero-pitch">{personalInfo.pitchParts.map((part, index) => <span key={part} className={index ? "pitch-part has-separator" : "pitch-part"}>{part}</span>)}</p>
             <div className="career-hero-actions">
-              <a className="hero-cta hero-cta-primary" href="#projects">
-                <span>View Projects</span><span className="hero-cta-icon"><ArrowRight size={18} aria-hidden="true" /></span>
+              <a className="hero-cta hero-cta-primary hero-cta-contact" href="#contact">
+                <span>Contact</span><span className="hero-cta-icon"><Mail size={18} aria-hidden="true" /></span>
               </a>
               {personalInfo.cvUrl ? <a className="hero-cta hero-cta-secondary" href={personalInfo.cvUrl} download>
                 <span>Download CV</span><span className="hero-cta-icon"><FileDown size={18} aria-hidden="true" /></span>
@@ -76,9 +76,6 @@ export function Home() {
                 <span className="hero-cta-copy"><span>Download CV</span><small aria-hidden="true">Coming soon</small></span>
                 <span className="hero-cta-icon" aria-hidden="true"><FileDown size={18} /></span>
               </button>}
-              <a className="hero-cta hero-cta-contact" href="#contact">
-                <span>Contact</span><span className="hero-cta-icon"><Mail size={18} aria-hidden="true" /></span>
-              </a>
             </div>
           </Reveal>
         </div>
