@@ -8,7 +8,6 @@ import {
   Handshake,
   Lightbulb,
   Mail,
-  MapPin,
   MessageCircle,
   Clock3,
   Sparkles,
@@ -18,7 +17,6 @@ import {
 } from "lucide-react";
 import Reveal from "./ui/Reveal";
 import SectionHeading from "./ui/SectionHeading";
-import Guide from "./Guide";
 import PlatformIcon from "./PlatformIcon";
 import { AnimatedHeading, InteractiveCard, MotionScene } from "./ui/MotionPrimitives";
 import ProjectShowcase from "./ProjectShowcase";
@@ -44,26 +42,26 @@ export function Home() {
   return (
     <MotionScene as="section"
       id="home"
-      className="page-shell relative scroll-mt-28 pb-14 pt-32 md:pb-20 md:pt-36"
+      className="home-hero page-shell relative scroll-mt-28 pb-14 pt-32 md:pb-20 md:pt-36"
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-grid-lines opacity-[.05] mask-radial-fade" />
-      <div className="grid items-start gap-9 lg:grid-cols-[1.12fr_.88fr] lg:gap-14">
+      <div className="home-layout grid items-center gap-10 lg:grid-cols-[1.08fr_.92fr] lg:gap-14">
         <div className="relative z-10">
           <Reveal delay={0.04}>
             <p className="font-mono text-sm text-neonCyan">Hi, I'm</p>
           </Reveal>
-          <AnimatedHeading as="h1" text="Arifa Rowshon Fabeha." accentLast className="mt-2 max-w-[700px] text-[clamp(3rem,6vw,5.4rem)] leading-[1.04] tracking-[-.045em] text-ink" />
+          <AnimatedHeading as="h1" text="Arifa Rowshon Fabeha." accentLast className="home-title mt-3 max-w-[700px] text-ink" />
           <Reveal delay={0.11}>
-            <p className="mt-5 font-mono text-sm text-ink/85"><span className="text-neonCyan">focus:&nbsp;</span>C++ · Data Structures · Algorithms<span className="ml-1 inline-block h-4 w-px animate-blink bg-neonCyan align-middle" aria-hidden="true" /></p>
-            <p className="mt-5 font-mono text-xs uppercase tracking-wide text-neonCyan">Computer Science and Engineering Student</p>
-            <p className="mt-5 max-w-xl text-base leading-8 text-muted">
+            <p className="mt-5 font-mono text-sm leading-relaxed text-ink/85"><span className="text-neonCyan">focus:&nbsp;</span>C++ · Data Structures · Algorithms<span className="hero-focus-cursor ml-1 inline-block h-4 w-px animate-blink bg-neonCyan align-middle" aria-hidden="true" /></p>
+            <p className="home-role mt-5 font-mono text-xs uppercase tracking-wide text-neonCyan">Computer Science and Engineering Student</p>
+            <p className="home-copy mt-6 max-w-xl text-muted">
               Welcome to my portfolio! I am a CSE student exploring programming,
               data structures, algorithms, and technology through learning and
               projects.
             </p>
           </Reveal>
           <Reveal delay={0.18}>
-            <div className="mt-8 grid max-w-md gap-3 min-[440px]:grid-cols-2">
+            <div className="home-actions mt-8 grid max-w-md gap-3 min-[440px]:grid-cols-2">
               <a className={primary} href="#about">
                 Explore My Journey <ArrowRight size={17} />
               </a>
@@ -74,25 +72,23 @@ export function Home() {
           </Reveal>
         </div>
         <Reveal delay={0.16}>
-          <MotionScene className="grid min-h-[280px] grid-cols-[.9fr_1.1fr] gap-3 sm:min-h-[340px] lg:mt-2">
-            <div className="hero-character-stage glass-strong glass-glow relative flex items-end justify-center overflow-hidden rounded-2xl">
-              <div className="hero-rings" aria-hidden="true" />
-              <span className="hero-orbit orbit-one" aria-hidden="true"><i /></span>
-              <span className="hero-orbit orbit-two" aria-hidden="true"><i /></span>
-              <span className="hero-code-chip" aria-hidden="true"><Code2 size={15} /> C++</span>
-              <Guide className="relative z-10 mb-3 w-[95%] max-w-[230px]" pointing />
-              <span className="absolute bottom-3 left-3 right-3 z-20 rounded-lg border border-hair bg-void/85 px-2 py-1.5 text-center font-mono text-[10px] text-neonCyan">Fabeha · your guide</span>
+          <aside className="home-profile-panel glass-strong glass-glow" aria-label="Current studies and interests">
+            <div className="home-profile-top">
+              <span>01 / CURRENT CHAPTER</span>
+              <Code2 size={20} aria-hidden="true" />
             </div>
-            <InteractiveCard tilt={2} className="glass flex min-w-0 flex-col justify-between rounded-2xl p-3 sm:p-4">
-              <p className="flex items-center gap-2 font-mono text-[11px] text-muted"><span className="h-2 w-2 rounded-full bg-neonCyan" /> currently</p>
-              <dl className="space-y-4">
-                <div><dt className="font-mono text-[10px] uppercase text-muted">Studying</dt><dd className="mt-1 text-xs font-medium text-ink sm:text-sm">B.Sc. in CSE</dd></div>
-                <div><dt className="font-mono text-[10px] uppercase text-muted">University</dt><dd className="mt-1 text-xs font-medium text-ink sm:text-sm">Metropolitan University</dd></div>
-                <div><dt className="font-mono text-[10px] uppercase text-muted">Exploring</dt><dd className="mt-1 text-xs font-medium text-ink sm:text-sm">Programming & healthcare ideas</dd></div>
-              </dl>
-              <span className="flex items-center gap-1 font-mono text-[10px] text-neonCyan"><MapPin size={12} aria-hidden="true" /> Sylhet, Bangladesh</span>
-            </InteractiveCard>
-          </MotionScene>
+            <div className="home-profile-main">
+              <h2>Learning through <em>code.</em></h2>
+              <p>Computer Science and Engineering at Metropolitan University, Sylhet.</p>
+            </div>
+            <div className="home-profile-bottom">
+              <span className="home-profile-label">Exploring</span>
+              <div className="home-profile-topics" aria-label="Areas of interest">
+                <span>Problem solving</span><span>Software development</span><span>Healthcare ideas</span>
+              </div>
+              <a href="#projects">Explore my projects <ArrowUpRight size={16} aria-hidden="true" /></a>
+            </div>
+          </aside>
         </Reveal>
       </div>
     </MotionScene>
@@ -118,14 +114,14 @@ export function About() {
       <div className="mt-10 grid items-stretch gap-5 lg:grid-cols-[.95fr_1.05fr]">
         <Reveal className="h-full">
           <div className="glass-strong glass-glow flex h-full flex-col justify-center rounded-3xl p-7 sm:p-9 lg:min-h-[510px]">
-            <p className="text-base leading-7 text-ink/90 sm:text-lg sm:leading-8">
+            <p className="about-lead text-ink/90">
               I'm a Computer Science and Engineering student at{" "}
               <strong className="text-neonCyan">
                 Metropolitan University, Sylhet, Bangladesh.
               </strong>{" "}
               I enjoy exploring how software can help solve everyday problems.
             </p>
-            <p className="mt-6 text-sm leading-7 text-muted sm:text-base">
+            <p className="about-support mt-6 text-muted">
               My interests include programming, problem-solving, software
               development, and healthcare innovation. I keep learning through
               projects, coding practice, and curiosity about how things work.
@@ -144,7 +140,7 @@ export function About() {
                     <strong className="font-display text-3xl leading-none tracking-[-.04em] text-ink sm:text-4xl">{fact.value}</strong>
                     <Icon size={18} className="shrink-0 text-neonCyan/80 transition-transform group-hover:-translate-y-0.5" aria-hidden="true" />
                   </div>
-                  <span className="font-mono text-[11px] leading-4 text-muted sm:text-xs">{fact.label}</span>
+                  <span className="font-mono text-xs leading-5 text-muted">{fact.label}</span>
                 </a>;
               })}
             </div>

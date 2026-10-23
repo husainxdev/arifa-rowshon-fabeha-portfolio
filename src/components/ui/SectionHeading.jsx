@@ -15,7 +15,7 @@ export default function SectionHeading({
   align = 'left',
 }) {
   const centered = align === 'center'
-  const wrap = centered ? 'mx-auto max-w-2xl text-center' : 'max-w-2xl'
+  const wrap = centered ? 'section-header mx-auto max-w-3xl text-center' : 'section-header max-w-3xl'
   // Accept legacy "// about" eyebrows — strip the slashes for the new pill.
   const label = eyebrow?.replace(/^\s*\/\/\s*/, '')
 
@@ -23,7 +23,7 @@ export default function SectionHeading({
     <div className={wrap}>
       <Reveal>
         <span
-          className={`inline-flex items-center gap-2 rounded-full border border-neonCyan/25 bg-neonCyan/[0.06] py-1 pl-2 pr-3 ${
+          className={`section-eyebrow inline-flex items-center gap-2 rounded-full border border-neonCyan/25 bg-neonCyan/[0.06] py-1 pl-2 pr-3 ${
             centered ? 'mx-auto' : ''
           }`}
         >
@@ -35,10 +35,10 @@ export default function SectionHeading({
           <span className="font-mono text-xs font-medium tracking-wide text-ink/80">{label}</span>
         </span>
       </Reveal>
-      <AnimatedHeading text={title} className="mt-4 text-3xl font-semibold tracking-[-0.02em] text-ink sm:text-4xl md:text-[3rem] md:leading-[1.05]" />
+      <AnimatedHeading text={title} className="section-title mt-5 text-ink" />
       {kicker && (
         <Reveal delay={0.1}>
-          <p className="mt-4 leading-relaxed text-muted">{kicker}</p>
+          <p className="section-summary mt-4 text-muted">{kicker}</p>
         </Reveal>
       )}
     </div>
