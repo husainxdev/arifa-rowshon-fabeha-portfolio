@@ -22,10 +22,7 @@ The pause button in the navigation saves the visitor's motion preference. The si
 
 `MotionContext.jsx` coordinates motion preferences. Reusable heading reveals, pointer spotlights, card tilt, and the reading-progress line live in `components/ui/MotionPrimitives.jsx`. Project artwork is in `ProjectVisual.jsx`; CSS keyframes are in `src/index.css`. Pointer tilt runs only with a mouse and a fine pointer.
 
-## Project stories, learning, and feedback
+## Project stories
 
 - `ProjectShowcase.jsx` features Shastho Sahayak and opens keyboard-accessible project overviews. Screenshots replace the conceptual artwork when supplied; add each screenshot as `{ src, alt, caption }` in `portfolioData.js`. Project documents and references use `{ label, url }`; diagrams use `{ src, alt, caption }`.
 - Each project's `contribution` has `role`, `work`, `decisions`, and `lessons`. Fill these with Arifa's actual role and experience. Empty contribution fields stay hidden. List only confirmed implemented work under `features`.
-- `portfolioExtras.js` holds the dated current-focus panel and educational concept notes. `updatedAt` is the date the portfolio content was updated, not a live activity timestamp. The algorithm lab uses illustrative examples and does not imply that these are Arifa's contest submissions.
-- Add verbatim, approved feedback to `testimonials` as `{ id, quote, name, role, permissionToPublish: true }`. The section stays hidden until a complete entry has publication permission. No testimonials or project-specific personal contributions have been fabricated.
-- `LearningCorner.jsx` includes readable concept notes with copyable C++ examples and step-by-step binary-search and two-pointer demonstrations. The pure algorithms live in `src/lib/algorithmSteps.js`.

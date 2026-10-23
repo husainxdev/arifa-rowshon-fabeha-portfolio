@@ -5,7 +5,6 @@ import { ReadingProgress } from "./components/ui/MotionPrimitives";
 import AmbientBackground from "./components/ui/AmbientBackground";
 import Navbar from "./components/Navbar";
 import Quiz from "./components/Quiz";
-import { CollaboratorFeedback } from "./components/CurrentFocus";
 import {
   Home,
   About,
@@ -43,7 +42,6 @@ export default function App() {
             <Projects />
             <Education />
             <Activities />
-            <CollaboratorFeedback />
             <Contact />
           </main>
           <Footer />
