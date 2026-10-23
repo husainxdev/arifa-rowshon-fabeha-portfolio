@@ -60,8 +60,8 @@ export function Home() {
           <Reveal delay={0.1}>
             <p className="editorial-hero-greeting">Hello, I’m</p>
             <h1 className="editorial-hero-title">
-              <span>Arifa Rowshon</span>{" "}
-              <em>Fabeha<span>.</span></em>
+              <span className="hero-name-first">Arifa Rowshon</span>{" "}
+              <em className="hero-name-last">Fabeha<span>.</span></em>
             </h1>
           </Reveal>
           <Reveal delay={0.17}>

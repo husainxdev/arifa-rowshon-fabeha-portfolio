@@ -7,7 +7,7 @@ export default function HeroTerminal() {
       <div className="hero-terminal-body">
         <span className="hero-panel-kicker">ARIFA / NOW</span>
         <div className="hero-panel-intro">
-          <h2>Where I am now.</h2>
+          <h2>Where I am <em>now.</em></h2>
           <p>Studying Computer Science and Engineering at Metropolitan University, Sylhet.</p>
         </div>
         <div className="hero-panel-facts">
