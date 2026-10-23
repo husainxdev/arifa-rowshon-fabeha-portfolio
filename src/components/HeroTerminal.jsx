@@ -1,4 +1,4 @@
-import { Code2, GraduationCap } from "lucide-react";
+import { ArrowUpRight, Code2, GraduationCap } from "lucide-react";
 import { portfolioMetrics } from "../data/portfolioData";
 
 /** The hero's quiet snapshot of Arifa's current study and project work. */
@@ -35,6 +35,7 @@ export default function HeroTerminal() {
           </div>
         </div>
       </div>
+      <a className="hero-terminal-link" href="#projects">Explore projects <ArrowUpRight size={17} aria-hidden="true" /></a>
     </aside>
   );
 }
