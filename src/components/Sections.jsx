@@ -22,6 +22,7 @@ import PlatformIcon from "./PlatformIcon";
 import { InteractiveCard, MotionScene } from "./ui/MotionPrimitives";
 import ProjectShowcase from "./ProjectShowcase";
 import HeroTerminal from "./HeroTerminal";
+import ProofStrip from "./ProofStrip";
 import TypingRole from "./TypingRole";
 import {
   personalInfo,
@@ -79,7 +80,10 @@ export function Home() {
             </div>
           </Reveal>
         </div>
-        <Reveal delay={0.23}><HeroTerminal /></Reveal>
+        <div className="career-hero-aside">
+          <Reveal delay={0.23}><HeroTerminal /></Reveal>
+          <Reveal delay={0.3}><ProofStrip /></Reveal>
+        </div>
       </div>
     </MotionScene>
   );

@@ -4,7 +4,6 @@ import { MotionProvider } from "./context/MotionContext";
 import { ReadingProgress } from "./components/ui/MotionPrimitives";
 import AmbientBackground from "./components/ui/AmbientBackground";
 import Navbar from "./components/Navbar";
-import ProofStrip from "./components/ProofStrip";
 import Quiz from "./components/Quiz";
 import {
   Home,
@@ -36,7 +35,6 @@ export default function App() {
           <ReadingProgress />
           <main id="main-content" tabIndex={-1}>
             <Home />
-            <ProofStrip />
             <About />
             <Projects />
             <Skills />

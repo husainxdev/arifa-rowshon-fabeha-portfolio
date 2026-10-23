@@ -35,7 +35,7 @@ export default function ProofStrip() {
     { value: portfolioMetrics.cgpa, decimals: 2, label: "CGPA" },
   ];
   return (
-    <section className="proof-strip page-shell" aria-label="Portfolio at a glance">
+    <section className="hero-proof" aria-label="Portfolio at a glance">
       <div className="proof-stats">
         {stats.map(stat => <div className="proof-stat" key={stat.label}>
           <Count value={stat.value} suffix={stat.suffix} decimals={stat.decimals} />
