@@ -69,18 +69,22 @@ export default function ProjectShowcase() {
   if (!featured) return null;
   const image = galleries(featured)[0];
   return <section id="projects" className="portfolio-section page-shell relative scroll-mt-28 py-16 md:py-24">
-    <SectionHeading index="05" eyebrow="projects" title="Ideas, made tangible." kicker="A closer look at the purpose behind each project." />
+    <SectionHeading index="02" eyebrow="projects" title="Ideas, made tangible." kicker="A closer look at the purpose behind each project." />
     <Reveal className="mt-10">
       <InteractiveCard as="article" tilt={1.5} className="featured-project glass-strong glass-glow rounded-3xl">
         <div className="featured-visual">
           {image ? <img src={image.src} alt={image.alt} loading="lazy" className="h-full w-full object-contain" /> : <ProjectVisual built index={0} />}
-          <span className="featured-label">Featured project</span>
+          <span className="featured-label">{image ? "Featured project" : "Illustrative visual"}</span>
         </div>
         <div className="featured-copy">
           <span className="project-status">{featured.status}</span>
           <h3 className="mt-5 text-4xl text-ink sm:text-5xl">{featured.title}</h3>
           <p className="mt-4 font-display text-xl leading-relaxed text-neonCyan">“{featured.tagline}”</p>
+          <p className="project-problem"><strong>Problem</strong> {featured.problem}</p>
           <p className="mt-4 text-sm leading-7 text-muted">{featured.summary}</p>
+          {!!featured.features?.length && <ul className="project-feature-list">{featured.features.slice(0, 3).map(feature => <li key={feature}>{feature}</li>)}</ul>}
+          {!!featured.focusAreas?.length && <div className="mt-5 flex flex-wrap gap-2">{featured.focusAreas.map(area => <span className="topic-chip" key={area}>{area}</span>)}</div>}
+          {!!featured.technologies?.length && <div className="mt-3 flex flex-wrap gap-2">{featured.technologies.map(tech => <span className="tech-chip" key={tech}>{tech}</span>)}</div>}
           <div className="mt-7 flex flex-wrap items-center gap-5">
             <button type="button" className="action-button feature-action" onClick={() => setSelected(featured)}>Explore project <ArrowUpRight size={17} /></button>
             <ProjectLinks project={featured} />
@@ -91,11 +95,15 @@ export default function ProjectShowcase() {
     <div className="mt-5 grid gap-5">
       {projects.filter(project => project !== featured).map((project, i) => <Reveal key={project.id || project.title}>
         <InteractiveCard as="article" tilt={1} className="project-secondary glass-strong rounded-2xl">
-          <div className="secondary-visual"><ProjectVisual built={project.status === "Built project"} index={i + 1} /></div>
+          <div className="secondary-visual"><ProjectVisual built={project.status === "Built project"} index={i + 1} /><span className="secondary-visual-label">Illustrative visual</span></div>
           <div className="p-6 sm:p-8">
             <div className="flex flex-wrap items-center gap-3"><span className="project-status">{project.status}</span><span className="text-xs text-muted">{project.type}</span></div>
             <h3 className="mt-4 text-3xl text-ink">{project.title}</h3>
+            <p className="project-problem"><strong>Problem</strong> {project.problem}</p>
             <p className="mt-3 max-w-2xl text-sm leading-7 text-muted">{project.summary}</p>
+            {!!project.features?.length && <ul className="project-feature-list">{project.features.slice(0, 3).map(feature => <li key={feature}>{feature}</li>)}</ul>}
+            {!!project.focusAreas?.length && <div className="mt-4 flex flex-wrap gap-2">{project.focusAreas.map(area => <span className="topic-chip" key={area}>{area}</span>)}</div>}
+            {!!project.technologies?.length && <div className="mt-3 flex flex-wrap gap-2">{project.technologies.map(tech => <span className="tech-chip" key={tech}>{tech}</span>)}</div>}
             <button type="button" className="text-link mt-5 min-h-11" onClick={() => setSelected(project)}>Read project overview <ArrowRight size={16} /></button>
             <ProjectLinks project={project} />
           </div>

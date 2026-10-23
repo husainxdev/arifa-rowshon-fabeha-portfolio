@@ -20,13 +20,14 @@ import SectionHeading from "./ui/SectionHeading";
 import PlatformIcon from "./PlatformIcon";
 import { InteractiveCard, MotionScene } from "./ui/MotionPrimitives";
 import ProjectShowcase from "./ProjectShowcase";
-import { quizQuestions } from "../data/quizQuestions";
+import HeroTerminal from "./HeroTerminal";
+import TypingRole from "./TypingRole";
 import {
   personalInfo,
   education,
   skills,
+  skillGroups,
   softSkills,
-  projects,
   codingProfiles,
   activities,
 } from "../data/portfolioData";
@@ -51,47 +52,34 @@ export function Home() {
           <span>SYLHET, BANGLADESH</span>
         </div>
       </Reveal>
-      <Reveal delay={0.1}>
-        <p className="editorial-hero-greeting">Hello, I’m</p>
-        <h1 className="editorial-hero-title">
-          <span>Arifa Rowshon</span>{" "}
-          <em>Fabeha<span>.</span></em>
-        </h1>
-      </Reveal>
-      <div className="editorial-hero-bottom">
-        <Reveal delay={0.16}>
-          <div className="editorial-hero-copy">
-            <p className="editorial-hero-label">A LITTLE ABOUT ME</p>
-            <p>I'm a Computer Science and Engineering student exploring programming, data structures, algorithms, and technology through learning and projects.</p>
-          </div>
-        </Reveal>
-        <Reveal delay={0.22}>
-          <div className="editorial-hero-study">
-            <p className="editorial-hero-label">CURRENTLY STUDYING</p>
-            <strong>B.Sc. in CSE</strong>
-            <span>Metropolitan University<br />Sylhet, Bangladesh</span>
-          </div>
-        </Reveal>
-        <Reveal delay={0.28}>
-          <div className="editorial-hero-actions">
-            <a className={primary} href="#about">Explore My Journey <ArrowRight size={17} aria-hidden="true" /></a>
-            <a className={secondary} href="#contact">Contact Me <ArrowUpRight size={17} aria-hidden="true" /></a>
-          </div>
-        </Reveal>
+      <div className="career-hero-layout">
+        <div>
+          <Reveal delay={0.1}>
+            <p className="editorial-hero-greeting">Hello, I’m</p>
+            <h1 className="editorial-hero-title">
+              <span>Arifa Rowshon</span>{" "}
+              <em>Fabeha<span>.</span></em>
+            </h1>
+          </Reveal>
+          <Reveal delay={0.17}>
+            <TypingRole roles={personalInfo.roles} />
+            <p className="career-hero-pitch">{personalInfo.pitchParts.map((part, index) => <span key={part} className={index ? "pitch-part has-separator" : "pitch-part"}>{part}</span>)}</p>
+            <div className="career-hero-actions">
+              <a className={primary} href="#projects">View Projects <ArrowRight size={17} aria-hidden="true" /></a>
+              {personalInfo.cvUrl ? <a className={secondary} href={personalInfo.cvUrl} download>Download CV <ArrowUpRight size={17} aria-hidden="true" /></a>
+                : <button className={`${secondary} cv-pending`} type="button" disabled title="Add a CV PDF to enable download">Download CV <ArrowUpRight size={17} aria-hidden="true" /></button>}
+              <a className="career-contact-link" href="#contact">Contact <ArrowUpRight size={15} aria-hidden="true" /></a>
+            </div>
+            {!personalInfo.cvUrl && <p className="cv-placeholder-note">CV upload pending</p>}
+          </Reveal>
+        </div>
+        <Reveal delay={0.23}><HeroTerminal /></Reveal>
       </div>
     </MotionScene>
   );
 }
 
 export function About() {
-  const facts = [
-    { value: education[0].year.replace("Started in ", ""), label: "CSE journey began", href: "#education", icon: Clock3 },
-    { value: quizQuestions.length, label: "Quiz questions", href: "#quiz", icon: Lightbulb },
-    { value: projects.length, label: "Featured projects", href: "#projects", icon: Sparkles },
-    { value: codingProfiles.length, label: "Coding profiles", href: "#coding", icon: Code2 },
-    { value: skills.length, label: "Technical skills", href: "#skills", icon: Code2 },
-    { value: softSkills.length, label: "Soft skills", href: "#skills", icon: Users },
-  ];
   return (
     <section id="about" className={shell}>
       <SectionHeading
@@ -99,39 +87,30 @@ export function About() {
         eyebrow="about"
         title="A bit about me"
       />
-      <div className="mt-10 grid items-stretch gap-5 lg:grid-cols-[.95fr_1.05fr]">
+      <div className="mt-10 grid items-stretch gap-5 lg:grid-cols-[1.15fr_.85fr]">
         <Reveal className="h-full">
-          <div className="glass-strong glass-glow flex h-full flex-col justify-center rounded-3xl p-7 sm:p-9 lg:min-h-[510px]">
+          <div className="glass-strong glass-glow flex h-full flex-col justify-center rounded-3xl p-7 sm:p-9">
             <p className="about-lead text-ink/90">
-              I'm a Computer Science and Engineering student at{" "}
-              <strong className="text-neonCyan">
-                Metropolitan University, Sylhet, Bangladesh.
-              </strong>{" "}
-              I enjoy exploring how software can help solve everyday problems.
+              I'm a CSE student at <strong className="text-neonCyan">Metropolitan University, Sylhet</strong>, learning to turn programming fundamentals into useful software.
             </p>
             <p className="about-support mt-6 text-muted">
-              My interests include programming, problem-solving, software
-              development, and healthcare innovation. I keep learning through
-              projects, coding practice, and curiosity about how things work.
+              I built Shastho Sahayak around the idea that access to healthcare support should not depend on the phone someone owns. Through 321+ solved problems, I keep practising C++, data structures, and algorithms. CloudSphere is where I'm now exploring the economics of data centres and cloud services in Bangladesh.
             </p>
-            <a href="#projects" className="mt-9 inline-flex w-fit items-center gap-2 font-mono text-sm text-neonCyan transition hover:gap-3">Explore my projects <ArrowRight size={16} aria-hidden="true" /></a>
+            <p className="about-support mt-5 text-muted">I'm looking for internship or junior opportunities where I can contribute, learn from a team, and keep building thoughtful technology.</p>
+            <a href="#projects" className="mt-8 inline-flex w-fit items-center gap-2 font-mono text-sm text-neonCyan transition hover:gap-3">Explore my projects <ArrowRight size={16} aria-hidden="true" /></a>
           </div>
         </Reveal>
         <Reveal className="h-full" delay={0.08}>
-          <div className="glass-strong glass-glow flex h-full flex-col rounded-3xl p-5 sm:p-7">
-            <p className="font-mono text-xs uppercase tracking-widest text-neonCyan">At a glance</p>
-            <div className="mt-4 grid flex-1 grid-cols-2">
-              {facts.map((fact) => {
-                const Icon = fact.icon;
-                return <a key={fact.label} href={fact.href} className="about-fact group flex min-h-[126px] flex-col justify-between p-4 transition-colors hover:bg-neonCyan/[.04] sm:p-5">
-                  <div className="flex items-start justify-between gap-2">
-                    <strong className="font-display text-3xl leading-none tracking-[-.04em] text-ink sm:text-4xl">{fact.value}</strong>
-                    <Icon size={18} className="shrink-0 text-neonCyan/80 transition-transform group-hover:-translate-y-0.5" aria-hidden="true" />
-                  </div>
-                  <span className="font-mono text-xs leading-5 text-muted">{fact.label}</span>
-                </a>;
-              })}
-            </div>
+          <div className="glass-strong glass-glow h-full rounded-3xl p-6 sm:p-8">
+            <p className="font-mono text-xs uppercase tracking-widest text-neonCyan">Education at a glance</p>
+            <ol className="about-timeline mt-7">
+              {education.map(item => <li key={item.title}>
+                <span>{item.year}</span>
+                <strong>{item.title}</strong>
+                {item.institution && <p>{item.institution}</p>}
+              </li>)}
+            </ol>
+            <a className="text-link mt-6" href="#education">Full education timeline <ArrowUpRight size={15} aria-hidden="true" /></a>
           </div>
         </Reveal>
       </div>
@@ -143,7 +122,7 @@ export function Education() {
   return (
     <section id="education" className={shell}>
       <SectionHeading
-        index="06"
+        index="05"
         eyebrow="education"
         title="My learning path"
         kicker="A timeline of the milestones I can share."
@@ -179,12 +158,11 @@ export function Education() {
 }
 
 export function Skills() {
-  const technicalIcons = [Code2, Code2, Code2, Target];
   const softIcons = [Lightbulb, Users, Clock3, Handshake, MessageCircle, Sparkles];
   return (
     <section id="skills" className={shell}>
       <SectionHeading
-        index="02"
+        index="03"
         eyebrow="skills"
         title="Skills & strengths"
         kicker="Technical foundations and the people skills I bring to each project."
@@ -199,14 +177,16 @@ export function Skills() {
                 <p className="font-mono text-xs text-muted">{skills.length} confirmed skills</p>
               </div>
             </div>
-            <div className="mt-7 grid grid-cols-2 gap-2.5 sm:gap-3">
-              {skills.map((skill, i) => {
-                const Icon = technicalIcons[i] || Code2;
-                return <div key={skill.name} className="skill-tile flex min-h-16 items-center gap-3 rounded-xl border border-hair bg-fill px-3 py-3 sm:px-4">
-                  <Icon size={19} className="shrink-0 text-neonCyan" aria-hidden="true" />
-                  <span className="text-sm font-semibold leading-snug text-ink sm:text-base">{skill.name}</span>
-                </div>;
-              })}
+            <div className="mt-7 space-y-6">
+              {skillGroups.filter(group => group.skills.length).map(group => <div key={group.name} className="skill-group">
+                <h4>{group.name}</h4>
+                <div className="mt-3 grid grid-cols-2 gap-2.5 sm:gap-3">
+                  {group.skills.map(name => <div key={name} className="skill-tile flex min-h-16 items-center gap-3 rounded-xl border border-hair bg-fill px-3 py-3 sm:px-4">
+                    {group.name === "Languages" ? <Code2 size={19} className="shrink-0 text-neonCyan" aria-hidden="true" /> : <Target size={19} className="shrink-0 text-neonCyan" aria-hidden="true" />}
+                    <span className="text-sm font-semibold leading-snug text-ink sm:text-base">{name}</span>
+                  </div>)}
+                </div>
+              </div>)}
             </div>
           </InteractiveCard>
         </Reveal>
@@ -305,7 +285,7 @@ export function Activities() {
   return (
     <section id="activities" className={shell}>
       <SectionHeading
-        index="07"
+        index="06"
         eyebrow="activities"
         title="Experience & moments"
         kicker="Volunteering and collaboration beyond coursework."
@@ -345,6 +325,9 @@ export function Activities() {
 
 export function Contact() {
   const [copyStatus, setCopyStatus] = useState("");
+  const [formStatus, setFormStatus] = useState({ type: "", message: "" });
+  const [submitting, setSubmitting] = useState(false);
+  const formEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT?.trim() || "";
   const contactProfiles = [
     { name: "GitHub", url: personalInfo.github, display: "github.com/Fabeha1025" },
     { name: "LinkedIn", url: personalInfo.linkedin, display: "linkedin.com/in/arifa-rowshon-fabeha-87a9153a4" },
@@ -358,13 +341,34 @@ export function Contact() {
       setCopyStatus("Copy unavailable; select the address to copy it");
     }
   };
-  const openEmailDraft = (event) => {
+  const submitMessage = async (event) => {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
+    if (form.get("website")) return; // Honeypot field for bots.
     const name = String(form.get("name") || "").trim();
     const email = String(form.get("email") || "").trim();
     const message = String(form.get("message") || "").trim();
     if (!name || !email || !message) return;
+    if (formEndpoint) {
+      setSubmitting(true);
+      setFormStatus({ type: "", message: "" });
+      try {
+        const response = await fetch(formEndpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({ name, email, message }),
+        });
+        if (!response.ok) throw new Error("Submission failed");
+        formElement.reset();
+        setFormStatus({ type: "success", message: "Thanks! Your message was sent." });
+      } catch {
+        setFormStatus({ type: "error", message: "Message could not be sent. Please email me directly." });
+      } finally {
+        setSubmitting(false);
+      }
+      return;
+    }
     const subject = encodeURIComponent(`Portfolio message from ${name}`);
     const body = encodeURIComponent(`From: ${name} <${email}>\n\n${message}`);
     window.location.href = `mailto:${personalInfo.email}?subject=${subject}&body=${body}`;
@@ -404,8 +408,9 @@ export function Contact() {
         <Reveal delay={0.08} className="h-full">
           <div className="glass-strong glass-glow h-full rounded-3xl p-6 sm:p-8">
             <h3 className="text-2xl text-ink">Send a message</h3>
-            <p id="contact-form-note" className="mt-2 text-sm leading-6 text-muted">This form opens a draft in your email app. Review and send it there.</p>
-            <form onSubmit={openEmailDraft} aria-describedby="contact-form-note" className="mt-7 space-y-5">
+            <p id="contact-form-note" className="mt-2 text-sm leading-6 text-muted">{formEndpoint ? "Send a message directly through this form." : "This form opens a draft in your email app. Review and send it there."}</p>
+            <form onSubmit={submitMessage} aria-describedby="contact-form-note" className="mt-7 space-y-5">
+              <label className="sr-only" aria-hidden="true">Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="block font-mono text-xs text-muted">Your name
                   <input name="name" type="text" autoComplete="name" required maxLength={80} placeholder="Your name" className="contact-input mt-2 w-full" />
@@ -417,7 +422,8 @@ export function Contact() {
               <label className="block font-mono text-xs text-muted">Message
                 <textarea name="message" required minLength={5} maxLength={1200} rows={6} placeholder="Hi Arifa, I'd love to talk about..." className="contact-input mt-2 w-full resize-y" />
               </label>
-              <button type="submit" className={`${primary} min-h-12`}><Send size={17} aria-hidden="true" />Open email draft</button>
+              <button type="submit" disabled={submitting} className={`${primary} min-h-12`}><Send size={17} aria-hidden="true" />{submitting ? "Sending…" : formEndpoint ? "Send message" : "Open email draft"}</button>
+              {formStatus.message && <p className={formStatus.type === "error" ? "form-error" : "form-success"} role="status" aria-live="polite">{formStatus.message}</p>}
             </form>
           </div>
         </Reveal>
@@ -440,6 +446,9 @@ export function Footer() {
             <a href="#home" className="font-display text-xl text-ink hover:text-neonCyan">Arifa Rowshon Fabeha</a>
             <p className="mt-1 text-sm text-muted">Computer Science and Engineering Student · Sylhet, Bangladesh</p>
           </div>
+          <nav className="footer-quick-links" aria-label="Footer navigation">
+            <a href="#home">Home</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+          </nav>
           <div className="simple-footer-links" aria-label="Contact links">
             <a href={`mailto:${personalInfo.email}`} aria-label="Email Arifa"><Mail size={19} aria-hidden="true" /></a>
             {socialLinks.map(({ label, url }) => <a key={label} href={url} target="_blank" rel="noopener noreferrer" aria-label={`${label} profile (opens in a new tab)`}><PlatformIcon name={label} className="h-[19px] w-[19px]" /></a>)}

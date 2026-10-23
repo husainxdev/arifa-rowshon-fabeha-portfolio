@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#050505"/>
+  <g fill="none" stroke="#f2b43d" stroke-opacity=".16" stroke-width="1">
+    <path d="M40 100 210 48 380 124 502 72 670 143M754 54 908 118 1102 35M55 505 192 565 398 492 562 588M808 520 973 470 1140 568"/>
+    <circle cx="990" cy="315" r="190"/><circle cx="990" cy="315" r="255"/>
+  </g>
+  <g fill="#f2b43d"><circle cx="210" cy="48" r="3"/><circle cx="502" cy="72" r="3"/><circle cx="908" cy="118" r="3"/><circle cx="398" cy="492" r="3"/></g>
+  <rect x="72" y="72" width="56" height="56" rx="16" fill="#17130b" stroke="#f2b43d"/>
+  <text x="88" y="110" fill="#f2b43d" font-family="Georgia,serif" font-size="26" font-style="italic">af.</text>
+  <text x="72" y="206" fill="#f2b43d" font-family="monospace" font-size="17" letter-spacing="4">CSE STUDENT / SYLHET, BANGLADESH</text>
+  <text x="68" y="333" fill="#eae7df" font-family="Georgia,serif" font-size="95">Arifa Rowshon</text>
+  <text x="72" y="445" fill="#f2b43d" font-family="Georgia,serif" font-size="105" font-style="italic">Fabeha.</text>
+  <path d="M72 505H1128" stroke="#f2b43d" stroke-opacity=".35"/>
+  <text x="72" y="550" fill="#c2bcaf" font-family="Arial,sans-serif" font-size="23">Programming · Problem Solving · Projects</text>
+</svg>

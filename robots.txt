@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://husainxdev.github.io/arifa-rowshon-fabeha-portfolio/sitemap.xml

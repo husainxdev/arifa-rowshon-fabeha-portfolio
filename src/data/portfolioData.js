@@ -8,7 +8,24 @@ export const personalInfo = {
   linkedin: "https://www.linkedin.com/in/arifa-rowshon-fabeha-87a9153a4/",
   instagram: "https://www.instagram.com/peachypie_10/",
   github: "https://github.com/Fabeha1025",
+  // Add a real PDF in public/ and set its relative URL (for example, "./cv.pdf").
+  cvUrl: null,
+  // Add only a real, confirmed LeetCode profile URL.
+  leetcode: null,
+  pitchParts: [
+    "CSE student building healthcare-focused ideas",
+    "Interested in software development",
+    "Currently working on CloudSphere",
+  ],
+  roles: ["Problem Solver", "CSE Student", "Learner"],
   otherLinks: [],
+};
+
+// Self-reported total supplied by Arifa. Platform-specific counts are not live synced.
+export const portfolioMetrics = {
+  problemsSolved: 321,
+  certifications: null, // Add a verified number to publish this metric.
+  cgpa: null, // Add a confirmed CGPA or rating to publish this metric.
 };
 
 export const education = [
@@ -34,6 +51,14 @@ export const skills = [
   { name: "C++", note: "Programming and problem-solving" },
   { name: "Data Structures", note: "Organizing and working with data" },
   { name: "Algorithms", note: "Step-by-step problem-solving" },
+];
+
+// Empty groups stay hidden until confirmed skills are added.
+export const skillGroups = [
+  { name: "Languages", skills: ["C", "C++"] },
+  { name: "Web", skills: [] }, // Add confirmed web technologies here.
+  { name: "Tools", skills: [] }, // Add confirmed developer tools here.
+  { name: "CS Fundamentals", skills: ["Data Structures", "Algorithms"] },
 ];
 
 export const softSkills = [
