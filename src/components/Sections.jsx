@@ -5,6 +5,7 @@ import {
   Code2,
   Copy,
   ExternalLink,
+  FileDown,
   Handshake,
   Lightbulb,
   Mail,
@@ -66,12 +67,19 @@ export function Home() {
             <TypingRole roles={personalInfo.roles} />
             <p className="career-hero-pitch">{personalInfo.pitchParts.map((part, index) => <span key={part} className={index ? "pitch-part has-separator" : "pitch-part"}>{part}</span>)}</p>
             <div className="career-hero-actions">
-              <a className={primary} href="#projects">View Projects <ArrowRight size={17} aria-hidden="true" /></a>
-              {personalInfo.cvUrl ? <a className={secondary} href={personalInfo.cvUrl} download>Download CV <ArrowUpRight size={17} aria-hidden="true" /></a>
-                : <button className={`${secondary} cv-pending`} type="button" disabled title="Add a CV PDF to enable download">Download CV <ArrowUpRight size={17} aria-hidden="true" /></button>}
-              <a className="career-contact-link" href="#contact">Contact <ArrowUpRight size={15} aria-hidden="true" /></a>
+              <a className="hero-cta hero-cta-primary" href="#projects">
+                <span>View Projects</span><span className="hero-cta-icon"><ArrowRight size={18} aria-hidden="true" /></span>
+              </a>
+              {personalInfo.cvUrl ? <a className="hero-cta hero-cta-secondary" href={personalInfo.cvUrl} download>
+                <span>Download CV</span><span className="hero-cta-icon"><FileDown size={18} aria-hidden="true" /></span>
+              </a> : <button className="hero-cta hero-cta-secondary hero-cta-pending" type="button" disabled aria-label="Download CV" title="CV coming soon">
+                <span className="hero-cta-copy"><span>Download CV</span><small aria-hidden="true">Coming soon</small></span>
+                <span className="hero-cta-icon" aria-hidden="true"><FileDown size={18} /></span>
+              </button>}
+              <a className="hero-cta hero-cta-contact" href="#contact">
+                <span>Contact</span><span className="hero-cta-icon"><Mail size={18} aria-hidden="true" /></span>
+              </a>
             </div>
-            {!personalInfo.cvUrl && <p className="cv-placeholder-note">CV upload pending</p>}
           </Reveal>
         </div>
         <Reveal delay={0.23}><HeroTerminal /></Reveal>
