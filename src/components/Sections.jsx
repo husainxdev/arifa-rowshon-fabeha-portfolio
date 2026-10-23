@@ -18,7 +18,7 @@ import {
 import Reveal from "./ui/Reveal";
 import SectionHeading from "./ui/SectionHeading";
 import PlatformIcon from "./PlatformIcon";
-import { AnimatedHeading, InteractiveCard, MotionScene } from "./ui/MotionPrimitives";
+import { InteractiveCard, MotionScene } from "./ui/MotionPrimitives";
 import ProjectShowcase from "./ProjectShowcase";
 import { quizQuestions } from "../data/quizQuestions";
 import {
@@ -42,53 +42,41 @@ export function Home() {
   return (
     <MotionScene as="section"
       id="home"
-      className="home-hero page-shell relative scroll-mt-28 pb-14 pt-32 md:pb-20 md:pt-36"
+      className="editorial-hero page-shell relative scroll-mt-28"
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-grid-lines opacity-[.05] mask-radial-fade" />
-      <div className="home-layout grid items-center gap-10 lg:grid-cols-[1.08fr_.92fr] lg:gap-14">
-        <div className="relative z-10">
-          <Reveal delay={0.04}>
-            <p className="font-mono text-sm text-neonCyan">Hi, I'm</p>
-          </Reveal>
-          <AnimatedHeading as="h1" text="Arifa Rowshon Fabeha." accentLast className="home-title mt-3 max-w-[700px] text-ink" />
-          <Reveal delay={0.11}>
-            <p className="mt-5 font-mono text-sm leading-relaxed text-ink/85"><span className="text-neonCyan">focus:&nbsp;</span>C++ · Data Structures · Algorithms<span className="hero-focus-cursor ml-1 inline-block h-4 w-px animate-blink bg-neonCyan align-middle" aria-hidden="true" /></p>
-            <p className="home-role mt-5 font-mono text-xs uppercase tracking-wide text-neonCyan">Computer Science and Engineering Student</p>
-            <p className="home-copy mt-6 max-w-xl text-muted">
-              Welcome to my portfolio! I am a CSE student exploring programming,
-              data structures, algorithms, and technology through learning and
-              projects.
-            </p>
-          </Reveal>
-          <Reveal delay={0.18}>
-            <div className="home-actions mt-8 grid max-w-md gap-3 min-[440px]:grid-cols-2">
-              <a className={primary} href="#about">
-                Explore My Journey <ArrowRight size={17} />
-              </a>
-              <a className={secondary} href="#contact">
-                Contact Me <ArrowUpRight size={17} />
-              </a>
-            </div>
-          </Reveal>
+      <Reveal delay={0.04}>
+        <div className="editorial-hero-top">
+          <span><i aria-hidden="true" /> PORTFOLIO / CSE STUDENT</span>
+          <span>SYLHET, BANGLADESH</span>
         </div>
+      </Reveal>
+      <Reveal delay={0.1}>
+        <p className="editorial-hero-greeting">Hello, I’m</p>
+        <h1 className="editorial-hero-title">
+          <span>Arifa Rowshon</span>{" "}
+          <em>Fabeha<span>.</span></em>
+        </h1>
+      </Reveal>
+      <div className="editorial-hero-bottom">
         <Reveal delay={0.16}>
-          <aside className="home-profile-panel glass-strong glass-glow" aria-label="Current studies and interests">
-            <div className="home-profile-top">
-              <span>01 / CURRENT CHAPTER</span>
-              <Code2 size={20} aria-hidden="true" />
-            </div>
-            <div className="home-profile-main">
-              <h2>Learning through <em>code.</em></h2>
-              <p>Computer Science and Engineering at Metropolitan University, Sylhet.</p>
-            </div>
-            <div className="home-profile-bottom">
-              <span className="home-profile-label">Exploring</span>
-              <div className="home-profile-topics" aria-label="Areas of interest">
-                <span>Problem solving</span><span>Software development</span><span>Healthcare ideas</span>
-              </div>
-              <a href="#projects">Explore my projects <ArrowUpRight size={16} aria-hidden="true" /></a>
-            </div>
-          </aside>
+          <div className="editorial-hero-copy">
+            <p className="editorial-hero-label">A LITTLE ABOUT ME</p>
+            <p>I'm a Computer Science and Engineering student exploring programming, data structures, algorithms, and technology through learning and projects.</p>
+          </div>
+        </Reveal>
+        <Reveal delay={0.22}>
+          <div className="editorial-hero-study">
+            <p className="editorial-hero-label">CURRENTLY STUDYING</p>
+            <strong>B.Sc. in CSE</strong>
+            <span>Metropolitan University<br />Sylhet, Bangladesh</span>
+          </div>
+        </Reveal>
+        <Reveal delay={0.28}>
+          <div className="editorial-hero-actions">
+            <a className={primary} href="#about">Explore My Journey <ArrowRight size={17} aria-hidden="true" /></a>
+            <a className={secondary} href="#contact">Contact Me <ArrowUpRight size={17} aria-hidden="true" /></a>
+          </div>
         </Reveal>
       </div>
     </MotionScene>
