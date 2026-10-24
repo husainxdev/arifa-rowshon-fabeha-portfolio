@@ -24,6 +24,7 @@ import ProjectShowcase from "./ProjectShowcase";
 import CurrentStatus from "./CurrentStatus";
 import HeroStats from "./HeroStats";
 import TypingRole from "./TypingRole";
+import RotatingFocus from "./RotatingFocus";
 import {
   personalInfo,
   portfolioMetrics,
@@ -65,7 +66,7 @@ export function Home() {
             </h1>
           </Reveal>
           <Reveal delay={0.17}>
-            <p className="hero-focus"><span>focus:</span> C++ &amp; Data Structures</p>
+            <RotatingFocus items={personalInfo.focusRotation} />
             <TypingRole roles={personalInfo.roles} />
             <p className="career-hero-pitch">{personalInfo.pitchParts.map((part, index) => <span key={part} className={index ? "pitch-part has-separator" : "pitch-part"}>{part}</span>)}</p>
             <div className="career-hero-actions">

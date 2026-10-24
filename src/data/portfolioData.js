@@ -16,6 +16,7 @@ export const personalInfo = {
     "Currently working on CloudSphere",
   ],
   roles: ["Problem Solver", "CSE Student", "Learner"],
+  focusRotation: ["C++ & Data Structures", "Algorithms & Logic", "C & C++ Programming"],
   otherLinks: [],
 };
 
