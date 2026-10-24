@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { ArrowRight, ArrowUpRight, ExternalLink, FileText } from "lucide-react";
+import { ArrowUpRight, ExternalLink, FileText } from "lucide-react";
 import { projects } from "../data/portfolioData";
 import Reveal from "./ui/Reveal";
 import SectionHeading from "./ui/SectionHeading";
 import { InteractiveCard } from "./ui/MotionPrimitives";
-import ProjectVisual from "./ui/ProjectVisual";
 import DetailDialog from "./ui/DetailDialog";
 
 const galleries = project => (project.screenshots || []).map((item, i) => typeof item === "string" ? { src: item, alt: `${project.title} screenshot ${i + 1}` } : item).filter(item => item.src && item.alt);
@@ -65,48 +64,24 @@ function ProjectDetails({ project, onClose }) {
 
 export default function ProjectShowcase() {
   const [selected, setSelected] = useState(null);
-  const featured = projects.find(project => project.featured) || projects[0];
-  if (!featured) return null;
-  const image = galleries(featured)[0];
+  const [filter, setFilter] = useState("All");
+  const visible = projects.filter(project => filter === "All" || project.status === filter);
   return <section id="projects" className="portfolio-section page-shell relative scroll-mt-28 py-16 md:py-24">
-    <SectionHeading index="02" eyebrow="projects" title="Ideas, made tangible." kicker="A closer look at the purpose behind each project." />
-    <Reveal className="mt-10">
-      <InteractiveCard as="article" tilt={1.5} className="featured-project glass-strong glass-glow rounded-3xl">
-        <div className="featured-visual">
-          {image ? <img src={image.src} alt={image.alt} loading="lazy" className="h-full w-full object-contain" /> : <ProjectVisual built index={0} />}
-          <span className="featured-label">{image ? "Featured project" : "Illustrative visual"}</span>
-        </div>
-        <div className="featured-copy">
-          <span className="project-status">{featured.status}</span>
-          <h3 className="mt-5 text-4xl text-ink sm:text-5xl">{featured.title}</h3>
-          <p className="mt-4 font-display text-xl leading-relaxed text-neonCyan">“{featured.tagline}”</p>
-          <p className="project-problem"><strong>Problem</strong> {featured.problem}</p>
-          <p className="mt-4 text-sm leading-7 text-muted">{featured.summary}</p>
-          {!!featured.features?.length && <ul className="project-feature-list">{featured.features.slice(0, 3).map(feature => <li key={feature}>{feature}</li>)}</ul>}
-          {!!featured.focusAreas?.length && <div className="mt-5 flex flex-wrap gap-2">{featured.focusAreas.map(area => <span className="topic-chip" key={area}>{area}</span>)}</div>}
-          {!!featured.technologies?.length && <div className="mt-3 flex flex-wrap gap-2">{featured.technologies.map(tech => <span className="tech-chip" key={tech}>{tech}</span>)}</div>}
-          <div className="mt-7 flex flex-wrap items-center gap-5">
-            <button type="button" className="action-button feature-action" onClick={() => setSelected(featured)}>Explore project <ArrowUpRight size={17} /></button>
-            <ProjectLinks project={featured} />
+    <SectionHeading index="02" eyebrow="projects" title="Things I've built" kicker="Built work and an ongoing academic project." />
+    <div className="project-filters" role="group" aria-label="Filter projects">
+      {["All", "Built project", "In Progress"].map(value => <button key={value} type="button" aria-pressed={filter === value} className={filter === value ? "active" : ""} onClick={() => setFilter(value)}>{value === "Built project" ? "Built" : value}</button>)}
+    </div>
+    <div className="project-story-list">
+      {visible.map(project => <Reveal key={project.id || project.title}>
+        <InteractiveCard as="article" tilt={1} className="project-story-card">
+          <div className="project-story-header"><h3>{project.title}</h3><span>{project.status}</span></div>
+          <div className="project-story-body">
+            {project.tagline && <p className="project-story-tagline">“{project.tagline}”</p>}
+            <p>{project.summary}</p>
+            {!!project.focusAreas?.length && <div className="project-story-chips">{project.focusAreas.map(area => <span key={area}>{area}</span>)}</div>}
+            <button type="button" className="project-story-details" onClick={() => setSelected(project)}>View details <ArrowUpRight size={17} aria-hidden="true" /></button>
           </div>
-        </div>
-      </InteractiveCard>
-    </Reveal>
-    <div className="mt-5 grid gap-5">
-      {projects.filter(project => project !== featured).map((project, i) => <Reveal key={project.id || project.title}>
-        <InteractiveCard as="article" tilt={1} className="project-secondary glass-strong rounded-2xl">
-          <div className="secondary-visual"><ProjectVisual built={project.status === "Built project"} index={i + 1} /><span className="secondary-visual-label">Illustrative visual</span></div>
-          <div className="p-6 sm:p-8">
-            <div className="flex flex-wrap items-center gap-3"><span className="project-status">{project.status}</span><span className="text-xs text-muted">{project.type}</span></div>
-            <h3 className="mt-4 text-3xl text-ink">{project.title}</h3>
-            <p className="project-problem"><strong>Problem</strong> {project.problem}</p>
-            <p className="mt-3 max-w-2xl text-sm leading-7 text-muted">{project.summary}</p>
-            {!!project.features?.length && <ul className="project-feature-list">{project.features.slice(0, 3).map(feature => <li key={feature}>{feature}</li>)}</ul>}
-            {!!project.focusAreas?.length && <div className="mt-4 flex flex-wrap gap-2">{project.focusAreas.map(area => <span className="topic-chip" key={area}>{area}</span>)}</div>}
-            {!!project.technologies?.length && <div className="mt-3 flex flex-wrap gap-2">{project.technologies.map(tech => <span className="tech-chip" key={tech}>{tech}</span>)}</div>}
-            <button type="button" className="text-link mt-5 min-h-11" onClick={() => setSelected(project)}>Read project overview <ArrowRight size={16} /></button>
-            <ProjectLinks project={project} />
-          </div>
+          {(project.github || project.demo) && <div className="project-story-footer"><ProjectLinks project={project} /></div>}
         </InteractiveCard>
       </Reveal>)}
     </div>

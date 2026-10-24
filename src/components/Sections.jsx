@@ -242,47 +242,34 @@ export function Projects() {
 }
 
 export function Coding() {
-  const colors = {
-    blue: "#8bb9ff",
-    brown: "#d9a779",
-    green: "#91d8ac",
-    purple: "#c6aceb",
-  };
-
   return (
     <section id="coding" className={shell}>
       <SectionHeading
         index="04"
         eyebrow="coding profiles"
-        title="Coding profiles"
-        kicker="Four platforms where I practice programming and problem-solving."
+        title="Where I practice"
+        kicker="My coding profiles. Platform counts and ratings are not live synced."
       />
-      <div className="mt-10 grid gap-3 min-[500px]:grid-cols-2 xl:grid-cols-4 xl:gap-4">
+      <div className="coding-story-grid">
         {codingProfiles.map((profile, i) => (
           <Reveal key={profile.name} delay={(i % 4) * 0.05}>
-            <InteractiveCard as="a" tilt={4}
+            <InteractiveCard as="a" tilt={1}
               href={profile.url}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Visit ${profile.name} profile (opens in a new tab)`}
-              className="profile-card glass glass-glow flex min-h-[138px] flex-col justify-between rounded-2xl p-4 transition hover:-translate-y-1 hover:border-neonCyan/40 sm:p-5"
+              className="profile-card coding-story-card"
             >
-              <div className="flex items-center gap-3">
-                <span
-                  aria-hidden="true"
-                  style={{ color: colors[profile.tone] }}
-                  className="grid h-12 w-12 place-items-center rounded-xl border border-hair bg-fill"
-                >
-                  <PlatformIcon name={profile.name} className="h-7 w-7" />
-                </span>
-                <strong className="font-display text-lg text-ink">{profile.name}</strong>
+              <div className="coding-story-top">
+                <span className="coding-story-icon" aria-hidden="true"><PlatformIcon name={profile.name} className="h-8 w-8" /></span>
+                <strong>{profile.name}</strong>
+                <span className="coding-story-dot" aria-hidden="true" />
               </div>
-              <div className="mt-5 flex items-end justify-between gap-2 border-t border-hair pt-4">
-                <span className="truncate font-mono text-xs text-muted">{new URL(profile.url).host}</span>
-                <span className="inline-flex shrink-0 items-center gap-1 font-mono text-xs text-neonCyan">
-                  Visit Profile <ExternalLink size={13} />
-                </span>
+              <div className="coding-story-middle">
+                <span className="coding-story-host">{new URL(profile.url).host}</span>
+                <span className="coding-story-note">Coding profile</span>
               </div>
+              <span className="coding-story-footer">Visit profile <ExternalLink size={15} aria-hidden="true" /></span>
             </InteractiveCard>
           </Reveal>
         ))}
