@@ -27,54 +27,55 @@ export default function Quiz() {
   };
 
   return (
-    <section id="quiz" aria-label="Interactive coding quiz" className="portfolio-section page-shell relative scroll-mt-28 py-16 md:py-24">
-      <SectionHeading index="07" eyebrow="quiz" title="Test your thinking." kicker="Five quick questions on C++, data structures, and algorithms. Try them at your own pace." />
+    <section id="quiz" aria-label="Interactive C++ quiz" className="portfolio-section page-shell relative scroll-mt-28 py-16 md:py-24">
+      <SectionHeading index="07" eyebrow="quiz" title="Guess the output." kicker="Five short C++ challenges. Read the code, choose an answer, and see why it works." />
       <Reveal>
-        <div className="glass-strong glass-glow mt-10 overflow-hidden rounded-3xl border border-hair p-6 sm:p-9">
+        <div className="quiz-editor mt-10">
+          <div className="quiz-editor-bar">
+            <span className="quiz-window-dots" aria-hidden="true"><i /><i /><i /></span>
+            <span className="quiz-file-name">{finished ? "results.cpp" : question.file}</span>
+            <span className="quiz-progress" aria-label={finished ? "Quiz complete" : `Question ${step + 1} of ${quizQuestions.length}`}>
+              {finished ? `${quizQuestions.length}/${quizQuestions.length}` : `${String(step + 1).padStart(2, "0")}/${String(quizQuestions.length).padStart(2, "0")}`}
+            </span>
+          </div>
           {finished ? (
-            <div className="mx-auto max-w-2xl py-7 text-center" aria-live="polite">
-              <p className="font-mono text-xs uppercase tracking-[.2em] text-neonCyan">Quiz complete</p>
-              <h3 className="mt-4 font-display text-4xl text-ink sm:text-5xl">Your score: {score}/{quizQuestions.length}</h3>
-              <p className="mx-auto mt-4 max-w-lg text-sm leading-7 text-muted">Each question is a chance to sharpen the fundamentals. Review the explanations and try again whenever you like.</p>
-              <button type="button" onClick={restart} className="action-button mt-7 inline-flex min-h-12 items-center gap-2 rounded-xl bg-neonCyan px-5 py-3 text-sm font-semibold text-void transition hover:brightness-110"><RotateCcw size={16} aria-hidden="true" />Try again</button>
+            <div className="quiz-results" aria-live="polite">
+              <p className="quiz-comment">// quiz complete</p>
+              <h3>Your score: <span>{score}/{quizQuestions.length}</span></h3>
+              <p>Nice work. Every attempt is a chance to sharpen your C++ fundamentals.</p>
+              <button type="button" onClick={restart} className="quiz-next"><RotateCcw size={17} aria-hidden="true" /> Try again</button>
             </div>
           ) : (
-            <>
-              <div className="flex flex-wrap items-center justify-between gap-4 border-b border-hair pb-5">
-                <div>
-                  <p className="font-mono text-xs uppercase tracking-[.18em] text-neonCyan">The quick quiz</p>
-                  <p className="mt-2 text-sm text-muted">Choose one answer, then read the explanation.</p>
-                </div>
-                <span className="rounded-full border border-neonCyan/30 bg-neonCyan/10 px-4 py-2 font-mono text-xs text-neonCyan">{String(step + 1).padStart(2, "0")} / {String(quizQuestions.length).padStart(2, "0")}</span>
+            <div className="quiz-editor-body" key={step}>
+              <p className="quiz-code-note">// inside main() · standard headers assumed</p>
+              <div className="quiz-code-scroll" role="region" aria-label={`C++ code challenge ${step + 1}`} tabIndex={0}>
+                <pre className="quiz-code"><code>{question.code.map((line, index) => <span className="quiz-code-line" key={`${step}-${index}`}><span className="quiz-line-number" aria-hidden="true">{index + 1}</span><span>{line}</span></span>)}</code></pre>
               </div>
-              <div className="py-7 sm:py-9">
-                <h3 className="max-w-3xl font-display text-2xl leading-snug text-ink sm:text-3xl">{question.question}</h3>
-                <div className="mt-7 grid gap-3 sm:grid-cols-2" role="group" aria-label={`Answers for question ${step + 1}`}>
-                  {question.options.map((option, index) => {
-                    const correct = selected !== null && index === question.answer;
-                    const incorrect = selected === index && index !== question.answer;
-                    return <button
-                      key={option}
-                      type="button"
-                      onClick={() => choose(index)}
-                      disabled={selected !== null}
-                      aria-pressed={selected === index}
-                      className={`flex min-h-[68px] items-center justify-between gap-3 rounded-xl border px-4 py-3 text-left text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neonCyan sm:text-base ${correct ? "border-neonCyan bg-neonCyan/10 text-ink" : incorrect ? "border-red-400/70 bg-red-400/10 text-ink" : "border-hair-strong bg-fill text-ink hover:border-neonCyan/60"}`}
-                    >
-                      <span><span className="mr-3 font-mono text-xs text-muted">{String.fromCharCode(65 + index)}.</span>{option}</span>
-                      {correct && <Check size={18} className="shrink-0 text-neonCyan" aria-hidden="true" />}
-                      {incorrect && <X size={18} className="shrink-0 text-red-400" aria-hidden="true" />}
-                    </button>;
-                  })}
-                </div>
+              <p className="quiz-prompt"><span>//</span> what does it print?</p>
+              <div className="quiz-answers" role="group" aria-label={`Answers for question ${step + 1}`}>
+                {question.options.map((option, index) => {
+                  const correct = selected !== null && index === question.answer;
+                  const incorrect = selected === index && index !== question.answer;
+                  return <button
+                    key={option}
+                    type="button"
+                    onClick={() => choose(index)}
+                    disabled={selected !== null}
+                    aria-pressed={selected === index}
+                    className={`quiz-answer${correct ? " is-correct" : ""}${incorrect ? " is-incorrect" : ""}`}
+                  >
+                    <span className="quiz-answer-letter" aria-hidden="true">{String.fromCharCode(97 + index)}</span>
+                    <span>{option}</span>
+                    {correct && <Check size={18} className="quiz-answer-mark" aria-hidden="true" />}
+                    {incorrect && <X size={18} className="quiz-answer-mark" aria-hidden="true" />}
+                  </button>;
+                })}
               </div>
-              <div className="flex flex-wrap items-end justify-between gap-5 border-t border-hair pt-5">
-                <p className="max-w-2xl text-sm leading-7 text-muted" role="status" aria-live="polite">
-                  {selected === null ? "Select an answer to see how it works." : <><strong className="text-ink">{selected === question.answer ? "Correct." : "Good try."}</strong> {question.explanation}</>}
-                </p>
-                {selected !== null && <button type="button" onClick={next} className="action-button inline-flex min-h-11 shrink-0 items-center gap-2 rounded-xl bg-neonCyan px-4 py-2 text-sm font-semibold text-void transition hover:brightness-110">{step === quizQuestions.length - 1 ? "See results" : "Next question"}<ArrowRight size={16} aria-hidden="true" /></button>}
-              </div>
-            </>
+              {selected !== null && <div className="quiz-feedback" role="status" aria-live="polite">
+                <p><strong>{selected === question.answer ? "Correct." : "Not quite."}</strong> {question.explanation}</p>
+                <button type="button" onClick={next} className="quiz-next">{step === quizQuestions.length - 1 ? "See results" : "Next challenge"}<ArrowRight size={17} aria-hidden="true" /></button>
+              </div>}
+            </div>
           )}
         </div>
       </Reveal>
