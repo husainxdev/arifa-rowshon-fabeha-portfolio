@@ -13,7 +13,6 @@ export const personalInfo = {
   // Add only a real, confirmed LeetCode profile URL.
   leetcode: null,
   pitchParts: [
-    "CSE student building healthcare-focused ideas",
     "Interested in software development",
     "Currently working on CloudSphere",
   ],
