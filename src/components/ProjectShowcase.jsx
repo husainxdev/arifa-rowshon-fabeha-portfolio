@@ -37,8 +37,10 @@ function DetailList({ title, items }) {
 
 function ProjectDetails({ project, onClose }) {
   const contribution = project.contribution;
+  const hasPublishedArtifacts = Boolean(project.github || project.demo || galleries(project).length || project.documents?.some(item => item.url));
   return <DetailDialog title={project.title} eyebrow={`${project.status} · Project overview`} onClose={onClose}>
     <p className="text-base leading-8 text-muted">{project.summary}</p>
+    <dl className="project-facts"><div><dt>Status</dt><dd>{project.status}</dd></div><div><dt>Work type</dt><dd>{project.type}</dd></div></dl>
     <div className="project-purpose"><p className="font-mono text-xs uppercase tracking-widest text-neonCyan">The purpose</p><p className="mt-3 font-display text-2xl leading-snug text-ink">{project.problem}</p></div>
     <div><h3 className="text-xl text-ink">Focus areas</h3><div className="mt-3 flex flex-wrap gap-2">{project.focusAreas?.map(area => <span className="topic-chip" key={area}>{area}</span>)}</div></div>
     {project.description && <p className="text-sm leading-7 text-muted">{project.description}</p>}
@@ -59,6 +61,7 @@ function ProjectDetails({ project, onClose }) {
       <ul className="mt-3 space-y-3">{[...(project.documents || []), ...(project.references || [])].filter(item => item.url && item.label).map(item => <li key={item.url}><a className="text-link" href={item.url} target="_blank" rel="noopener noreferrer"><FileText size={16} />{item.label}<ExternalLink size={14} /></a></li>)}</ul>
     </div>}
     <ProjectLinks project={project} />
+    {!hasPublishedArtifacts && <p className="project-artifacts-note">Screenshots, source code, and project documents have not been published here yet.</p>}
   </DetailDialog>;
 }
 
@@ -78,6 +81,7 @@ export default function ProjectShowcase() {
           <div className="project-story-body">
             {project.tagline && <p className="project-story-tagline">“{project.tagline}”</p>}
             <p>{project.summary}</p>
+            <p className="project-story-problem"><strong>Focus</strong> {project.problem}</p>
             {!!project.focusAreas?.length && <div className="project-story-chips">{project.focusAreas.map(area => <span key={area}>{area}</span>)}</div>}
             <button type="button" className="project-story-details" onClick={() => setSelected(project)}>View details <ArrowUpRight size={17} aria-hidden="true" /></button>
           </div>

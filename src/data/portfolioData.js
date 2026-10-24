@@ -8,8 +8,7 @@ export const personalInfo = {
   linkedin: "https://www.linkedin.com/in/arifa-rowshon-fabeha-87a9153a4/",
   instagram: "https://www.instagram.com/peachypie_10/",
   github: "https://github.com/Fabeha1025",
-  // Add a real PDF in public/ and set its relative URL (for example, "./cv.pdf").
-  cvUrl: null,
+  cvUrl: "./cv.pdf",
   // Add only a real, confirmed LeetCode profile URL.
   leetcode: null,
   pitchParts: [

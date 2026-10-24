@@ -455,7 +455,7 @@ export function Footer() {
           </div>
         </div>
         <div className="simple-footer-base text-center font-mono text-xs text-muted">
-          <span>© 2026 Hussain Ahmed Humaidi</span>
+          <span>© 2026 Arifa Rowshon Fabeha</span>
         </div>
       </div>
     </footer>
