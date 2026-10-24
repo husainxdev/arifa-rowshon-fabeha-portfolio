@@ -735,16 +735,13 @@ html[data-motion="off"] .hero-name-last::after { transform:scaleX(1); }
 .hero-stat + .hero-stat { border-left:1px solid var(--color-hair); }
 .hero-stat strong { display:block; color:var(--color-neon-cyan); font:500 clamp(2rem,3.4vw,3rem)/1.05 var(--font-display); font-variant-numeric:tabular-nums; letter-spacing:-.045em; }
 .hero-stat > span { display:block; margin-top:9px; color:var(--color-muted); font:500 12px/1.4 var(--font-mono); }
-.hero-identity-row { display:flex; align-items:stretch; gap:12px; }
-.hero-portrait { position:relative; min-height:240px; width:clamp(112px,15vw,185px); flex:none; overflow:hidden; border:1px solid color-mix(in oklab,var(--color-neon-cyan) 35%,var(--color-hair-strong)); border-radius:17px; background:var(--color-void); box-shadow:0 12px 30px #0005; }
-.hero-portrait img { position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; object-position:68% 35%; }
-.hero-portrait::after { position:absolute; inset:0; border-radius:inherit; background:linear-gradient(180deg,transparent 58%,#0007); box-shadow:inset 0 0 0 1px #ffffff12,inset 0 0 24px #f2b43d12; content:""; pointer-events:none; }
-.hero-identity-row .current-status-card { min-width:0; flex:1; border:1px solid var(--color-hair-strong); border-radius:17px; padding:14px; }
-.hero-identity-row .current-status-list { gap:12px; margin-top:15px; }
-.hero-identity-row .current-status-row { grid-template-columns:29px minmax(0,1fr); gap:9px; }
-.hero-identity-row .current-status-icon { width:29px; height:29px; border-radius:8px; }
-.hero-identity-row .current-status-icon svg { width:16px; height:16px; }
-.hero-identity-row .current-status-row strong { font-size:13px; }
+.career-hero-aside .current-status-card { width:100%; min-width:0; border:1px solid var(--color-hair-strong); border-radius:17px; padding:21px clamp(17px,2vw,25px); background:radial-gradient(circle at 100% 0%,color-mix(in oklab,var(--color-neon-cyan) 8%,transparent),transparent 53%),var(--color-void); box-shadow:inset 0 1px #ffffff0c; }
+.career-hero-aside .current-status-heading::after { height:1px; flex:1; margin-left:8px; background:linear-gradient(90deg,var(--color-hair-strong),transparent); content:""; }
+.career-hero-aside .current-status-list { gap:0; margin-top:15px; }
+.career-hero-aside .current-status-row { grid-template-columns:34px minmax(0,1fr); gap:13px; padding:11px 0; }
+.career-hero-aside .current-status-row + .current-status-row { border-top:1px solid var(--color-hair); }
+.career-hero-aside .current-status-icon { width:34px; height:34px; border-radius:9px; }
+.career-hero-aside .current-status-row strong { font-size:15px; }
 .hero-quiz-teaser { display:block; max-width:700px; margin-top:42px; border:1px solid var(--color-hair-strong); border-radius:17px; overflow:hidden; background:color-mix(in oklab,var(--color-void) 90%,var(--color-ink) 10%); transition:border-color .2s,transform .2s; }
 .hero-quiz-teaser:hover { border-color:var(--color-neon-cyan); transform:translateY(-2px); }
 .hero-quiz-title { display:flex; align-items:center; gap:7px; border-bottom:1px solid var(--color-hair); padding:12px 15px; color:var(--color-muted); font:500 11px var(--font-mono); }
@@ -782,7 +779,6 @@ html[data-motion="off"] .hero-name-last::after { transform:scaleX(1); }
   .hero-stat strong { font-size:clamp(1.55rem,7vw,2.1rem); }
   .hero-stat > span { font-size:9px; }
   .career-hero-aside { margin-top:22px; }
-  .hero-portrait { min-height:213px; width:112px; }
   .hero-quiz-teaser { margin-top:22px; }
   .site-nav { min-height:60px; }
   .nav-brand > span:last-child { display:inline; }
@@ -791,9 +787,7 @@ html[data-motion="off"] .hero-name-last::after { transform:scaleX(1); }
 @media(max-width:360px) {
   .nav-brand { gap:7px; font-size:11px; }
   .nav-mark { width:37px; height:37px; font-size:16px; }
-  .hero-portrait { width:82px; }
-  .hero-identity-row .current-status-card { padding:10px; }
-  .hero-identity-row .current-status-heading { font-size:11px; }
-  .hero-identity-row .current-status-row strong { font-size:11px; }
+  .career-hero-aside .current-status-card { padding-inline:15px; }
+  .career-hero-aside .current-status-row strong { font-size:14px; }
 }
 @media(prefers-reduced-motion:reduce) { .hero-quiz-teaser:hover { transform:none; } }

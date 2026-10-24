@@ -24,7 +24,6 @@ import ProjectShowcase from "./ProjectShowcase";
 import CurrentStatus from "./CurrentStatus";
 import HeroStats from "./HeroStats";
 import TypingRole from "./TypingRole";
-import arifaPortrait from "../assets/arifa-portrait.webp";
 import {
   personalInfo,
   portfolioMetrics,
@@ -82,14 +81,7 @@ export function Home() {
         </div>
         <Reveal className="hero-stats-wrap" delay={0.26}><HeroStats /></Reveal>
         <div className="career-hero-aside">
-          <Reveal delay={0.23}>
-            <div className="hero-identity-row">
-              <div className="hero-portrait">
-                <img src={arifaPortrait} alt="Portrait of Arifa Rowshon Fabeha in a black niqab" width="540" height="720" fetchPriority="high" />
-              </div>
-              <CurrentStatus />
-            </div>
-          </Reveal>
+          <Reveal delay={0.23}><CurrentStatus /></Reveal>
         </div>
       </div>
       <Reveal delay={0.3}><a className="hero-quiz-teaser" href="#quiz" aria-label="Try the interactive coding quiz"><span className="hero-quiz-title"><i aria-hidden="true" /><i aria-hidden="true" /><i aria-hidden="true" /><code>guess.cpp</code><span>01 / 05</span></span><span className="hero-quiz-code"><code>std::vector&lt;int&gt; values = &#123;1, 2, 3, 4&#125;;</code><span>Can you solve the next question?</span></span><span className="hero-quiz-action">Try the coding quiz <ArrowUpRight size={17} aria-hidden="true" /></span></a></Reveal>
