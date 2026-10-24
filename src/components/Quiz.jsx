@@ -28,7 +28,7 @@ export default function Quiz() {
 
   return (
     <section id="quiz" aria-label="Interactive C++ quiz" className="portfolio-section page-shell relative scroll-mt-28 py-16 md:py-24">
-      <SectionHeading index="07" eyebrow="quiz" title="Guess the output." kicker="30 quick, playful C++ challenges. Start easy, follow the code, and learn as you go." />
+      <SectionHeading index="07" eyebrow="quiz" title="Guess the output." />
       <Reveal>
         <div className="quiz-editor mt-10">
           <div className="quiz-editor-bar">
