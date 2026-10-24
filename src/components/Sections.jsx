@@ -84,7 +84,6 @@ export function Home() {
           <Reveal delay={0.23}><CurrentStatus /></Reveal>
         </div>
       </div>
-      <Reveal delay={0.3}><a className="hero-quiz-teaser" href="#quiz" aria-label="Try the interactive coding quiz"><span className="hero-quiz-title"><i aria-hidden="true" /><i aria-hidden="true" /><i aria-hidden="true" /><code>guess.cpp</code><span>01 / 05</span></span><span className="hero-quiz-code"><code>std::vector&lt;int&gt; values = &#123;1, 2, 3, 4&#125;;</code><span>Can you solve the next question?</span></span><span className="hero-quiz-action">Try the coding quiz <ArrowUpRight size={17} aria-hidden="true" /></span></a></Reveal>
     </MotionScene>
   );
 }
