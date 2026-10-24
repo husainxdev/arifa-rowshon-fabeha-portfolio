@@ -3,11 +3,11 @@ import { useMotionPreference } from "../context/MotionContext";
 
 export default function useTypewriter(items, initialDelay = 2400) {
   const { enabled } = useMotionPreference();
-  const [text, setText] = useState(items[0] || "");
+  const [frame, setFrame] = useState(() => ({ word: items[0] || "", length: (items[0] || "").length }));
 
   useEffect(() => {
     if (items.length < 2 || !enabled) {
-      setText(items[0] || "");
+      setFrame({ word: items[0] || "", length: (items[0] || "").length });
       return;
     }
     let index = 0;
@@ -17,7 +17,7 @@ export default function useTypewriter(items, initialDelay = 2400) {
     const tick = () => {
       const word = items[index];
       length += deleting ? -1 : 1;
-      setText(word.slice(0, length));
+      setFrame({ word, length });
       if (deleting && length === 0) {
         index = (index + 1) % items.length;
         deleting = false;
@@ -33,5 +33,5 @@ export default function useTypewriter(items, initialDelay = 2400) {
     return () => window.clearTimeout(timer);
   }, [items, initialDelay, enabled]);
 
-  return text;
+  return frame;
 }
