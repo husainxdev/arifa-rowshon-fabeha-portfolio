@@ -14,6 +14,6 @@ export default function ProjectVisual({ built, index }) {
     </>}
     <div className="project-art-icon"><Icon size={54} strokeWidth={1.4} /></div>
     <span className="project-visual-spark spark-one" /><span className="project-visual-spark spark-two" />
-    <span className="absolute bottom-5 left-6 font-mono text-xs uppercase tracking-widest text-white/70">Project / 0{index + 1}</span>
+    <span className="absolute bottom-5 left-6 font-mono text-xs uppercase tracking-widest text-[#d8ad60]">Project / 0{index + 1}</span>
   </div>;
 }
