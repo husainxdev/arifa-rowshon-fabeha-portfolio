@@ -326,10 +326,8 @@ export function Contact() {
   const [submitting, setSubmitting] = useState(false);
   const formEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT?.trim() || "";
   const contactProfiles = [
-    { name: "WhatsApp", url: `https://wa.me/${personalInfo.whatsapp.replace(/\D/g, "")}`, display: "+880 1776-733152" },
-    { name: "GitHub", url: personalInfo.github, display: "github.com/Fabeha1025" },
+    { name: "Phone", url: `tel:${personalInfo.phone}`, display: "+880 1776-733152" },
     { name: "LinkedIn", url: personalInfo.linkedin, display: "linkedin.com/in/arifa-rowshon-fabeha-87a9153a4", compact: "Arifa on LinkedIn" },
-    { name: "Instagram", url: personalInfo.instagram, display: "instagram.com/peachypie_10", compact: "@peachypie_10" },
   ].filter(({ url }) => Boolean(url));
   const copyEmail = async () => {
     try {
@@ -394,14 +392,14 @@ export function Contact() {
             </div>
             {copyStatus && <span className="px-2 font-mono text-xs text-neonCyan" role="status" aria-live="polite">{copyStatus}</span>}
             {contactProfiles.map(({ name, url, display, compact }) => (
-              <a key={name} href={url} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${name} profile (opens in a new tab)`} className="glass-strong glass-glow flex min-w-0 items-center gap-4 rounded-2xl p-5 transition hover:border-neonCyan/40 sm:p-6">
+              <a key={name} href={url} target={name === "Phone" ? undefined : "_blank"} rel={name === "Phone" ? undefined : "noopener noreferrer"} aria-label={name === "Phone" ? `Call ${display}` : `Visit ${name} profile (opens in a new tab)`} className="glass-strong glass-glow flex min-w-0 items-center gap-4 rounded-2xl p-5 transition hover:border-neonCyan/40 sm:p-6">
                 <span className="grid h-14 w-14 shrink-0 place-items-center rounded-xl border border-neonCyan/25 bg-neonCyan/10 text-neonCyan"><PlatformIcon name={name} className="h-7 w-7" /></span>
                 <span className="min-w-0 flex-1">
                   <span className="block font-mono text-xs text-muted">{name}</span>
                   <span className="mt-1 block break-words font-medium text-ink sm:hidden">{compact || display}</span>
                   <span className="mt-1 hidden break-all font-medium text-ink sm:block">{display}</span>
                 </span>
-                <ExternalLink size={18} className="shrink-0 text-muted" aria-hidden="true" />
+                {name === "Phone" ? <PlatformIcon name="Phone" className="h-[18px] w-[18px] shrink-0 text-muted" /> : <ExternalLink size={18} className="shrink-0 text-muted" aria-hidden="true" />}
               </a>
             ))}
           </div>
@@ -435,10 +433,8 @@ export function Contact() {
 
 export function Footer() {
   const socialLinks = [
-    { label: "WhatsApp", url: `https://wa.me/${personalInfo.whatsapp.replace(/\D/g, "")}` },
-    { label: "GitHub", url: personalInfo.github },
+    { label: "Phone", url: `tel:${personalInfo.phone}` },
     { label: "LinkedIn", url: personalInfo.linkedin },
-    { label: "Instagram", url: personalInfo.instagram },
   ].filter(({ url }) => Boolean(url));
   return (
     <footer className="simple-footer mt-10 border-t border-hair">
@@ -453,7 +449,7 @@ export function Footer() {
           </nav>
           <div className="simple-footer-links" aria-label="Contact links">
             <a href={`mailto:${personalInfo.email}`} aria-label="Email Arifa"><Mail size={19} aria-hidden="true" /></a>
-            {socialLinks.map(({ label, url }) => <a key={label} href={url} target="_blank" rel="noopener noreferrer" aria-label={`${label} profile (opens in a new tab)`}><PlatformIcon name={label} className="h-[19px] w-[19px]" /></a>)}
+            {socialLinks.map(({ label, url }) => <a key={label} href={url} target={label === "Phone" ? undefined : "_blank"} rel={label === "Phone" ? undefined : "noopener noreferrer"} aria-label={label === "Phone" ? "Call Arifa" : `${label} profile (opens in a new tab)`}><PlatformIcon name={label} className="h-[19px] w-[19px]" /></a>)}
           </div>
         </div>
         <div className="simple-footer-base text-center font-mono text-xs text-muted">
