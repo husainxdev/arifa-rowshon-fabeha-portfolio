@@ -51,15 +51,19 @@ export default function NetworkCanvas({ className = '' }) {
     let height = 0
     let dpr = 1
     const resize = () => {
-      dpr = Math.min(window.devicePixelRatio || 1, 2)
+      const previousWidth = width
       width = window.innerWidth
       height = window.innerHeight
+      const compact = width <= 620
+      dpr = Math.min(window.devicePixelRatio || 1, compact ? 1.25 : 2)
       canvas.width = width * dpr
       canvas.height = height * dpr
       canvas.style.width = `${width}px`
       canvas.style.height = `${height}px`
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-      seed()
+      // Mobile browser bars resize the viewport while scrolling. Keep the
+      // existing constellation on height-only changes to avoid visible jumps.
+      if (!nodes.length || Math.abs(width - previousWidth) > 24) seed()
       if (reduce) draw()
     }
 
@@ -71,7 +75,9 @@ export default function NetworkCanvas({ className = '' }) {
     const seed = () => {
       // Density scales with area but is capped so the backdrop stays quiet and
       // never competes with the content in front of it.
-      const count = Math.min(80, Math.max(28, Math.round((width * height) / 22000)))
+      const count = width <= 620
+        ? Math.min(22, Math.max(14, Math.round((width * height) / 26000)))
+        : Math.min(80, Math.max(28, Math.round((width * height) / 22000)))
       nodes = Array.from({ length: count }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
@@ -81,7 +87,7 @@ export default function NetworkCanvas({ className = '' }) {
       }))
       // A few travelling signals riding the graph — the one lively accent,
       // kept sparse so the backdrop stays calm behind the content.
-      const sigCount = Math.min(4, Math.max(2, Math.round(count / 16)))
+      const sigCount = width <= 620 ? 1 : Math.min(4, Math.max(2, Math.round(count / 16)))
       signals = Array.from({ length: sigCount }, () => makeSignal())
     }
 
@@ -206,7 +212,7 @@ export default function NetworkCanvas({ className = '' }) {
     const tick = (now) => {
       raf = 0
       if (document.hidden) return
-      if (now - lastFrame >= 1000 / 30) {
+      if (now - lastFrame >= 1000 / (width <= 620 ? 20 : 30)) {
         draw()
         lastFrame = now
       }

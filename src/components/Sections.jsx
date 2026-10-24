@@ -381,20 +381,20 @@ export function Contact() {
       <div className="contact-grid mt-10 grid items-stretch gap-6">
         <Reveal className="h-full">
           <div className="flex h-full flex-col gap-4">
-            <div className="glass-strong glass-glow flex min-w-0 items-center gap-4 rounded-2xl p-5 sm:p-6">
-              <span className="grid h-14 w-14 shrink-0 place-items-center rounded-xl border border-neonCyan/25 bg-neonCyan/10 text-neonCyan"><Mail size={24} aria-hidden="true" /></span>
+            <div className="contact-info-card glass-strong glass-glow flex min-w-0 items-center gap-4 rounded-2xl p-5 sm:p-6">
+              <span className="contact-info-icon grid h-14 w-14 shrink-0 place-items-center rounded-xl border border-neonCyan/25 bg-neonCyan/10 text-neonCyan"><Mail size={24} aria-hidden="true" /></span>
               <div className="min-w-0 flex-1">
                 <p className="font-mono text-xs text-muted">Email</p>
                 <a className="mt-1 block break-words font-medium text-ink hover:text-neonCyan" href={`mailto:${personalInfo.email}`}>
                   {personalInfo.email.split("@")[0]}<wbr />@{personalInfo.email.split("@")[1]}
                 </a>
               </div>
-              <button type="button" onClick={copyEmail} aria-label="Copy email address" className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-hair bg-fill text-muted transition hover:border-neonCyan/40 hover:text-neonCyan"><Copy size={18} aria-hidden="true" /></button>
+              <button type="button" onClick={copyEmail} aria-label="Copy email address" className="contact-copy-button grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-hair bg-fill text-muted transition hover:border-neonCyan/40 hover:text-neonCyan"><Copy size={18} aria-hidden="true" /></button>
             </div>
             {copyStatus && <span className="px-2 font-mono text-xs text-neonCyan" role="status" aria-live="polite">{copyStatus}</span>}
             {contactProfiles.map(({ name, url, display, compact }) => (
-              <a key={name} href={url} target={name === "Phone" ? undefined : "_blank"} rel={name === "Phone" ? undefined : "noopener noreferrer"} aria-label={name === "Phone" ? `Call ${display}` : `Visit ${name} profile (opens in a new tab)`} className="glass-strong glass-glow flex min-w-0 items-center gap-4 rounded-2xl p-5 transition hover:border-neonCyan/40 sm:p-6">
-                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-xl border border-neonCyan/25 bg-neonCyan/10 text-neonCyan"><PlatformIcon name={name} className="h-7 w-7" /></span>
+              <a key={name} href={url} target={name === "Phone" ? undefined : "_blank"} rel={name === "Phone" ? undefined : "noopener noreferrer"} aria-label={name === "Phone" ? `Call ${display}` : `Visit ${name} profile (opens in a new tab)`} className="contact-info-card glass-strong glass-glow flex min-w-0 items-center gap-4 rounded-2xl p-5 transition hover:border-neonCyan/40 sm:p-6">
+                <span className="contact-info-icon grid h-14 w-14 shrink-0 place-items-center rounded-xl border border-neonCyan/25 bg-neonCyan/10 text-neonCyan"><PlatformIcon name={name} className="h-7 w-7" /></span>
                 <span className="min-w-0 flex-1">
                   <span className="block font-mono text-xs text-muted">{name}</span>
                   <span className="mt-1 block break-words font-medium text-ink sm:hidden">{compact || display}</span>
