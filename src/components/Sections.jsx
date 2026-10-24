@@ -457,10 +457,6 @@ export function Footer() {
             {socialLinks.map(({ label, url }) => <a key={label} href={url} target={label === "Phone" ? undefined : "_blank"} rel={label === "Phone" ? undefined : "noopener noreferrer"} aria-label={label === "Phone" ? "Call Arifa" : `${label} profile (opens in a new tab)`}><PlatformIcon name={label} className="h-[19px] w-[19px]" /></a>)}
           </div>
         </div>
-        <nav className="footer-profile-links" aria-label="Coding profiles">
-          <span>Coding profiles</span>
-          {codingProfiles.filter(({ url }) => Boolean(url)).map(({ name, url }) => <a key={name} href={url} target="_blank" rel="noopener noreferrer">{name}<ArrowUpRight size={14} aria-hidden="true" /></a>)}
-        </nav>
         <div className="simple-footer-base text-center font-mono text-xs text-muted">
           <span>© 2026 Arifa Rowshon Fabeha</span>
         </div>

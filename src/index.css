@@ -437,10 +437,6 @@
 .simple-footer-links { display:flex; align-items:center; flex-wrap:wrap; gap:6px; }
 .simple-footer-links a { display:grid; width:44px; height:44px; place-items:center; border-radius:10px; color:var(--color-muted); transition:color .2s,background-color .2s; }
 .simple-footer-links a:hover { color:var(--color-neon-cyan); background:var(--color-fill); }
-.footer-profile-links { display:flex; align-items:center; flex-wrap:wrap; gap:8px 20px; margin-top:22px; padding-top:17px; border-top:1px solid var(--color-hair); }
-.footer-profile-links > span { margin-right:5px; color:var(--color-muted); font:500 12px var(--font-mono); }
-.footer-profile-links a { display:inline-flex; align-items:center; gap:3px; min-height:34px; color:var(--color-ink); font-size:13px; transition:color .2s; }
-.footer-profile-links a:hover { color:var(--color-neon-cyan); }
 .simple-footer-base { margin-top:25px; border-top:1px solid var(--color-hair); padding-top:17px; }
 @media (max-width:620px) { .simple-footer-main { align-items:flex-start; flex-direction:column; gap:15px; } }
 .profile-card:hover,.profile-card:focus-visible { box-shadow:0 16px 40px rgba(0,0,0,.18); border-color:color-mix(in oklab,var(--color-neon-cyan) 45%,transparent); }
