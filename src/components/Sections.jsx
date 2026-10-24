@@ -437,7 +437,9 @@ export function Contact() {
 export function Footer() {
   const socialLinks = [
     { label: "Phone", url: `tel:${personalInfo.phone}` },
+    { label: "GitHub", url: personalInfo.github },
     { label: "LinkedIn", url: personalInfo.linkedin },
+    { label: "Instagram", url: personalInfo.instagram },
   ].filter(({ url }) => Boolean(url));
   return (
     <footer className="simple-footer mt-10 border-t border-hair">
@@ -450,11 +452,15 @@ export function Footer() {
           <nav className="footer-quick-links" aria-label="Footer navigation">
             <a href="#home">Home</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
           </nav>
-          <div className="simple-footer-links" aria-label="Contact links">
+          <div className="simple-footer-links" aria-label="Contact and social links">
             <a href={`mailto:${personalInfo.email}`} aria-label="Email Arifa"><Mail size={19} aria-hidden="true" /></a>
             {socialLinks.map(({ label, url }) => <a key={label} href={url} target={label === "Phone" ? undefined : "_blank"} rel={label === "Phone" ? undefined : "noopener noreferrer"} aria-label={label === "Phone" ? "Call Arifa" : `${label} profile (opens in a new tab)`}><PlatformIcon name={label} className="h-[19px] w-[19px]" /></a>)}
           </div>
         </div>
+        <nav className="footer-profile-links" aria-label="Coding profiles">
+          <span>Coding profiles</span>
+          {codingProfiles.filter(({ url }) => Boolean(url)).map(({ name, url }) => <a key={name} href={url} target="_blank" rel="noopener noreferrer">{name}<ArrowUpRight size={14} aria-hidden="true" /></a>)}
+        </nav>
         <div className="simple-footer-base text-center font-mono text-xs text-muted">
           <span>© 2026 Arifa Rowshon Fabeha</span>
         </div>
