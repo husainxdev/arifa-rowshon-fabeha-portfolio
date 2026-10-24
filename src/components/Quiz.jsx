@@ -28,7 +28,7 @@ export default function Quiz() {
 
   return (
     <section id="quiz" aria-label="Interactive C++ quiz" className="portfolio-section page-shell relative scroll-mt-28 py-16 md:py-24">
-      <SectionHeading index="07" eyebrow="quiz" title="Guess the output." kicker="Five short C++ challenges. Read the code, choose an answer, and see why it works." />
+      <SectionHeading index="07" eyebrow="quiz" title="Guess the output." kicker="30 quick, playful C++ challenges. Start easy, follow the code, and learn as you go." />
       <Reveal>
         <div className="quiz-editor mt-10">
           <div className="quiz-editor-bar">
@@ -38,6 +38,7 @@ export default function Quiz() {
               {finished ? `${quizQuestions.length}/${quizQuestions.length}` : `${String(step + 1).padStart(2, "0")}/${String(quizQuestions.length).padStart(2, "0")}`}
             </span>
           </div>
+          <progress className="quiz-progress-track" value={step} max={quizQuestions.length} aria-label="Quiz progress" />
           {finished ? (
             <div className="quiz-results" aria-live="polite">
               <p className="quiz-comment">// quiz complete</p>
@@ -47,7 +48,7 @@ export default function Quiz() {
             </div>
           ) : (
             <div className="quiz-editor-body" key={step}>
-              <p className="quiz-code-note">// inside main() · standard headers assumed</p>
+              <div className="quiz-meta"><span>{question.topic}</span><span>Easy · inside main()</span></div>
               <div className="quiz-code-scroll" role="region" aria-label={`C++ code challenge ${step + 1}`} tabIndex={0}>
                 <pre className="quiz-code"><code>{question.code.map((line, index) => <span className="quiz-code-line" key={`${step}-${index}`}><span className="quiz-line-number" aria-hidden="true">{index + 1}</span><span>{line}</span></span>)}</code></pre>
               </div>
