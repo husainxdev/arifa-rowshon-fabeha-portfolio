@@ -404,24 +404,27 @@ export function Contact() {
             ))}
           </div>
         </Reveal>
-        <Reveal delay={0.08} className="h-full">
-          <div className="glass-strong glass-glow h-full rounded-3xl p-6 sm:p-8">
-            <h3 className="text-2xl text-ink">Send a message</h3>
-            <p id="contact-form-note" className="mt-2 text-sm leading-6 text-muted">{formEndpoint ? "Send a message directly through this form." : "This form opens a draft in your email app. Review and send it there."}</p>
-            <form onSubmit={submitMessage} aria-describedby="contact-form-note" className="mt-7 space-y-5">
+        <Reveal delay={0.08} className="contact-form-wrap">
+          <div className="contact-form-card glass-strong glass-glow rounded-3xl">
+            <div className="contact-form-intro">
+              <p className="contact-form-eyebrow">Get in touch</p>
+              <h3 className="text-2xl text-ink">Send a message</h3>
+              <p id="contact-form-note" className="text-sm leading-6 text-muted">{formEndpoint ? "Send your message directly from this form." : "Opens a ready-to-send draft in your email app."}</p>
+            </div>
+            <form onSubmit={submitMessage} aria-describedby="contact-form-note" className="contact-form-fields">
               <label className="sr-only" aria-hidden="true">Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
               <div className="grid gap-4 sm:grid-cols-2">
-                <label className="block font-mono text-xs text-muted">Your name
+                <label className="block font-mono text-xs text-muted">Name
                   <input name="name" type="text" autoComplete="name" required maxLength={80} placeholder="Your name" className="contact-input mt-2 w-full" />
                 </label>
-                <label className="block font-mono text-xs text-muted">Your email
+                <label className="block font-mono text-xs text-muted">Email
                   <input name="email" type="email" autoComplete="email" required maxLength={254} placeholder="you@example.com" className="contact-input mt-2 w-full" />
                 </label>
               </div>
               <label className="block font-mono text-xs text-muted">Message
-                <textarea name="message" required minLength={5} maxLength={1200} rows={6} placeholder="Hi Arifa, I'd love to talk about..." className="contact-input mt-2 w-full resize-y" />
+                <textarea name="message" required minLength={5} maxLength={1200} rows={4} placeholder="Hi Arifa, I'd love to talk about..." className="contact-input mt-2 w-full resize-y" />
               </label>
-              <button type="submit" disabled={submitting} className={`${primary} min-h-12`}><Send size={17} aria-hidden="true" />{submitting ? "Sending…" : formEndpoint ? "Send message" : "Open email draft"}</button>
+              <button type="submit" disabled={submitting} className={`${primary} contact-form-submit min-h-12`}><Send size={17} aria-hidden="true" />{submitting ? "Sending…" : formEndpoint ? "Send message" : "Continue to email"}</button>
               {formStatus.message && <p className={formStatus.type === "error" ? "form-error" : "form-success"} role="status" aria-live="polite">{formStatus.message}</p>}
             </form>
           </div>
