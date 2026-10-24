@@ -24,6 +24,7 @@ import ProjectShowcase from "./ProjectShowcase";
 import CurrentStatus from "./CurrentStatus";
 import HeroStats from "./HeroStats";
 import TypingRole from "./TypingRole";
+import arifaPortrait from "../assets/arifa-portrait.webp";
 import {
   personalInfo,
   portfolioMetrics,
@@ -83,7 +84,9 @@ export function Home() {
         <div className="career-hero-aside">
           <Reveal delay={0.23}>
             <div className="hero-identity-row">
-              <div className="hero-portrait-placeholder" role="img" aria-label="AF monogram placeholder for Arifa's future portrait"><span>AF</span><small>ARIFA</small></div>
+              <div className="hero-portrait">
+                <img src={arifaPortrait} alt="Portrait of Arifa Rowshon Fabeha in a black niqab" width="540" height="720" fetchPriority="high" />
+              </div>
               <CurrentStatus />
             </div>
           </Reveal>
