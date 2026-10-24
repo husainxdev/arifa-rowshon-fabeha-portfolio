@@ -5,6 +5,7 @@ export const personalInfo = {
   university: "Metropolitan University, Sylhet, Bangladesh",
   location: "Sylhet, Bangladesh",
   email: "arifarowshon04@gmail.com",
+  whatsapp: "+8801776733152",
   linkedin: "https://www.linkedin.com/in/arifa-rowshon-fabeha-87a9153a4/",
   instagram: "https://www.instagram.com/peachypie_10/",
   github: "https://github.com/Fabeha1025",

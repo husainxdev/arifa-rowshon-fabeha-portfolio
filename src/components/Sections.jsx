@@ -326,6 +326,7 @@ export function Contact() {
   const [submitting, setSubmitting] = useState(false);
   const formEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT?.trim() || "";
   const contactProfiles = [
+    { name: "WhatsApp", url: `https://wa.me/${personalInfo.whatsapp.replace(/\D/g, "")}`, display: "+880 1776-733152" },
     { name: "GitHub", url: personalInfo.github, display: "github.com/Fabeha1025" },
     { name: "LinkedIn", url: personalInfo.linkedin, display: "linkedin.com/in/arifa-rowshon-fabeha-87a9153a4", compact: "Arifa on LinkedIn" },
     { name: "Instagram", url: personalInfo.instagram, display: "instagram.com/peachypie_10", compact: "@peachypie_10" },
@@ -434,6 +435,7 @@ export function Contact() {
 
 export function Footer() {
   const socialLinks = [
+    { label: "WhatsApp", url: `https://wa.me/${personalInfo.whatsapp.replace(/\D/g, "")}` },
     { label: "GitHub", url: personalInfo.github },
     { label: "LinkedIn", url: personalInfo.linkedin },
     { label: "Instagram", url: personalInfo.instagram },
