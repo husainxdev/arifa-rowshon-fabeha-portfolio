@@ -431,7 +431,7 @@
 .project-art-cloud .project-art-icon { transform:rotate(7deg); }
 .activity-cover { position:relative; height:190px; display:grid; place-items:center; overflow:hidden; color:#f3c66f; }
 .activity-cover-guide { background:radial-gradient(circle at 50% 40%,#584627,#221a0e 50%,#0c0b08); }
-.activity-cover-project { background:radial-gradient(circle at 50% 40%,#4f4964,#211e2c 50%,#0c0b11); }
+.activity-cover-project { background:radial-gradient(circle at 50% 40%,#51401f,#21180b 50%,#0c0905); }
 .simple-footer { background:var(--color-void); }
 .simple-footer-main { display:flex; align-items:center; justify-content:space-between; gap:20px; }
 .simple-footer-links { display:flex; align-items:center; gap:6px; }
