@@ -73,7 +73,7 @@ export default function ProjectShowcase() {
     </div>
     <div className="project-story-list">
       {visible.map(project => <Reveal key={project.id || project.title}>
-        <InteractiveCard as="article" tilt={1} className="project-story-card">
+        <InteractiveCard as="article" tilt={1} className="project-story-card glass-strong glass-glow">
           <div className="project-story-header"><h3>{project.title}</h3><span>{project.status}</span></div>
           <div className="project-story-body">
             {project.tagline && <p className="project-story-tagline">“{project.tagline}”</p>}

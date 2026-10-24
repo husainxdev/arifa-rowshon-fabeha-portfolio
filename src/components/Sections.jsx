@@ -258,7 +258,7 @@ export function Coding() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Visit ${profile.name} profile (opens in a new tab)`}
-              className="profile-card coding-story-card"
+              className="profile-card coding-story-card glass-strong glass-glow"
             >
               <div className="coding-story-top">
                 <span className="coding-story-icon" aria-hidden="true"><PlatformIcon name={profile.name} className="h-8 w-8" /></span>

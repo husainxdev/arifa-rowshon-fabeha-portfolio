@@ -747,7 +747,7 @@ html[data-motion="off"] .hero-name-last::after { transform:scaleX(1); }
 .project-filters button:hover { border-color:var(--color-neon-cyan); color:var(--color-ink); }
 .project-filters button.active { border-color:var(--color-neon-cyan); background:var(--color-neon-cyan); color:var(--color-void); }
 .project-story-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); align-items:start; gap:18px; }
-.project-story-card { overflow:hidden; border:1px solid var(--color-hair-strong); border-radius:22px; background:var(--color-void); transition:border-color .2s,transform .2s,box-shadow .2s; }
+.project-story-card { overflow:hidden; border:1px solid var(--glass-strong-border); border-radius:24px; background:var(--color-void); transition:border-color .2s,transform .2s,box-shadow .2s; }
 .project-story-card:hover { border-color:#f2b43d77; box-shadow:0 20px 45px #0005; transform:translateY(-3px); }
 .project-story-header { display:flex; min-height:158px; align-items:flex-end; justify-content:space-between; gap:16px; padding:26px; background:radial-gradient(circle at 15% 5%,#533716,#211707 57%,#080705); }
 .project-story-header h3 { max-width:12ch; color:var(--color-ink); font:500 clamp(1.8rem,2.5vw,2.55rem)/1.13 var(--font-display); }
@@ -761,7 +761,7 @@ html[data-motion="off"] .hero-name-last::after { transform:scaleX(1); }
 .project-story-details:hover { color:var(--color-neon-cyan); }
 .project-story-footer { border-top:1px solid var(--color-hair); padding:16px 26px; }
 .coding-story-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin-top:36px; }
-.coding-story-card { display:flex; min-height:224px; flex-direction:column; overflow:hidden; border:1px solid var(--color-hair-strong); border-radius:22px; background:radial-gradient(circle at 0 0,#3b290f,#100c06 39%,var(--color-void) 75%); color:var(--color-ink); transition:border-color .2s,transform .2s; }
+.coding-story-card { display:flex; min-height:224px; flex-direction:column; overflow:hidden; border:1px solid var(--glass-strong-border); border-radius:24px; background:radial-gradient(circle at 0 0,#3b290f,#100c06 39%,var(--color-void) 75%); color:var(--color-ink); transition:border-color .2s,transform .2s; }
 .coding-story-card:hover { border-color:#f2b43d77; transform:translateY(-3px); }
 .coding-story-top { display:flex; align-items:center; gap:14px; padding:25px 26px 15px; }
 .coding-story-icon { display:grid; width:52px; height:52px; flex:none; place-items:center; border:1px solid var(--color-hair-strong); border-radius:12px; background:#000a; color:var(--color-neon-cyan); }
@@ -771,6 +771,8 @@ html[data-motion="off"] .hero-name-last::after { transform:scaleX(1); }
 .coding-story-host { color:var(--color-ink); font:500 13px var(--font-mono); overflow-wrap:anywhere; }
 .coding-story-note { color:var(--color-muted); font:500 11px var(--font-mono); }
 .coding-story-footer { display:flex; min-height:51px; align-items:center; justify-content:space-between; margin-top:auto; border-top:1px solid var(--color-hair); padding:12px 26px; color:var(--color-neon-cyan); font:600 13px var(--font-mono); }
+.light .project-story-card,.light .coding-story-card { background:var(--glass-strong-bg); }
+.light .project-story-header h3 { color:#f9f0df; }
 @media(max-width:760px) { .project-story-list,.coding-story-grid { grid-template-columns:1fr; } }
 @media(max-width:420px) { .project-story-header { min-height:142px; padding:21px; } .project-story-header h3 { font-size:1.85rem; } .project-story-body { padding:21px; } .coding-story-top { padding:20px 21px 12px; } .coding-story-middle { padding-inline:21px; } .coding-story-footer { padding-inline:21px; } }
 @media(prefers-reduced-motion:reduce) { .project-story-card:hover,.coding-story-card:hover { transform:none; } }
