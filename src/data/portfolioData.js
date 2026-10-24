@@ -15,7 +15,7 @@ export const personalInfo = {
   pitchParts: [
     "Currently working on CloudSphere",
   ],
-  roles: ["Problem Solver", "CSE Student", "Learner"],
+  roles: ["Problem Solver"],
   focusRotation: ["C++ & Data Structures", "Algorithms & Logic", "C & C++ Programming"],
   otherLinks: [],
 };
