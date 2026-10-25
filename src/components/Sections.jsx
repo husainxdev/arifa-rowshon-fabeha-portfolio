@@ -292,29 +292,13 @@ export function Activities() {
         <article className="achievement-card glass-strong glass-glow">
           <div className="achievement-content">
             <div>
-              <span className="achievement-kicker">Competition certificate · 24 Oct 2026</span>
+              <span className="achievement-kicker">Competition achievement · 24 Oct 2026</span>
               <h3>6th place · Progsity Weekly #1</h3>
             </div>
             <a className="achievement-view" href="./progsity-weekly-1-certificate.jpg" target="_blank" rel="noopener noreferrer">
-              View full size <ArrowUpRight size={17} aria-hidden="true" />
+              View certificate <ArrowUpRight size={17} aria-hidden="true" />
             </a>
           </div>
-          <a
-            className="achievement-image-link"
-            href="./progsity-weekly-1-certificate.jpg"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="View Arifa's Progsity Weekly number 1 achievement certificate in full size"
-          >
-            <img
-              src="./progsity-weekly-1-certificate.jpg"
-              alt="Progsity certificate naming Arifa Rowshon Fabeha, placed 6th in Progsity Weekly number 1 on 24 October 2026"
-              width="803"
-              height="565"
-              loading="lazy"
-              decoding="async"
-            />
-          </a>
         </article>
       </Reveal>
       <div className="mt-10 grid gap-5 md:grid-cols-2">

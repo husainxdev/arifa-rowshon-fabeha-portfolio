@@ -432,16 +432,14 @@
 .activity-cover { position:relative; height:190px; display:grid; place-items:center; overflow:hidden; color:#f3c66f; }
 .activity-cover-guide { background:radial-gradient(circle at 50% 40%,#584627,#221a0e 50%,#0c0b08); }
 .activity-cover-project { background:radial-gradient(circle at 50% 40%,#51401f,#21180b 50%,#0c0905); }
-.achievement-card { display:grid; gap:20px; width:min(100%,880px); margin-inline:auto; border-radius:20px; padding:clamp(14px,2.5vw,24px); }
-.achievement-image-link { display:block; width:100%; overflow:hidden; border:1px solid var(--color-hair-strong); border-radius:10px; background:#fff; }
-.achievement-image-link img { display:block; width:100%; height:auto; aspect-ratio:803/565; object-fit:contain; }
-.achievement-image-link:focus-visible,.achievement-view:focus-visible { outline:2px solid var(--color-neon-cyan); outline-offset:3px; }
+.achievement-card { width:min(100%,880px); margin-inline:auto; border-radius:20px; padding:clamp(20px,3vw,32px); }
+.achievement-view:focus-visible { outline:2px solid var(--color-neon-cyan); outline-offset:3px; }
 .achievement-content { display:flex; justify-content:space-between; align-items:end; flex-wrap:wrap; gap:12px 24px; min-width:0; }
 .achievement-kicker { color:var(--color-neon-cyan); font:600 11px var(--font-mono); letter-spacing:.06em; text-transform:uppercase; }
 .achievement-content h3 { margin-top:8px; color:var(--color-ink); font:600 clamp(1.4rem,2.5vw,2rem)/1.2 var(--font-display); }
 .achievement-view { display:inline-flex; align-items:center; gap:8px; min-height:44px; color:var(--color-neon-cyan); font-size:14px; font-weight:650; white-space:nowrap; transition:gap .2s ease; }
 .achievement-view:hover { gap:13px; }
-@media(max-width:720px) { .achievement-card { gap:14px; } .achievement-content h3 { font-size:clamp(1.35rem,6vw,1.8rem); } }
+@media(max-width:720px) { .achievement-content h3 { font-size:clamp(1.35rem,6vw,1.8rem); } }
 @media(prefers-reduced-motion:reduce) { .achievement-view { transition:none; } }
 .simple-footer { background:var(--color-void); }
 .simple-footer-main { display:flex; align-items:center; justify-content:space-between; gap:20px; }
