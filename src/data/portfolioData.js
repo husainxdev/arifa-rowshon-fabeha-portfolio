@@ -25,7 +25,7 @@ export const portfolioMetrics = {
   problemsSolved: 321,
   completedCredits: 42,
   cgpa: 3.83,
-  certifications: null, // Add a verified number to publish this metric.
+  certifications: 1,
 };
 
 export const education = [

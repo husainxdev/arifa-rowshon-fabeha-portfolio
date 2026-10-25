@@ -11,6 +11,6 @@ await cp(new URL('assets/', dist), new URL('assets/', root), { recursive: true }
 await copyFile(new URL('favicon.svg', dist), new URL('favicon.svg', root));
 await rm(new URL('logos/', root), { recursive: true, force: true });
 await cp(new URL('logos/', dist), new URL('logos/', root), { recursive: true });
-for (const name of ['social-preview.png', 'robots.txt', 'sitemap.xml', 'cv.pdf']) {
+for (const name of ['social-preview.png', 'robots.txt', 'sitemap.xml', 'cv.pdf', 'progsity-weekly-1-certificate.jpg']) {
   await copyFile(new URL(name, dist), new URL(name, root));
 }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
+  Award,
   Code2,
   Copy,
   ExternalLink,
@@ -288,6 +289,35 @@ export function Activities() {
         title="Experience & moments"
         kicker="Volunteering and collaboration beyond coursework."
       />
+      <Reveal className="mt-10">
+        <article className="achievement-card glass-strong glass-glow">
+          <a
+            className="achievement-image-link"
+            href="./progsity-weekly-1-certificate.jpg"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View Arifa's Progsity Weekly number 1 achievement certificate in full size"
+          >
+            <img
+              src="./progsity-weekly-1-certificate.jpg"
+              alt="Progsity certificate naming Arifa Rowshon Fabeha, placed 6th in Progsity Weekly number 1 on 24 October 2026"
+              width="803"
+              height="565"
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+          <div className="achievement-content">
+            <span className="achievement-kicker"><Award size={17} aria-hidden="true" /> Competition achievement</span>
+            <h3>6th place at Progsity Weekly #1</h3>
+            <p>Placed 6th in the Progsity Weekly #1 programming competition, held on 24 October 2026.</p>
+            <div className="achievement-meta"><span>Progsity</span><span>24 Oct 2026</span></div>
+            <a className="achievement-view" href="./progsity-weekly-1-certificate.jpg" target="_blank" rel="noopener noreferrer">
+              View certificate <ArrowUpRight size={17} aria-hidden="true" />
+            </a>
+          </div>
+        </article>
+      </Reveal>
       <div className="mt-10 grid gap-5 md:grid-cols-2">
         {activities.map((a, i) => {
           const cover = a.photos?.[0];
