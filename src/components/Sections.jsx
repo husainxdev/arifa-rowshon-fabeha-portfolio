@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
+  Award,
   Code2,
   Copy,
   ExternalLink,
@@ -286,22 +287,25 @@ export function Activities() {
         index="06"
         eyebrow="activities"
         title="Experience & moments"
-        kicker="Volunteering and collaboration beyond coursework."
+        kicker="Competitions, volunteering, and collaboration beyond coursework."
       />
-      <Reveal className="mt-10">
-        <article className="achievement-card glass-strong glass-glow">
-          <div className="achievement-content">
-            <div>
-              <span className="achievement-kicker">Competition achievement · 24 Oct 2026</span>
-              <h3>6th place · Progsity Weekly #1</h3>
+      <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <Reveal className="h-full">
+          <article className="glass-strong glass-glow h-full overflow-hidden rounded-2xl">
+            <div className="activity-cover activity-cover-achievement">
+              <span aria-hidden="true" className="absolute inset-0 bg-grid-lines opacity-20" />
+              <Award size={48} strokeWidth={1.3} aria-hidden="true" />
+              <span className="absolute bottom-4 left-5 rounded-full border border-white/25 bg-black/30 px-3 py-1 font-mono text-[11px] text-white backdrop-blur">Competition</span>
             </div>
-            <a className="achievement-view" href="./progsity-weekly-1-certificate.jpg" target="_blank" rel="noopener noreferrer">
-              View certificate <ArrowUpRight size={17} aria-hidden="true" />
-            </a>
-          </div>
-        </article>
-      </Reveal>
-      <div className="mt-10 grid gap-5 md:grid-cols-2">
+            <div className="p-6">
+              <h3 className="text-2xl text-ink">Progsity Weekly #1</h3>
+              <p className="mt-3 text-sm leading-7 text-muted">Placed 6th · 24 October 2026</p>
+              <a className="achievement-view" href="./progsity-weekly-1-certificate.jpg" target="_blank" rel="noopener noreferrer">
+                View certificate <ArrowUpRight size={17} aria-hidden="true" />
+              </a>
+            </div>
+          </article>
+        </Reveal>
         {activities.map((a, i) => {
           const cover = a.photos?.[0];
           const details = [
