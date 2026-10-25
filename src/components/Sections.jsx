@@ -2,7 +2,6 @@ import { useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
-  Award,
   Code2,
   Copy,
   ExternalLink,
@@ -291,6 +290,15 @@ export function Activities() {
       />
       <Reveal className="mt-10">
         <article className="achievement-card glass-strong glass-glow">
+          <div className="achievement-content">
+            <div>
+              <span className="achievement-kicker">Competition certificate · 24 Oct 2026</span>
+              <h3>6th place · Progsity Weekly #1</h3>
+            </div>
+            <a className="achievement-view" href="./progsity-weekly-1-certificate.jpg" target="_blank" rel="noopener noreferrer">
+              View full size <ArrowUpRight size={17} aria-hidden="true" />
+            </a>
+          </div>
           <a
             className="achievement-image-link"
             href="./progsity-weekly-1-certificate.jpg"
@@ -307,15 +315,6 @@ export function Activities() {
               decoding="async"
             />
           </a>
-          <div className="achievement-content">
-            <span className="achievement-kicker"><Award size={17} aria-hidden="true" /> Competition achievement</span>
-            <h3>6th place at Progsity Weekly #1</h3>
-            <p>Placed 6th in the Progsity Weekly #1 programming competition, held on 24 October 2026.</p>
-            <div className="achievement-meta"><span>Progsity</span><span>24 Oct 2026</span></div>
-            <a className="achievement-view" href="./progsity-weekly-1-certificate.jpg" target="_blank" rel="noopener noreferrer">
-              View certificate <ArrowUpRight size={17} aria-hidden="true" />
-            </a>
-          </div>
         </article>
       </Reveal>
       <div className="mt-10 grid gap-5 md:grid-cols-2">
